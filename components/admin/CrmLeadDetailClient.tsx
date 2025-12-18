@@ -86,13 +86,31 @@ export default function CrmLeadDetailClient({ lead }: Props) {
         throw new Error(data.error || "Failed to save");
       }
 
-      // Update local notes state if a new note was added
-      if (newNote.trim() && data.lead?.notes) {
-        setNotes(data.lead.notes);
-        setNewNote("");
+      // Update all local state from the response
+      if (data.lead) {
+        if (data.lead.status) setStatus(data.lead.status);
+        if (data.lead.followUpDate) {
+          setFollowUpDate(data.lead.followUpDate.slice(0, 10));
+        } else {
+          setFollowUpDate("");
+        }
+        if (data.lead.internalNotes !== undefined) {
+          setInternalNotes(data.lead.internalNotes || "");
+        }
+        if (data.lead.notes) {
+          setNotes(data.lead.notes);
+        }
+        if (newNote.trim()) {
+          setNewNote("");
+        }
       }
 
-      setMessage("Lead updated.");
+      setMessage("Lead updated successfully.");
+      
+      // Refresh the page after a short delay to show updated data
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
     } catch (err) {
       console.error(err);
       setError("Could not save changes. Please try again.");

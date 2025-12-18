@@ -9,6 +9,10 @@ import BookingStatusChart from "@/components/admin/BookingStatusChart";
 import RevenueByTypeChart from "@/components/admin/RevenueByTypeChart";
 import { MoneyDisplay } from "@/components/admin/MoneyDisplay";
 
+// Force dynamic rendering to prevent caching
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function AdminDashboardPage() {
   // Fetch data for quick stats
   let bookingsCount = 0;

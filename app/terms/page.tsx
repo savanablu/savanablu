@@ -44,7 +44,7 @@ export default function TermsAndConditionsPage() {
             <section id="introduction" className="scroll-mt-24 rounded-2xl border border-sb-mist/60 bg-white/50 p-6 backdrop-blur-sm">
               <h2 className="mb-4 font-display text-2xl text-sb-night">Introduction</h2>
               <p className="text-[0.95rem] leading-relaxed text-sb-ink/90">
-                These Terms and Conditions ("Terms") govern your use of the Savana Blu Luxury Expeditions website and services. By booking a tour or safari with us, you agree to be bound by these Terms. Please read them carefully.
+                These Terms and Conditions (&quot;Terms&quot;) govern your use of the Savana Blu Luxury Expeditions website and services. By booking a tour or safari with us, you agree to be bound by these Terms. Please read them carefully.
               </p>
             </section>
 

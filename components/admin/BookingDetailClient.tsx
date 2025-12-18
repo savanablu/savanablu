@@ -426,7 +426,7 @@ function AdminBookingActions({ booking }: { booking: BookingRecord }) {
           <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl">
             <h3 className="font-display text-lg text-sb-night">Cancel Booking</h3>
             <p className="mt-2 text-sm text-sb-ink/70">
-              This will mark the booking as cancelled. Provide a reason (e.g., "No guide available", "Bad weather", "Customer request").
+              This will mark the booking as cancelled. Provide a reason (e.g., &quot;No guide available&quot;, &quot;Bad weather&quot;, &quot;Customer request&quot;).
             </p>
 
             <textarea
@@ -478,7 +478,7 @@ function AdminBookingActions({ booking }: { booking: BookingRecord }) {
               This will mark the advance payment as refunded. Amount: <strong>USD {booking.depositUsd?.toFixed(2) || "0.00"}</strong>
             </p>
             <p className="mt-1 text-xs text-sb-ink/60">
-              Note: This only updates the booking status. You'll need to process the actual refund through Ziina separately.
+              Note: This only updates the booking status. You&apos;ll need to process the actual refund through Ziina separately.
             </p>
 
             <textarea

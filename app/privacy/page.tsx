@@ -42,7 +42,7 @@ export default function PrivacyPolicyPage() {
             <section id="introduction" className="scroll-mt-24 rounded-2xl border border-sb-mist/60 bg-white/50 p-6 backdrop-blur-sm">
               <h2 className="mb-4 font-display text-2xl text-sb-night">Introduction</h2>
               <p className="text-[0.95rem] leading-relaxed text-sb-ink/90">
-                Savana Blu Luxury Expeditions ("we", "our", "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services.
+                Savana Blu Luxury Expeditions (&quot;we&quot;, &quot;our&quot;, &quot;us&quot;) is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services.
               </p>
             </section>
 
@@ -245,7 +245,7 @@ export default function PrivacyPolicyPage() {
             <section id="changes" className="scroll-mt-24 rounded-2xl border border-sb-mist/60 bg-white/50 p-6 backdrop-blur-sm">
               <h2 className="mb-4 font-display text-2xl text-sb-night">Changes to This Privacy Policy</h2>
               <p className="text-[0.95rem] leading-relaxed text-sb-ink/90">
-                We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last updated" date. You are advised to review this Privacy Policy periodically for any changes.
+                We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the &quot;Last updated&quot; date. You are advised to review this Privacy Policy periodically for any changes.
               </p>
             </section>
 

@@ -147,8 +147,14 @@ function buildWhatsAppUrl(b: Booking): string {
   const dateText = getDisplayDate(b);
   // Support both camelCase and PascalCase field names
   const total = getTotalUsd(b);
-  const deposit = b.depositUsd ?? b.depositUSD ?? null;
-  const balance = b.balanceUsd ?? b.balanceUSD ?? (total != null && deposit != null ? total - deposit : null);
+  
+  // Get advance paid amount - check advancePayment.usd first (for confirmed bookings), then fallback to depositUsd/depositUSD
+  const advancePaid = (b as any).advancePayment?.usd ?? b.depositUsd ?? b.depositUSD ?? null;
+  
+  // Calculate balance: total - advancePaid (if both exist)
+  const balance = total != null && advancePaid != null 
+    ? Math.max(0, total - advancePaid) 
+    : b.balanceUsd ?? b.balanceUSD ?? null;
   
   // Support both guestName/customerName and guestPhone/customerPhone
   const guestName = b.guestName || b.customerName || "Not provided";
@@ -205,17 +211,17 @@ function buildWhatsAppUrl(b: Booking): string {
   }
 
   // Payment summary
-  if (total != null || deposit != null || balance != null) {
+  if (total != null || advancePaid != null || balance != null) {
     lines.push("");
     lines.push("Payment Summary:");
     if (total != null) {
-      lines.push(`Total (estimate): USD ${total.toFixed(2)}`);
+      lines.push(`Total: USD ${total.toFixed(2)}`);
     }
-    if (deposit != null && deposit > 0) {
-      lines.push(`Paid online: USD ${deposit.toFixed(2)}`);
+    if (advancePaid != null && advancePaid > 0) {
+      lines.push(`20% advance paid: USD ${advancePaid.toFixed(2)}`);
     }
-    if (balance != null && balance > 0) {
-      lines.push(`Estimated balance to collect in Zanzibar: USD ${balance.toFixed(2)}`);
+    if (balance != null && balance >= 0) {
+      lines.push(`Balance to collect in Zanzibar: USD ${balance.toFixed(2)}`);
     }
   }
 

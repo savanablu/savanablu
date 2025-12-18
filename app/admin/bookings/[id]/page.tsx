@@ -122,8 +122,14 @@ function buildGuideHandoverMessage(booking: BookingRecord, productTitle: string)
 
   // Get amounts with fallbacks
   const total = totalAmount ?? null;
-  const deposit = depositAmount ?? null;
-  const balance = balanceAmount ?? (total != null && deposit != null ? total - deposit : null);
+  
+  // Get advance paid amount - check advancePayment.usd first (for confirmed bookings), then fallback to depositAmount
+  const advancePaid = (booking as any).advancePayment?.usd ?? depositAmount ?? null;
+  
+  // Calculate balance: total - advancePaid (if both exist)
+  const balance = total != null && advancePaid != null 
+    ? Math.max(0, total - advancePaid) 
+    : balanceAmount ?? null;
 
   // Get booking date using helper
   const bookingDate = getBookingDate(booking);
@@ -177,18 +183,18 @@ function buildGuideHandoverMessage(booking: BookingRecord, productTitle: string)
   }
 
   // Payment summary
-  if (total != null || deposit != null || balance != null || promoCode) {
+  if (total != null || advancePaid != null || balance != null || promoCode) {
     lines.push("");
     lines.push("Payment Summary:");
     if (total != null) {
-      lines.push(`Total (estimate): ${currency} ${total.toFixed(2)}`);
+      lines.push(`Total: ${currency} ${total.toFixed(2)}`);
     }
-    if (deposit != null && deposit > 0) {
-      lines.push(`Paid online: ${currency} ${deposit.toFixed(2)}`);
+    if (advancePaid != null && advancePaid > 0) {
+      lines.push(`20% advance paid: ${currency} ${advancePaid.toFixed(2)}`);
     }
-    if (balance != null && balance > 0) {
+    if (balance != null && balance >= 0) {
       lines.push(
-        `Estimated balance to collect in Zanzibar: ${currency} ${balance.toFixed(2)}`
+        `Balance to collect in Zanzibar: ${currency} ${balance.toFixed(2)}`
       );
     }
     if (promoCode) {

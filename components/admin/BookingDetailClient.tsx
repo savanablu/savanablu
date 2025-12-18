@@ -47,7 +47,12 @@ export default function BookingDetailClient({ booking }: Props) {
         throw new Error(data.error || "Failed to save notes");
       }
 
-      setMessage("Notes saved.");
+      setMessage("Notes saved successfully.");
+      
+      // Refresh the page after a short delay to show updated data
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
     } catch (err) {
       console.error(err);
       setError("Could not save notes. Please try again.");

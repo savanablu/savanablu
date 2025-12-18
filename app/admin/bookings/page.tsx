@@ -11,6 +11,10 @@ export const metadata: Metadata = {
   title: "Admin · Bookings | Savana Blu",
 };
 
+// Force dynamic rendering to prevent caching
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 // 👉 Change this to the number you want to hand over to (e.g. your ops WhatsApp)
 const WHATSAPP_NUMBER = "+255712304094";
 

@@ -294,7 +294,7 @@ export default async function AdminBookingsPage({
   // Filter bookings by status if filter is applied
   const filterBookings = (items: Booking[]) => {
     if (!statusFilter || statusFilter === "all") return items;
-    return items.filter((b) => getBookingStatus(b) === statusFilter);
+    return items.filter((b) => getBookingStatus({ status: b.status, paymentStatus: b.paymentStatus }) === statusFilter);
   };
 
   const filteredUpcoming = filterBookings(upcoming);
@@ -447,13 +447,13 @@ export default async function AdminBookingsPage({
   // Calculate status counts using consistent logic
   const statusCounts = {
     confirmed: bookings.filter(
-      (b) => getBookingStatus(b) === "confirmed"
+      (b) => getBookingStatus({ status: b.status, paymentStatus: b.paymentStatus }) === "confirmed"
     ).length,
     onHold: bookings.filter(
-      (b) => getBookingStatus(b) === "on-hold"
+      (b) => getBookingStatus({ status: b.status, paymentStatus: b.paymentStatus }) === "on-hold"
     ).length,
     cancelled: bookings.filter(
-      (b) => getBookingStatus(b) === "cancelled"
+      (b) => getBookingStatus({ status: b.status, paymentStatus: b.paymentStatus }) === "cancelled"
     ).length,
   };
 

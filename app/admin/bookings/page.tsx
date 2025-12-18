@@ -1,11 +1,10 @@
-import fs from "fs/promises";
-import path from "path";
 import Link from "next/link";
 import { Metadata } from "next";
 import { Suspense } from "react";
 import StatusBadge, { getBookingStatus } from "@/components/admin/StatusBadge";
 import BookingStatusFilter from "@/components/admin/BookingStatusFilter";
 import { MoneyDisplay } from "@/components/admin/MoneyDisplay";
+import { readBookings } from "@/lib/data/bookings";
 
 export const metadata: Metadata = {
   title: "Admin · Bookings | Savana Blu",
@@ -52,21 +51,6 @@ type Booking = {
   airportFlight?: string | null;
   notes?: string | null;
 };
-
-const BOOKINGS_PATH = path.join(process.cwd(), "data", "bookings.json");
-
-async function readBookings(): Promise<Booking[]> {
-  try {
-    const raw = await fs.readFile(BOOKINGS_PATH, "utf8");
-    const parsed = JSON.parse(raw || "[]");
-    if (!Array.isArray(parsed)) return [];
-    return parsed;
-  } catch (err: any) {
-    if (err.code === "ENOENT") return [];
-    console.error("Error reading bookings.json", err);
-    return [];
-  }
-}
 
 function parseDate(dateStr?: string): Date | null {
   if (!dateStr) return null;

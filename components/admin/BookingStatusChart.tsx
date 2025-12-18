@@ -63,9 +63,10 @@ export default function BookingStatusChart({
             color: "#F9F3EB",
             padding: "8px 12px",
           }}
-          formatter={(value: number, name: string) => {
-            const percentage = total > 0 ? ((value / total) * 100).toFixed(1) : "0";
-            return [`${value} bookings (${percentage}%)`, name];
+          formatter={(value: number | undefined, name: string) => {
+            const val = value ?? 0;
+            const percentage = total > 0 ? ((val / total) * 100).toFixed(1) : "0";
+            return [`${val} bookings (${percentage}%)`, name];
           }}
           labelStyle={{ marginBottom: "4px", fontWeight: 600 }}
         />

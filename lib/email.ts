@@ -863,9 +863,28 @@ export async function sendBookingConfirmedToAdmin(
 
   `;
 
-  await sendEmail({
+  console.log("[Email] sendBookingConfirmedToAdmin: Calling sendEmail with:", {
     to: ADMIN_EMAIL,
     subject,
-    html,
+    hasHtml: !!html,
   });
+
+  try {
+    const result = await sendEmail({
+      to: ADMIN_EMAIL,
+      subject,
+      html,
+    });
+    console.log("[Email] sendBookingConfirmedToAdmin: Email sent successfully:", {
+      to: ADMIN_EMAIL,
+      resultId: result?.id,
+    });
+  } catch (err) {
+    console.error("[Email] sendBookingConfirmedToAdmin: Failed to send email:", {
+      to: ADMIN_EMAIL,
+      error: err instanceof Error ? err.message : String(err),
+      stack: err instanceof Error ? err.stack : undefined,
+    });
+    throw err; // Re-throw so caller can handle
+  }
 }

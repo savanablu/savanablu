@@ -8,7 +8,17 @@ import { notFound } from "next/navigation";
 
 import { getAllPosts, getPostBySlug } from "@/lib/data/blog";
 import { serialize } from "next-mdx-remote/serialize";
-import MDXContent from "@/components/blog/MDXContent";
+import dynamic from "next/dynamic";
+
+// Force dynamic rendering to avoid SSR issues with next-mdx-remote during build
+export const dynamic = 'force-dynamic';
+
+const MDXContent = dynamic(
+  () => import("@/components/blog/MDXContent"),
+  {
+    ssr: true,
+  }
+);
 
 
 
@@ -21,22 +31,6 @@ type BlogPageProps = {
   };
 
 };
-
-
-
-export async function generateStaticParams() {
-
-  const posts = await getAllPosts();
-
-
-
-  return posts.map((post) => ({
-
-    slug: post.slug,
-
-  }));
-
-}
 
 
 

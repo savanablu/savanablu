@@ -557,9 +557,9 @@ export async function sendBookingOnHoldToAdmin(
     booking.guestEmail
   )}, ${safe(booking.guestPhone)})</li>
 
-        <li>Party: ${safe(booking.adults, 0)} adults, ${safe(
+        <li>Party: ${safe(booking.adults, "0")} adults, ${safe(
     booking.children,
-    0
+    "0"
   )} children</li>
 
         <li>Total (USD): ${

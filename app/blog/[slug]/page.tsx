@@ -8,12 +8,12 @@ import { notFound } from "next/navigation";
 
 import { getAllPosts, getPostBySlug } from "@/lib/data/blog";
 import { serialize } from "next-mdx-remote/serialize";
-import dynamic from "next/dynamic";
+import dynamicImport from "next/dynamic";
 
 // Force dynamic rendering to avoid SSR issues with next-mdx-remote during build
 export const dynamic = 'force-dynamic';
 
-const MDXContent = dynamic(
+const MDXContent = dynamicImport(
   () => import("@/components/blog/MDXContent"),
   {
     ssr: true,

@@ -38,8 +38,9 @@ export async function POST(req: NextRequest) {
       ? `/booking/ziina/cancel?bookingId=${encodeURIComponent(bookingId)}`
       : `/booking/ziina/cancel`;
 
-    // In dev / staging we pass test: true so no real charge happens
-    const isTestMode = process.env.NODE_ENV !== "production";
+    // Use explicit test mode flag or fall back to NODE_ENV check
+    // Set ZIINA_TEST_MODE=true in .env.local to force test mode
+    const isTestMode = process.env.ZIINA_TEST_MODE === "true" || process.env.NODE_ENV !== "production";
 
     const { paymentIntentId, redirectUrl } = await createZiinaPaymentIntent({
       amountUsd,

@@ -22,8 +22,19 @@ async function readBookings(): Promise<any[]> {
 
 // Small helper to write bookings.json
 async function writeBookings(bookings: any[]) {
-  await fs.mkdir(path.dirname(BOOKINGS_PATH), { recursive: true });
-  await fs.writeFile(BOOKINGS_PATH, JSON.stringify(bookings, null, 2), "utf8");
+  try {
+    await fs.mkdir(path.dirname(BOOKINGS_PATH), { recursive: true });
+    await fs.writeFile(BOOKINGS_PATH, JSON.stringify(bookings, null, 2), "utf8");
+  } catch (err: any) {
+    // On Vercel, filesystem is read-only - log but don't throw
+    if (err.code === "EACCES" || err.code === "EROFS" || err.code === "EPERM") {
+      console.warn("Could not write bookings file (filesystem may be read-only):", err.message);
+      // Don't throw - allow the function to continue
+      return;
+    }
+    // For other errors, re-throw
+    throw err;
+  }
 }
 
 // Try to get a total in USD from whatever field exists
@@ -152,7 +163,14 @@ export async function POST(req: NextRequest) {
     booking.confirmationEmailsSent = true;
 
     bookings[index] = booking;
-    await writeBookings(bookings);
+    
+    // Try to save booking, but don't fail if filesystem is read-only
+    try {
+      await writeBookings(bookings);
+    } catch (writeError: any) {
+      console.warn("Could not update booking status (filesystem may be read-only):", writeError?.message);
+      // Continue with email sending even if file write fails
+    }
 
     const emailPayload = buildEmailPayloadFromBooking(
       booking,
@@ -161,16 +179,40 @@ export async function POST(req: NextRequest) {
     );
 
     console.log("[Ziina] Sending confirmation emails for booking:", bookingId);
+    console.log("[Ziina] Email payload:", {
+      guestEmail: emailPayload.guestEmail,
+      guestName: emailPayload.guestName,
+      bookingId: emailPayload.id,
+      hasEmail: !!emailPayload.guestEmail,
+    });
 
-    // Fire & forget – we don't block the response if email fails
     // Only send if not already sent
     if (!emailsAlreadySent) {
-      sendBookingConfirmedToGuest(emailPayload).catch((err) =>
-        console.error("[Ziina] guest confirm email error", err)
-      );
-      sendBookingConfirmedToAdmin(emailPayload).catch((err) =>
-        console.error("[Ziina] admin confirm email error", err)
-      );
+      // Send emails with better error handling and logging
+      try {
+        console.log("[Ziina] Sending confirmation email to guest:", emailPayload.guestEmail);
+        await sendBookingConfirmedToGuest(emailPayload);
+        console.log("[Ziina] Guest confirmation email sent successfully");
+      } catch (err) {
+        console.error("[Ziina] Guest confirm email error:", err);
+        console.error("[Ziina] Error details:", {
+          guestEmail: emailPayload.guestEmail,
+          error: err instanceof Error ? err.message : String(err),
+          stack: err instanceof Error ? err.stack : undefined,
+        });
+      }
+
+      try {
+        console.log("[Ziina] Sending confirmation email to admin");
+        await sendBookingConfirmedToAdmin(emailPayload);
+        console.log("[Ziina] Admin confirmation email sent successfully");
+      } catch (err) {
+        console.error("[Ziina] Admin confirm email error:", err);
+        console.error("[Ziina] Error details:", {
+          error: err instanceof Error ? err.message : String(err),
+          stack: err instanceof Error ? err.stack : undefined,
+        });
+      }
     } else {
       console.log("[Ziina] Confirmation emails already sent, skipping:", bookingId);
     }

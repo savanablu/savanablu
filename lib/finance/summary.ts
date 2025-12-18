@@ -38,6 +38,12 @@ export type FinanceSummary = {
 
 export async function getFinanceSummary(): Promise<FinanceSummary> {
   const bookings = await readBookings();
+  
+  // Debug: Count confirmed bookings with advancePayment
+  const confirmedWithAdvance = bookings.filter(
+    (b: any) => (b.paymentStatus === "confirmed" || b.advancePayment) && b.advancePayment?.usd
+  );
+  console.log(`[Finance] Processing ${bookings.length} bookings, ${confirmedWithAdvance.length} confirmed with advance payment`);
 
   const totals: FinanceTotals = {
     bookingCount: 0,
@@ -58,12 +64,17 @@ export async function getFinanceSummary(): Promise<FinanceSummary> {
     const totalUSD = b.totalUSD ?? b.totalUsd ?? 0;
     
     // Get advance paid amount - check advancePayment.usd first (for confirmed bookings), then fallback to depositUSD/depositUsd
-    const advancePaid = b.advancePayment?.usd ?? b.depositUSD ?? b.depositUsd ?? 0;
+    // Handle both object access patterns: b.advancePayment?.usd and (b as any).advancePayment?.usd
+    const advancePayment = (b as any).advancePayment;
+    const advancePaid = 
+      (advancePayment && typeof advancePayment.usd === "number" && advancePayment.usd > 0)
+        ? advancePayment.usd
+        : (b.depositUSD ?? b.depositUsd ?? 0);
     
     // Calculate balance: total - advancePaid (if both exist), otherwise use stored balanceUSD
     const balanceUSD = totalUSD > 0 && advancePaid > 0 
       ? Math.max(0, totalUSD - advancePaid)
-      : b.balanceUSD ?? b.balanceUsd ?? Math.max(0, totalUSD - advancePaid);
+      : (b.balanceUSD ?? b.balanceUsd ?? Math.max(0, totalUSD - advancePaid));
 
     const isPackage = b.type === "Safari" || b.type === "package";
     const typeKey = isPackage ? "packages" : "tours";

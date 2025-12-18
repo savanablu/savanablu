@@ -15,6 +15,8 @@ const CRM_LEADS_PATH = path.join(
 );
 
 async function appendLead(lead: any) {
+  // On Vercel, filesystem is read-only except /tmp
+  // Try to write, but don't fail if it's not possible
   let current: any[] = [];
   try {
     const raw = await fs.readFile(CRM_LEADS_PATH, "utf8");
@@ -24,17 +26,25 @@ async function appendLead(lead: any) {
     }
   } catch (err: any) {
     if (err.code !== "ENOENT") {
-      throw err;
+      // Log but don't throw - filesystem might be read-only on Vercel
+      console.warn("Could not read CRM leads file:", err.message);
+      return; // Exit early if we can't read
     }
   }
 
   current.push(lead);
 
-  await fs.writeFile(
-    CRM_LEADS_PATH,
-    JSON.stringify(current, null, 2),
-    "utf8"
-  );
+  try {
+    await fs.writeFile(
+      CRM_LEADS_PATH,
+      JSON.stringify(current, null, 2),
+      "utf8"
+    );
+  } catch (err: any) {
+    // On Vercel, filesystem is read-only - log but don't fail
+    console.warn("Could not write CRM leads file (filesystem may be read-only):", err.message);
+    // Don't throw - continue with email sending
+  }
 }
 
 async function checkRecentDuplicate(email: string, withinMinutes: number = 5): Promise<boolean> {
@@ -56,7 +66,9 @@ async function checkRecentDuplicate(email: string, withinMinutes: number = 5): P
       return createdAt > threshold;
     });
   } catch (err: any) {
-    if (err.code === "ENOENT") {
+    // On Vercel, filesystem is read-only - fail open (allow submission)
+    if (err.code === "ENOENT" || err.code === "EACCES" || err.code === "EROFS") {
+      console.warn("Could not check for duplicates (filesystem may be read-only):", err.message);
       return false;
     }
     // On error, allow submission (fail open)
@@ -177,7 +189,13 @@ export async function POST(req: Request) {
       accommodation: payload.accommodation,
     };
 
-    await appendLead(lead);
+    // Try to save lead, but don't fail if filesystem is read-only
+    try {
+      await appendLead(lead);
+    } catch (leadError: any) {
+      console.warn("Could not save lead to file (this is OK on Vercel):", leadError?.message);
+      // Continue with email sending even if file write fails
+    }
 
     // Send emails with better error handling
     let emailErrors: string[] = [];

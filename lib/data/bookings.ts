@@ -46,45 +46,51 @@ export async function readBookings(): Promise<StoredBooking[]> {
 
 
 export async function writeBookings(bookings: StoredBooking[]): Promise<void> {
+  try {
+    await fs.mkdir(path.dirname(BOOKINGS_PATH), { recursive: true });
 
-  await fs.mkdir(path.dirname(BOOKINGS_PATH), { recursive: true });
-
-  await fs.writeFile(
-
-    BOOKINGS_PATH,
-
-    JSON.stringify(bookings, null, 2),
-
-    "utf-8"
-
-  );
-
+    await fs.writeFile(
+      BOOKINGS_PATH,
+      JSON.stringify(bookings, null, 2),
+      "utf-8"
+    );
+  } catch (err: any) {
+    // On Vercel, filesystem is read-only - log but don't throw
+    if (err.code === "EACCES" || err.code === "EROFS" || err.code === "EPERM") {
+      console.warn("Could not write bookings file (filesystem may be read-only):", err.message);
+      // Don't throw - allow the function to complete
+      return;
+    }
+    // For other errors, re-throw
+    throw err;
+  }
 }
 
 
 
 export async function appendBooking(booking: StoredBooking): Promise<void> {
+  try {
+    const all = await readBookings();
 
-  const all = await readBookings();
+    // Avoid duplicates by id
+    if (booking.id) {
+      const exists = all.some((b) => b.id === booking.id);
+      if (exists) return;
+    }
 
+    all.push(booking);
 
-
-  // Avoid duplicates by id
-
-  if (booking.id) {
-
-    const exists = all.some((b) => b.id === booking.id);
-
-    if (exists) return;
-
+    await writeBookings(all);
+  } catch (err: any) {
+    // On Vercel, filesystem is read-only - log but don't throw
+    if (err.code === "EACCES" || err.code === "EROFS" || err.code === "EPERM") {
+      console.warn("Could not save booking to file (filesystem may be read-only):", err.message);
+      // Don't throw - allow booking creation to continue (emails will still be sent)
+      return;
+    }
+    // For other errors, re-throw
+    throw err;
   }
-
-
-
-  all.push(booking);
-
-  await writeBookings(all);
-
 }
 
 

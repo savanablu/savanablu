@@ -56,8 +56,14 @@ export async function getFinanceSummary(): Promise<FinanceSummary> {
 
   for (const b of bookings) {
     const totalUSD = b.totalUSD ?? b.totalUsd ?? 0;
-    const depositUSD = b.depositUSD ?? 0;
-    const balanceUSD = b.balanceUSD ?? totalUSD - depositUSD;
+    
+    // Get advance paid amount - check advancePayment.usd first (for confirmed bookings), then fallback to depositUSD/depositUsd
+    const advancePaid = b.advancePayment?.usd ?? b.depositUSD ?? b.depositUsd ?? 0;
+    
+    // Calculate balance: total - advancePaid (if both exist), otherwise use stored balanceUSD
+    const balanceUSD = totalUSD > 0 && advancePaid > 0 
+      ? Math.max(0, totalUSD - advancePaid)
+      : b.balanceUSD ?? b.balanceUsd ?? Math.max(0, totalUSD - advancePaid);
 
     const isPackage = b.type === "Safari" || b.type === "package";
     const typeKey = isPackage ? "packages" : "tours";
@@ -65,13 +71,13 @@ export async function getFinanceSummary(): Promise<FinanceSummary> {
     // Totals
     totals.bookingCount++;
     totals.totalRevenueUSD += totalUSD;
-    totals.totalDepositsUSD += depositUSD;
+    totals.totalDepositsUSD += advancePaid;
     totals.totalBalanceUSD += balanceUSD;
 
     // By type
     byType[typeKey].bookingCount++;
     byType[typeKey].totalRevenueUSD += totalUSD;
-    byType[typeKey].totalDepositsUSD += depositUSD;
+    byType[typeKey].totalDepositsUSD += advancePaid;
     byType[typeKey].totalBalanceUSD += balanceUSD;
 
     // By experience
@@ -90,7 +96,7 @@ export async function getFinanceSummary(): Promise<FinanceSummary> {
     const exp = byExperienceMap.get(slug)!;
     exp.bookingCount++;
     exp.totalRevenueUSD += totalUSD;
-    exp.totalDepositsUSD += depositUSD;
+    exp.totalDepositsUSD += advancePaid;
     exp.totalBalanceUSD += balanceUSD;
 
     // By month
@@ -118,7 +124,7 @@ export async function getFinanceSummary(): Promise<FinanceSummary> {
     const month = byMonthMap.get(monthKey)!;
     month.bookingCount++;
     month.totalRevenueUSD += totalUSD;
-    month.totalDepositsUSD += depositUSD;
+    month.totalDepositsUSD += advancePaid;
     month.totalBalanceUSD += balanceUSD;
   }
 

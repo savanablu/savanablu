@@ -88,33 +88,7 @@ export async function POST(req: Request) {
     // "tour" -> "zanzibar-tour", "package" -> "safari"
     const urlType = type === "tour" ? "zanzibar-tour" : "safari";
 
-    // Create and save booking (with dateLabel and type for redirect)
-    const booking = {
-      id: bookingId,
-      type: urlType, // Store as "zanzibar-tour" or "safari" for URL consistency
-      experienceSlug: slug,
-      experienceTitle,
-      date,
-      dateLabel, // Human-readable date format
-      adults: adultsNum,
-      children: childrenNum,
-      totalUSD: finalTotal,
-      totalUsd: finalTotal, // Also include camelCase for consistency
-      depositUSD: 0, // Will be paid via Ziina
-      balanceUSD: finalTotal,
-      promoCode: appliedPromoCode || undefined,
-      customerName,
-      customerEmail,
-      customerPhone: customerPhone || "",
-      notes: notes || "",
-      status: "pending", // Pending payment
-      createdAt: new Date().toISOString(),
-      source: "website-booking",
-    };
-
-    await appendBooking(booking);
-
-    // Parse notes to extract pickup details
+    // Parse notes to extract pickup details first
     const notesLines = (notes || "").split("\n");
     let pickupLocation: string | null = null;
     let pickupTime: string | null = null;
@@ -138,14 +112,38 @@ export async function POST(req: Request) {
       }
     }
 
-    // Add parsed pickup details to booking object
-    booking.pickupLocation = pickupLocation;
-    booking.pickupTime = pickupTime;
-    booking.airportPickup = airportPickup;
-    booking.airportFlight = airportFlight;
-    booking.guestName = customerName;
-    booking.guestEmail = customerEmail;
-    booking.guestPhone = customerPhone || "";
+    // Create and save booking (with dateLabel and type for redirect)
+    const booking: Record<string, any> = {
+      id: bookingId,
+      type: urlType, // Store as "zanzibar-tour" or "safari" for URL consistency
+      experienceSlug: slug,
+      experienceTitle,
+      date,
+      dateLabel, // Human-readable date format
+      adults: adultsNum,
+      children: childrenNum,
+      totalUSD: finalTotal,
+      totalUsd: finalTotal, // Also include camelCase for consistency
+      depositUSD: 0, // Will be paid via Ziina
+      balanceUSD: finalTotal,
+      promoCode: appliedPromoCode || undefined,
+      customerName,
+      customerEmail,
+      customerPhone: customerPhone || "",
+      guestName: customerName,
+      guestEmail: customerEmail,
+      guestPhone: customerPhone || "",
+      notes: notes || "",
+      status: "pending", // Pending payment
+      createdAt: new Date().toISOString(),
+      source: "website-booking",
+      pickupLocation,
+      pickupTime,
+      airportPickup,
+      airportFlight,
+    };
+
+    await appendBooking(booking);
 
     // ...after booking is saved to bookings.json:
 
@@ -158,26 +156,17 @@ export async function POST(req: Request) {
         : undefined;
 
     let depositUsd: number | undefined;
-    let depositAed: number | undefined;
-
-    const fxRateFromEnv = Number(
-      process.env.NEXT_PUBLIC_ZIINA_USD_TO_AED_RATE ?? "3.7"
-    );
-    const fxRate =
-      Number.isFinite(fxRateFromEnv) && fxRateFromEnv > 0 ? fxRateFromEnv : 3.7;
 
     if (typeof totalUsd === "number") {
       const rawDepositUsd = totalUsd * 0.2;
       depositUsd = Math.round(rawDepositUsd * 100) / 100;
-      const rawDepositAed = depositUsd * fxRate;
-      depositAed = Math.round(rawDepositAed * 100) / 100;
     }
 
     // 2) Create Ziina payment intent if we have a deposit amount
     let paymentLinkUrl: string | null = null;
     let ziinaPaymentIntentId: string | null = null;
 
-    if (typeof depositAed === "number" && depositAed > 0) {
+    if (typeof depositUsd === "number" && depositUsd > 0) {
       try {
         console.log("[Ziina] Creating payment intent for booking:", {
           bookingId: booking.id,
@@ -221,13 +210,12 @@ export async function POST(req: Request) {
         console.error("[Ziina] Failed to create payment link for booking", err);
         console.error("[Ziina] Error details:", {
           bookingId: booking.id,
-          depositAed,
+          depositUsd,
           error: err instanceof Error ? err.message : String(err),
         });
       }
     } else {
       console.log("[Ziina] Skipping payment link creation - no valid deposit amount:", {
-        depositAed,
         depositUsd,
       });
     }
@@ -249,7 +237,6 @@ export async function POST(req: Request) {
       children: booking.children,
       totalUsd,
       depositUsd,
-      depositAed,
       promoCode: booking.promoCode || booking.promo || null,
       pickupLocation: booking.pickupLocation || null,
       pickupTime: booking.pickupTime || null,

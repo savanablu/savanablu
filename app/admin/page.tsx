@@ -353,12 +353,13 @@ export default async function AdminDashboardPage() {
             </div>
             <div className="grid gap-6 lg:grid-cols-2">
               <div className="rounded-2xl border border-sb-cream/20 bg-gradient-to-br from-sb-deep/60 to-sb-deep/40 p-6 shadow-lg backdrop-blur-sm">
-                <div className="mb-4">
+                <div className="mb-5">
                   <h3 className="text-lg font-semibold text-sb-cream">
-                    Revenue by Month
+                    Revenue Trends by Month
                   </h3>
-                  <p className="mt-1 text-xs text-sb-cream/60">
-                    Total revenue and advances collected over time
+                  <p className="mt-1.5 text-xs leading-relaxed text-sb-cream/70">
+                    Monthly breakdown showing total trip value (revenue) and advances collected. 
+                    Helps identify seasonal patterns and payment collection trends over time.
                   </p>
                 </div>
                 <Suspense fallback={<div className="h-64 flex items-center justify-center text-sb-cream/60">Loading chart...</div>}>
@@ -367,12 +368,13 @@ export default async function AdminDashboardPage() {
               </div>
 
               <div className="rounded-2xl border border-sb-cream/20 bg-gradient-to-br from-sb-deep/60 to-sb-deep/40 p-6 shadow-lg backdrop-blur-sm">
-                <div className="mb-4">
+                <div className="mb-5">
                   <h3 className="text-lg font-semibold text-sb-cream">
-                    Booking Status Breakdown
+                    Booking Status Distribution
                   </h3>
-                  <p className="mt-1 text-xs text-sb-cream/60">
-                    Distribution of confirmed, on-hold, and cancelled bookings
+                  <p className="mt-1.5 text-xs leading-relaxed text-sb-cream/70">
+                    Visual breakdown of all bookings by status: confirmed (20% advance paid), 
+                    on hold (awaiting payment), and cancelled. Shows overall booking health.
                   </p>
                 </div>
                 <Suspense fallback={<div className="h-64 flex items-center justify-center text-sb-cream/60">Loading chart...</div>}>
@@ -385,12 +387,14 @@ export default async function AdminDashboardPage() {
               </div>
 
               <div className="rounded-2xl border border-sb-cream/20 bg-gradient-to-br from-sb-deep/60 to-sb-deep/40 p-6 shadow-lg backdrop-blur-sm lg:col-span-2">
-                <div className="mb-4">
+                <div className="mb-5">
                   <h3 className="text-lg font-semibold text-sb-cream">
-                    Revenue by Tour Type
+                    Revenue Comparison by Tour Category
                   </h3>
-                  <p className="mt-1 text-xs text-sb-cream/60">
-                    Comparison of revenue, advances, and balances between day tours and multi-day packages
+                  <p className="mt-1.5 text-xs leading-relaxed text-sb-cream/70">
+                    Side-by-side comparison of day tours vs. multi-day packages showing total revenue, 
+                    advances collected, and balances due on arrival. Useful for understanding which category 
+                    generates more revenue and payment collection efficiency.
                   </p>
                 </div>
                 <Suspense fallback={<div className="h-64 flex items-center justify-center text-sb-cream/60">Loading chart...</div>}>

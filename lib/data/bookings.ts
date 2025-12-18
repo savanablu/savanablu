@@ -151,7 +151,18 @@ export async function updateBookingNotes(
 
 
 
-  await writeBookings(next);
+  try {
+    await writeBookings(next);
+  } catch (err: any) {
+    // On Vercel, filesystem is read-only - log but don't throw
+    if (err.code === "EACCES" || err.code === "EROFS" || err.code === "EPERM") {
+      console.warn("Could not update booking notes (filesystem may be read-only):", err.message);
+      // Still return the updated booking object even if file write fails
+      return updated;
+    }
+    // For other errors, re-throw
+    throw err;
+  }
 
   return updated;
 
@@ -188,7 +199,18 @@ export async function updateBookingStatus(
     return null;
   }
 
-  await writeBookings(next);
+  try {
+    await writeBookings(next);
+  } catch (err: any) {
+    // On Vercel, filesystem is read-only - log but don't throw
+    if (err.code === "EACCES" || err.code === "EROFS" || err.code === "EPERM") {
+      console.warn("Could not update booking status (filesystem may be read-only):", err.message);
+      // Still return the updated booking object even if file write fails
+      return updated;
+    }
+    // For other errors, re-throw
+    throw err;
+  }
 
   return updated;
 }

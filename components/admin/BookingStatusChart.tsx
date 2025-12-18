@@ -36,20 +36,21 @@ export default function BookingStatusChart({
   }
 
   return (
-    <ResponsiveContainer width="100%" height={320}>
+    <ResponsiveContainer width="100%" height={360}>
       <PieChart>
         <Pie
           data={data}
           cx="50%"
-          cy="45%"
+          cy="50%"
           labelLine={false}
-          label={({ name, value, percent }) =>
-            `${name}: ${value} (${percent ? (percent * 100).toFixed(0) : "0"}%)`
-          }
-          outerRadius={90}
+          label={({ name, value, percent }) => {
+            const pct = percent ? (percent * 100).toFixed(0) : "0";
+            return `${name}\n${value} (${pct}%)`;
+          }}
+          outerRadius={100}
           fill="#8884d8"
           dataKey="value"
-          paddingAngle={2}
+          paddingAngle={3}
         >
           {data.map((entry, index) => (
             <Cell key={`cell-${index}`} fill={entry.color} stroke="#0B3C49" strokeWidth={2} />
@@ -61,15 +62,16 @@ export default function BookingStatusChart({
             border: "1px solid #F3E2C7",
             borderRadius: "8px",
             color: "#F9F3EB",
-            padding: "8px 12px",
+            padding: "10px 14px",
           }}
           formatter={(value: number | undefined, name: string | undefined) => {
             const val = value ?? 0;
             const nameStr = name ?? "";
             const percentage = total > 0 ? ((val / total) * 100).toFixed(1) : "0";
-            return [`${val} bookings (${percentage}%)`, nameStr];
+            return [`${val} booking${val !== 1 ? 's' : ''} (${percentage}% of total)`, nameStr];
           }}
-          labelStyle={{ marginBottom: "4px", fontWeight: 600 }}
+          labelStyle={{ marginBottom: "6px", fontWeight: 600, fontSize: "13px" }}
+          labelFormatter={() => `Booking Status Distribution`}
         />
         <Legend
           verticalAlign="bottom"

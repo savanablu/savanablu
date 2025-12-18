@@ -46,8 +46,8 @@ export default function RevenueByTypeChart({
   ];
 
   return (
-    <ResponsiveContainer width="100%" height={320}>
-      <BarChart data={data} margin={{ top: 10, right: 20, left: 10, bottom: 40 }}>
+    <ResponsiveContainer width="100%" height={360}>
+      <BarChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 60 }}>
         <CartesianGrid strokeDasharray="3 3" stroke="#F9F3EB" opacity={0.2} />
         <XAxis
           dataKey="name"
@@ -55,10 +55,10 @@ export default function RevenueByTypeChart({
           fontSize={12}
           tick={{ fill: "#F9F3EB", opacity: 0.8 }}
           label={{ 
-            value: "Tour Type", 
+            value: "Tour Category", 
             position: "insideBottom", 
-            offset: -5,
-            style: { textAnchor: "middle", fill: "#F9F3EB", opacity: 0.8, fontSize: 12 }
+            offset: -10,
+            style: { textAnchor: "middle", fill: "#F9F3EB", opacity: 0.9, fontSize: 13, fontWeight: 500 }
           }}
         />
         <YAxis
@@ -67,12 +67,12 @@ export default function RevenueByTypeChart({
           tick={{ fill: "#F9F3EB", opacity: 0.8 }}
           tickFormatter={(value) => `$${value.toLocaleString()}`}
           label={{ 
-            value: "Amount (USD)", 
+            value: "Revenue Amount (USD)", 
             angle: -90, 
             position: "insideLeft",
-            style: { textAnchor: "middle", fill: "#F9F3EB", opacity: 0.8, fontSize: 12 }
+            style: { textAnchor: "middle", fill: "#F9F3EB", opacity: 0.9, fontSize: 13, fontWeight: 500 }
           }}
-          width={80}
+          width={90}
         />
         <Tooltip
           contentStyle={{
@@ -80,15 +80,16 @@ export default function RevenueByTypeChart({
             border: "1px solid #F3E2C7",
             borderRadius: "8px",
             color: "#F9F3EB",
-            padding: "8px 12px",
+            padding: "10px 14px",
           }}
           formatter={(value: number | undefined, name: string | undefined) => {
             const val = value ?? 0;
-            const nameStr = name ?? "";
+            const nameStr = name === "revenue" ? "Total Revenue" : name === "advances" ? "Advances Paid" : name === "balances" ? "Balances on Arrival" : name ?? "";
             const formattedValue = `USD ${val.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
             return [formattedValue, nameStr];
           }}
-          labelStyle={{ marginBottom: "4px", fontWeight: 600 }}
+          labelStyle={{ marginBottom: "6px", fontWeight: 600, fontSize: "13px" }}
+          labelFormatter={(label) => `Category: ${label}`}
         />
         <Legend
           wrapperStyle={{ paddingTop: "16px", fontSize: "12px" }}

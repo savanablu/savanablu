@@ -46,11 +46,23 @@ export async function readCrmLeads(): Promise<CrmLead[]> {
 }
 
 async function writeCrmLeads(leads: CrmLead[]) {
-  await fs.writeFile(
-    CRM_LEADS_PATH,
-    JSON.stringify(leads, null, 2),
-    "utf8"
-  );
+  try {
+    await fs.mkdir(path.dirname(CRM_LEADS_PATH), { recursive: true });
+    await fs.writeFile(
+      CRM_LEADS_PATH,
+      JSON.stringify(leads, null, 2),
+      "utf8"
+    );
+  } catch (err: any) {
+    // On Vercel, filesystem is read-only - log but don't throw
+    if (err.code === "EACCES" || err.code === "EROFS" || err.code === "EPERM") {
+      console.warn("Could not write CRM leads file (filesystem may be read-only):", err.message);
+      // Don't throw - allow the function to complete
+      return;
+    }
+    // For other errors, re-throw
+    throw err;
+  }
 }
 
 export async function getCrmLeadById(id: string): Promise<CrmLead | null> {
@@ -99,7 +111,19 @@ export async function updateCrmLead(
 
   if (!updated) return null;
 
-  await writeCrmLeads(next);
+  try {
+    await writeCrmLeads(next);
+  } catch (err: any) {
+    // On Vercel, filesystem is read-only - log but don't throw
+    if (err.code === "EACCES" || err.code === "EROFS" || err.code === "EPERM") {
+      console.warn("Could not update CRM lead (filesystem may be read-only):", err.message);
+      // Still return the updated lead object even if file write fails
+      return updated;
+    }
+    // For other errors, re-throw
+    throw err;
+  }
+
   return updated;
 }
 

@@ -44,7 +44,7 @@ export default function BookingStatusChart({
           cy="45%"
           labelLine={false}
           label={({ name, value, percent }) =>
-            `${name}: ${value} (${(percent * 100).toFixed(0)}%)`
+            `${name}: ${value} (${percent ? (percent * 100).toFixed(0) : "0"}%)`
           }
           outerRadius={90}
           fill="#8884d8"

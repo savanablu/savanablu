@@ -4,15 +4,34 @@ import fs from "fs/promises";
 import path from "path";
 
 const BOOKINGS_PATH = path.join(process.cwd(), "data", "bookings.json");
-const KV_BOOKINGS_KEY = "savanablu:bookings";
+const REDIS_BOOKINGS_KEY = "savanablu:bookings";
 
-// Lazy load Vercel KV (only when needed)
-async function getKV(): Promise<any> {
+// Lazy load Redis client (only when needed)
+let redisClient: any = null;
+async function getRedis(): Promise<any> {
+  // Only try to use Redis if REDIS_URL is present
+  if (!process.env.REDIS_URL) {
+    return null;
+  }
+
+  // Return existing client if already created
+  if (redisClient) {
+    return redisClient;
+  }
+
   try {
-    const kvModule = await import("@vercel/kv");
-    return kvModule.kv;
-  } catch {
-    // Vercel KV not available (e.g., in local dev without KV setup)
+    const Redis = (await import("ioredis")).default;
+    redisClient = new Redis(process.env.REDIS_URL);
+    
+    // Handle connection errors
+    redisClient.on("error", (err: any) => {
+      console.warn("[Bookings] Redis connection error:", err.message);
+      redisClient = null; // Reset on error
+    });
+
+    return redisClient;
+  } catch (err: any) {
+    console.warn("[Bookings] Redis not available:", err.message);
     return null;
   }
 }
@@ -25,20 +44,23 @@ export type StoredBooking = Record<string, any> & {
 export type BookingRecord = StoredBooking;
 
 /**
- * Read bookings from KV (if available) or fallback to file system
+ * Read bookings from Redis (if available) or fallback to file system
  */
 async function readBookingsFromStorage(): Promise<StoredBooking[]> {
-  // Try Vercel KV first (works on Vercel)
-  const kv = await getKV();
-  if (kv) {
+  // Try Redis first (works on Vercel with REDIS_URL)
+  const redis = await getRedis();
+  if (redis) {
     try {
-      const data = await kv.get<StoredBooking[]>(KV_BOOKINGS_KEY);
-      if (Array.isArray(data)) {
-        console.log(`[Bookings] Read ${data.length} bookings from Vercel KV`);
-        return data;
+      const data = await redis.get(REDIS_BOOKINGS_KEY);
+      if (data) {
+        const parsed = JSON.parse(data) as StoredBooking[];
+        if (Array.isArray(parsed)) {
+          console.log(`[Bookings] Read ${parsed.length} bookings from Redis`);
+          return parsed;
+        }
       }
     } catch (err: any) {
-      console.warn("[Bookings] Error reading from Vercel KV:", err.message);
+      console.warn("[Bookings] Error reading from Redis:", err.message);
     }
   }
 
@@ -60,21 +82,21 @@ async function readBookingsFromStorage(): Promise<StoredBooking[]> {
 }
 
 /**
- * Write bookings to KV (if available) and/or file system
+ * Write bookings to Redis (if available) and/or file system
  */
 async function writeBookingsToStorage(bookings: StoredBooking[]): Promise<void> {
-  let kvSuccess = false;
+  let redisSuccess = false;
   let fileSuccess = false;
 
-  // Try Vercel KV first (primary storage on Vercel)
-  const kv = await getKV();
-  if (kv) {
+  // Try Redis first (primary storage on Vercel)
+  const redis = await getRedis();
+  if (redis) {
     try {
-      await kv.set(KV_BOOKINGS_KEY, JSON.stringify(bookings));
-      kvSuccess = true;
-      console.log(`[Bookings] Saved ${bookings.length} bookings to Vercel KV`);
+      await redis.set(REDIS_BOOKINGS_KEY, JSON.stringify(bookings));
+      redisSuccess = true;
+      console.log(`[Bookings] Saved ${bookings.length} bookings to Redis`);
     } catch (err: any) {
-      console.warn("[Bookings] Error writing to Vercel KV:", err.message);
+      console.warn("[Bookings] Error writing to Redis:", err.message);
     }
   }
 
@@ -91,9 +113,9 @@ async function writeBookingsToStorage(bookings: StoredBooking[]): Promise<void> 
   } catch (err: any) {
     // On Vercel, filesystem is read-only - this is expected
     if (err.code === "EACCES" || err.code === "EROFS" || err.code === "EPERM") {
-      // This is OK - we're using KV on Vercel
-      if (kvSuccess) {
-        console.log("[Bookings] File write failed (read-only), but KV write succeeded");
+      // This is OK - we're using Redis on Vercel
+      if (redisSuccess) {
+        console.log("[Bookings] File write failed (read-only), but Redis write succeeded");
       }
     } else {
       console.warn("[Bookings] Error writing to file system:", err.message);
@@ -101,7 +123,7 @@ async function writeBookingsToStorage(bookings: StoredBooking[]): Promise<void> 
   }
 
   // If both failed, log a warning
-  if (!kvSuccess && !fileSuccess) {
+  if (!redisSuccess && !fileSuccess) {
     console.error("[Bookings] WARNING: Could not save bookings to any storage!");
   }
 }

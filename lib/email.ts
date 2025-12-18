@@ -604,7 +604,12 @@ export async function sendBookingOnHoldToAdmin(
 export async function sendBookingConfirmedToGuest(
   booking: BookingEmailPayload
 ): Promise<void> {
-  if (!booking.guestEmail) return;
+  if (!booking.guestEmail) {
+    console.error("[Email] sendBookingConfirmedToGuest: No guestEmail provided:", booking);
+    return;
+  }
+
+  console.log("[Email] sendBookingConfirmedToGuest: Preparing email for:", booking.guestEmail);
 
   const typeLabel =
     booking.type === "safari"
@@ -733,16 +738,37 @@ export async function sendBookingConfirmedToGuest(
 
   `;
 
-  await sendEmail({
+  console.log("[Email] sendBookingConfirmedToGuest: Calling sendEmail with:", {
     to: booking.guestEmail,
     subject,
-    html,
+    hasHtml: !!html,
   });
+
+  try {
+    const result = await sendEmail({
+      to: booking.guestEmail,
+      subject,
+      html,
+    });
+    console.log("[Email] sendBookingConfirmedToGuest: Email sent successfully:", {
+      to: booking.guestEmail,
+      resultId: result?.id,
+    });
+  } catch (err) {
+    console.error("[Email] sendBookingConfirmedToGuest: Failed to send email:", {
+      to: booking.guestEmail,
+      error: err instanceof Error ? err.message : String(err),
+      stack: err instanceof Error ? err.stack : undefined,
+    });
+    throw err; // Re-throw so caller can handle
+  }
 }
 
 export async function sendBookingConfirmedToAdmin(
   booking: BookingEmailPayload
 ): Promise<void> {
+  console.log("[Email] sendBookingConfirmedToAdmin: Preparing email for admin");
+
   const subject = `Booking confirmed – ${safe(booking.experienceTitle)}`;
 
   // Logo URL

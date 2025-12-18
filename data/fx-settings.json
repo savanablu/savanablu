@@ -1,0 +1,16 @@
+{
+  "mode": "auto",
+  "baseCurrency": "USD",
+  "rates": {
+    "USD": 1,
+    "EUR": 0.92,
+    "GBP": 0.78,
+    "TSH": 2600
+  },
+  "markups": {
+    "USD": 0,
+    "EUR": 0.03,
+    "GBP": 0.03,
+    "TSH": 0.05
+  }
+}

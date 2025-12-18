@@ -1,0 +1,26 @@
+[
+  {
+    "code": "SAVANA10",
+    "type": "percent",
+    "value": 10,
+    "active": true
+  },
+  {
+    "code": "SAVANA15",
+    "type": "percent",
+    "value": 15,
+    "active": false
+  },
+  {
+    "code": "BLUWELCOME50",
+    "type": "fixed",
+    "value": 50,
+    "active": true
+  },
+  {
+    "code": "ZANZIBAR25",
+    "type": "percent",
+    "value": 25,
+    "active": false
+  }
+]

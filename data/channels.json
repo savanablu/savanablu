@@ -1,0 +1,25 @@
+{
+  "channels": [
+    {
+      "id": "getyourguide",
+      "name": "GetYourGuide",
+      "type": "ota",
+      "enabled": false,
+      "config": {}
+    },
+    {
+      "id": "viator",
+      "name": "Viator",
+      "type": "ota",
+      "enabled": false,
+      "config": {}
+    },
+    {
+      "id": "ical-partner",
+      "name": "Hotel iCal Feed",
+      "type": "ical",
+      "enabled": false,
+      "config": {}
+    }
+  ]
+}

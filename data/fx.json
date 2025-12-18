@@ -1,0 +1,7 @@
+{
+  "rounding": {
+    "strategy": "nearest",
+    "precision": 0
+  },
+  "history": []
+}

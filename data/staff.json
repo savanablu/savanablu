@@ -1,0 +1,20 @@
+[
+  {
+    "id": "guide-amina",
+    "name": "Amina Suleiman",
+    "role": "guide",
+    "languages": ["English", "Swahili", "Italian"],
+    "phone": "+255-000-000-001",
+    "pin": "1023",
+    "active": true
+  },
+  {
+    "id": "guide-juma",
+    "name": "Juma Ali",
+    "role": "guide",
+    "languages": ["English", "Swahili", "French"],
+    "phone": "+255-000-000-002",
+    "pin": "8472",
+    "active": true
+  }
+]

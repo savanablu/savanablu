@@ -1,0 +1,57 @@
+"use client";
+
+import { useEffect } from "react";
+
+type TripAdvisorRatedProps = {
+  showText?: boolean;
+};
+
+export default function TripAdvisorRated({ showText = true }: TripAdvisorRatedProps) {
+  useEffect(() => {
+    // Load TripAdvisor rated widget script
+    if (typeof window !== "undefined") {
+      const scriptId = "tripadvisor-rated919";
+      if (!document.getElementById(scriptId)) {
+        const script = document.createElement("script");
+        script.id = scriptId;
+        script.async = true;
+        script.src =
+          "https://www.jscache.com/wejs?wtype=rated&uniq=919&locationId=7187090&lang=en_US&display_version=2";
+        script.setAttribute("data-loadtrk", "");
+        script.onload = function () {
+          (this as HTMLScriptElement).setAttribute("loadtrk", "true");
+        };
+        document.body.appendChild(script);
+      }
+    }
+  }, []);
+
+  return (
+    <div className="flex flex-col items-center space-y-2">
+      {showText && (
+        <p className="text-[0.75rem] font-medium text-sb-ink/70">
+          ⭐⭐⭐⭐⭐ Reviews on TripAdvisor
+        </p>
+      )}
+      <div id="TA_rated919" className="TA_rated">
+        <ul id="1BBeeVgb" className="TA_links vVc36h7sF">
+          <li id="XJfbccDW2b" className="W25qkZJZG1Gi">
+            <a
+              target="_blank"
+              href="https://www.tripadvisor.com/Attraction_Review-g8055401-d7187090-Reviews-Savana_Blu_Luxury_Expeditions-Zanzibar_City_Zanzibar_Island_Zanzibar_Archipelago.html"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="https://www.tripadvisor.com/img/cdsi/img2/badges/ollie-11424-2.gif"
+                alt="TripAdvisor"
+                className="h-auto"
+                style={{ maxWidth: "150px", height: "auto" }}
+              />
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  );
+}
+

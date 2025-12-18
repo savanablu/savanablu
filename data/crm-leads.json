@@ -1,0 +1,88 @@
+[
+  {
+    "id": "lead_1765964201464",
+    "createdAt": "2025-12-17T09:36:41.464Z",
+    "source": "contact-form",
+    "status": "new",
+    "name": "Test User",
+    "email": "test@test.com",
+    "phone": "+255123456789",
+    "message": "test message",
+    "preferredTour": "",
+    "dates": "",
+    "accommodation": ""
+  },
+  {
+    "id": "lead_1765964421273",
+    "createdAt": "2025-12-17T09:40:21.273Z",
+    "source": "contact-form",
+    "status": "closed-lost",
+    "name": "FT1",
+    "email": "ammarahzahed@gmail.com",
+    "phone": "+971559053330",
+    "message": "Please call me to discuss",
+    "preferredTour": "Safari Packages",
+    "dates": "2025-12-19",
+    "accommodation": "Not decided",
+    "internalNotes": "Customer not interested",
+    "notes": [
+      {
+        "note": "abother one",
+        "createdAt": "2025-12-17T09:57:33.543Z"
+      }
+    ],
+    "followUpDate": "2025-12-18"
+  },
+  {
+    "id": "lead_1765967310281",
+    "createdAt": "2025-12-17T10:28:30.281Z",
+    "source": "contact-form",
+    "status": "new",
+    "name": "FT1",
+    "email": "ammarahzahed@gmail.com",
+    "phone": "+971559053330",
+    "message": "PCTD",
+    "preferredTour": "Safari Packages",
+    "dates": "2025-12-19",
+    "accommodation": "Not decided"
+  },
+  {
+    "id": "lead_1765967799717",
+    "createdAt": "2025-12-17T10:36:39.717Z",
+    "source": "contact-form",
+    "status": "new",
+    "name": "FT2",
+    "email": "ammarahzahed@gmail.com",
+    "phone": "+971559053330",
+    "message": "TEST",
+    "preferredTour": "Safari Packages",
+    "dates": "2025-12-18",
+    "accommodation": "Not decided"
+  },
+  {
+    "id": "lead_1765968224605",
+    "createdAt": "2025-12-17T10:43:44.605Z",
+    "source": "contact-form",
+    "status": "new",
+    "name": "Zahed ali Mohammed",
+    "email": "ammarahzahed@gmail.com",
+    "phone": "+2551234567",
+    "message": "asdfsadf",
+    "preferredTour": "blkjnlnj",
+    "dates": "2025-12-25",
+    "accommodation": ""
+  },
+  {
+    "id": "lead_1765968663701",
+    "createdAt": "2025-12-17T10:51:03.701Z",
+    "source": "contact-form",
+    "status": "new",
+    "name": "Zahed Ali Mohammed",
+    "email": "Ammarahzahed@gmail.com",
+    "phone": "+255222222222",
+    "message": "Hi",
+    "preferredTour": "Safari",
+    "dates": "2025-12-18",
+    "accommodation": "Not known"
+  }
+]

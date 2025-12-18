@@ -1,0 +1,22 @@
+[
+  {
+    "id": "villa-kisiwa",
+    "name": "Villa Kisiwa Boutique Stay",
+    "commissionPercent": 10,
+    "clicks": 0,
+    "enquiries": 0,
+    "bookings": 0,
+    "revenue": 0,
+    "commissionOwed": 0
+  },
+  {
+    "id": "zanzibar-coastal-dmc",
+    "name": "Zanzibar Coastal DMC",
+    "commissionPercent": 12,
+    "clicks": 0,
+    "enquiries": 0,
+    "bookings": 0,
+    "revenue": 0,
+    "commissionOwed": 0
+  }
+]

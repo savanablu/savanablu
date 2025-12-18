@@ -94,9 +94,11 @@ export default function RevenueByMonthChart({
             color: "#F9F3EB",
             padding: "8px 12px",
           }}
-          formatter={(value: number, name: string) => {
-            const formattedValue = `USD ${value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-            return [formattedValue, name];
+          formatter={(value: number | undefined, name: string | undefined) => {
+            const val = value ?? 0;
+            const nameStr = name ?? "";
+            const formattedValue = `USD ${val.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+            return [formattedValue, nameStr];
           }}
           labelStyle={{ marginBottom: "4px", fontWeight: 600 }}
         />

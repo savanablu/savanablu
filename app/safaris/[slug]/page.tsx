@@ -354,7 +354,12 @@ export default function PackageDetailPage({
 
                   {pkg.slug === "selous-2-day-flying-safari-from-zanzibar" ||
                   pkg.slug === "mikumi-1-day-flying-safari-from-zanzibar" ||
-                  pkg.slug === "selous-1-day-flying-safari-from-zanzibar"
+                  pkg.slug === "selous-1-day-flying-safari-from-zanzibar" ||
+                  pkg.slug === "mikumi-2-day-flying-safari-from-zanzibar" ||
+                  pkg.slug === "manyara-tarangire-2-day-safari-from-zanzibar" ||
+                  pkg.slug === "tarangire-ngorongoro-2-day-safari-from-zanzibar" ||
+                  pkg.slug === "ngorongoro-tarangire-manyara-3-day-safari-from-zanzibar" ||
+                  pkg.slug === "serengeti-3-day-flying-safari-from-zanzibar"
                     ? "Safari & wilderness"
                     : "Beach & culture"}{" "}
 
@@ -386,7 +391,12 @@ export default function PackageDetailPage({
 
           {pkg.slug === "selous-2-day-flying-safari-from-zanzibar" ||
           pkg.slug === "mikumi-1-day-flying-safari-from-zanzibar" ||
-          pkg.slug === "selous-1-day-flying-safari-from-zanzibar"
+          pkg.slug === "selous-1-day-flying-safari-from-zanzibar" ||
+          pkg.slug === "mikumi-2-day-flying-safari-from-zanzibar" ||
+          pkg.slug === "manyara-tarangire-2-day-safari-from-zanzibar" ||
+          pkg.slug === "tarangire-ngorongoro-2-day-safari-from-zanzibar" ||
+          pkg.slug === "ngorongoro-tarangire-manyara-3-day-safari-from-zanzibar" ||
+          pkg.slug === "serengeti-3-day-flying-safari-from-zanzibar"
             ? " adjust the timing and activities,"
             : " adjust the balance of activities and locations,"}{" "}
           and match the stay to

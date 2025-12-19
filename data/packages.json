@@ -113,5 +113,203 @@
       "Any extra activities or extensions not specified in the outline",
       "Accommodation in Zanzibar before and after the safari"
     ]
+  },
+  {
+    "slug": "mikumi-2-day-flying-safari-from-zanzibar",
+    "title": "2 Days – Mikumi National Park Flying Safari",
+    "shortDescription": "A calm two-day escape from Zanzibar to Mikumi National Park, with a full day on safari and a visit to a Maasai community before flying back.",
+    "image": "/images/safaris/mikumi-2d-hero.jpg",
+    "priceFrom": 1200,
+    "gallery": [
+      "/images/safaris/mikumi-2d-hero.jpg",
+      "/images/safaris/mikumi-2d-maasai.jpg",
+      "/images/safaris/mikumi-2d-landscape.jpg"
+    ],
+    "days": [
+      {
+        "title": "Day 1 – Zanzibar to Mikumi, full-day game drive",
+        "description": "You will be collected from your hotel in Zanzibar and driven to the airport for the morning flight to Mikumi National Park. On arrival at the airstrip you meet your safari guide and set out on a full-day game drive through classic East African savannah. Mikumi is home to elephant, zebra, impala, wildebeest, buffalo, giraffe, lion and more, with acacia, baobab and open plains creating wide views across the park. A picnic or bush lunch is served in a scenic spot so you can stay close to the wildlife and light. In the late afternoon you return to your camp or lodge for dinner and overnight."
+      },
+      {
+        "title": "Day 2 – Maasai community visit and return to Zanzibar",
+        "description": "After breakfast you take a short visit to a nearby Maasai community, where you can learn about local traditions and daily life. This is a respectful, low-key visit that supports the community. You then return to the park for a relaxed game drive with a packed lunch, exploring different areas and following wildlife as it moves across the savannah. In the afternoon you drive back to the airstrip for your return flight to Zanzibar. On arrival you are met and transferred back to your hotel on the islands."
+      }
+    ],
+    "includes": [
+      "Return flights between Zanzibar and Mikumi",
+      "Park fees and conservation charges",
+      "Shared game drives in an open-sided safari vehicle",
+      "1 night in a mid-range camp or lodge on full board",
+      "Bottled water during game drives",
+      "English-speaking safari guide",
+      "Visit to a Maasai community"
+    ],
+    "excludes": [
+      "International flights",
+      "Travel insurance",
+      "Drinks other than bottled water at meals",
+      "Personal expenses and tips",
+      "Any park or government taxes introduced after booking"
+    ]
+  },
+  {
+    "slug": "manyara-tarangire-2-day-safari-from-zanzibar",
+    "title": "2 Days – Lake Manyara & Tarangire from Zanzibar",
+    "shortDescription": "Two contrasting northern parks in one short trip: flamingos and forested escarpments at Lake Manyara, then elephants and baobabs in Tarangire.",
+    "image": "/images/safaris/manyara-tarangire-2d-hero.jpg",
+    "priceFrom": 1050,
+    "gallery": [
+      "/images/safaris/manyara-tarangire-2d-hero.jpg",
+      "/images/safaris/manyara-tarangire-2d-game-drive.jpg",
+      "/images/safaris/manyara-tarangire-2d-landscape.jpg"
+    ],
+    "days": [
+      {
+        "title": "Day 1 – Zanzibar to Lake Manyara",
+        "description": "You will be collected from your hotel in Zanzibar and driven to the airport for the morning flight to Arusha. On arrival you meet your safari guide and drive to Lake Manyara National Park, a compact park known for its tree-climbing lions, large elephant herds, and the alkaline lake that draws flamingos and other waterbirds. You enjoy a relaxed game drive with a picnic lunch, exploring the forested escarpment and open plains. In the evening you check into a comfortable lodge near the park for dinner and overnight."
+      },
+      {
+        "title": "Day 2 – Tarangire and return to Zanzibar",
+        "description": "After breakfast you drive to Tarangire National Park, famous for its large elephant herds and ancient baobab trees. The park's river valleys and open savannah support a rich diversity of wildlife, including zebra, wildebeest, buffalo, giraffe, and predators such as lion and leopard. You spend the morning and early afternoon on game drives with a packed lunch, following wildlife as it moves through the park. Later in the afternoon you drive back to Arusha Airport for your return flight to Zanzibar. On arrival you are met and transferred back to your hotel."
+      }
+    ],
+    "includes": [
+      "Return flights between Zanzibar and Arusha",
+      "Road transfers to and from parks",
+      "Park fees and conservation charges",
+      "1 night in a comfortable lodge on full board",
+      "Shared game drives in a 4x4 safari vehicle",
+      "English-speaking guide",
+      "Bottled water during game drives"
+    ],
+    "excludes": [
+      "International flights",
+      "Travel insurance",
+      "Drinks other than bottled water at meals",
+      "Personal expenses and tips",
+      "Any park or government taxes introduced after booking"
+    ]
+  },
+  {
+    "slug": "tarangire-ngorongoro-2-day-safari-from-zanzibar",
+    "title": "2 Days – Tarangire & Ngorongoro Crater",
+    "shortDescription": "A focused two-day safari that pairs Tarangire's elephant country with a full game drive on the Ngorongoro Crater floor.",
+    "image": "/images/safaris/tarangire-ngorongoro-2d-hero.jpg",
+    "priceFrom": 1300,
+    "gallery": [
+      "/images/safaris/tarangire-ngorongoro-2d-hero.jpg",
+      "/images/safaris/tarangire-ngorongoro-2d-game-drive.jpg",
+      "/images/safaris/tarangire-ngorongoro-2d-landscape.jpg"
+    ],
+    "days": [
+      {
+        "title": "Day 1 – Zanzibar to Tarangire",
+        "description": "You will be collected from your hotel in Zanzibar and driven to the airport for the morning flight to Arusha. On arrival you meet your safari guide and drive to Tarangire National Park, famous for its large elephant herds and ancient baobab trees. The park's river valleys and open savannah support a rich diversity of wildlife. You spend the day on game drives with a picnic lunch, following wildlife as it moves through the park. In the evening you check into a lodge near the Ngorongoro highlands for dinner and overnight."
+      },
+      {
+        "title": "Day 2 – Ngorongoro Crater and return to Zanzibar",
+        "description": "After an early breakfast you drive into the Ngorongoro Conservation Area and descend into the crater floor for a full game drive. The crater is a natural amphitheatre that supports a dense concentration of wildlife, including elephant, buffalo, zebra, wildebeest, hippo, and predators such as lion, leopard, and hyena. The crater floor also offers excellent chances to see the rare black rhino. You enjoy a picnic lunch on the crater floor before beginning the ascent back to the rim. Later in the afternoon you drive back to Arusha Airport for your return flight to Zanzibar. On arrival you are met and transferred back to your hotel."
+      }
+    ],
+    "includes": [
+      "Return flights between Zanzibar and Arusha",
+      "Road transfers to and from parks",
+      "Park fees and conservation charges for Tarangire and Ngorongoro",
+      "1 night in a comfortable lodge near the crater highlands on full board",
+      "Shared game drives in a 4x4 safari vehicle",
+      "English-speaking guide",
+      "Bottled water during game drives"
+    ],
+    "excludes": [
+      "International flights",
+      "Travel insurance",
+      "Drinks other than bottled water at meals",
+      "Personal expenses and tips",
+      "Any park or government taxes introduced after booking"
+    ]
+  },
+  {
+    "slug": "ngorongoro-tarangire-manyara-3-day-safari-from-zanzibar",
+    "title": "3 Days – Ngorongoro, Tarangire & Lake Manyara",
+    "shortDescription": "Three classic northern parks in one itinerary, linking Tarangire's baobabs, Ngorongoro's crater floor and the lakeshore of Manyara.",
+    "image": "/images/safaris/ngorongoro-tarangire-manyara-3d-hero.jpg",
+    "priceFrom": 1650,
+    "gallery": [
+      "/images/safaris/ngorongoro-tarangire-manyara-3d-hero.jpg",
+      "/images/safaris/ngorongoro-tarangire-manyara-3d-game-drive.jpg",
+      "/images/safaris/ngorongoro-tarangire-manyara-3d-landscape.jpg"
+    ],
+    "days": [
+      {
+        "title": "Day 1 – Zanzibar to Tarangire",
+        "description": "You will be collected from your hotel in Zanzibar and driven to the airport for the morning flight to Arusha. On arrival you meet your safari guide and drive straight to Tarangire National Park for a full-day game drive. Tarangire is famous for its large elephant herds and ancient baobab trees, with river valleys and open savannah supporting a rich diversity of wildlife. You enjoy game drives with a picnic lunch, following wildlife as it moves through the park. In the evening you check into a lodge in the highlands for dinner and overnight."
+      },
+      {
+        "title": "Day 2 – Ngorongoro Crater",
+        "description": "After an early breakfast you drive into the Ngorongoro Conservation Area and descend into the crater floor for a full game drive. The crater is a natural amphitheatre that supports a dense concentration of wildlife, including elephant, buffalo, zebra, wildebeest, hippo, and predators such as lion, leopard, and hyena. The crater floor also offers excellent chances to see the rare black rhino. You enjoy a picnic lunch on the crater floor before beginning the ascent back to the rim. You return to the same lodge for your second night."
+      },
+      {
+        "title": "Day 3 – Lake Manyara and return to Zanzibar",
+        "description": "After breakfast you drive to Lake Manyara National Park, a compact park known for its tree-climbing lions, large elephant herds, and the alkaline lake that draws flamingos and other waterbirds. You enjoy a relaxed game drive exploring the forested escarpment and open plains. Later in the afternoon you drive back to Arusha Airport for your evening flight to Zanzibar. On arrival you are met and transferred back to your hotel."
+      }
+    ],
+    "includes": [
+      "Return flights between Zanzibar and Arusha",
+      "Road transfers to and from parks",
+      "Park fees and conservation charges for all three parks",
+      "2 nights in a comfortable lodge on full board",
+      "Shared game drives in a 4x4 safari vehicle",
+      "English-speaking guide",
+      "Bottled water during game drives"
+    ],
+    "excludes": [
+      "International flights",
+      "Travel insurance",
+      "Drinks other than bottled water at meals",
+      "Personal expenses and tips",
+      "Any park or government taxes introduced after booking"
+    ]
+  },
+  {
+    "slug": "serengeti-3-day-flying-safari-from-zanzibar",
+    "title": "3 Days – Serengeti Flying Safari from Zanzibar",
+    "shortDescription": "A three-day flying safari from Zanzibar into the Serengeti, with long game drives on the plains and two nights in a tented camp.",
+    "image": "/images/safaris/serengeti-3d-hero.jpg",
+    "priceFrom": 2400,
+    "gallery": [
+      "/images/safaris/serengeti-3d-hero.jpg",
+      "/images/safaris/serengeti-3d-game-drive.jpg",
+      "/images/safaris/serengeti-3d-landscape.jpg"
+    ],
+    "days": [
+      {
+        "title": "Day 1 – Zanzibar to Serengeti",
+        "description": "You will be collected from your hotel in Zanzibar and driven to the airport for the morning flight direct to the Serengeti. On arrival at the airstrip you meet your safari guide and set out on a game drive to your tented camp, with wildlife viewing along the way. The Serengeti is one of Africa's most iconic wilderness areas, home to vast herds of wildebeest, zebra, and gazelle, along with predators such as lion, leopard, cheetah, and hyena. You arrive at camp in time for lunch, then head out again in the afternoon for game drives on the plains. You return to camp for dinner and overnight."
+      },
+      {
+        "title": "Day 2 – Full-day game drive in the Serengeti",
+        "description": "After breakfast you set out on a full-day game drive with a picnic lunch, following wildlife across the savannah. The Serengeti's open plains offer excellent game viewing, and you may see large herds of herbivores, predators on the hunt, and the dramatic landscapes that make this park so famous. Your guide will take you to different areas of the park depending on where wildlife is most active. You return to camp in the late afternoon for a relaxed evening, dinner and overnight."
+      },
+      {
+        "title": "Day 3 – Morning game drive and return to Zanzibar",
+        "description": "After breakfast you have the option of a morning game drive or a relaxed start at camp, depending on your preference. You then transfer to the airstrip for your return flight to Zanzibar. On arrival you are met and transferred back to your hotel on the islands."
+      }
+    ],
+    "includes": [
+      "Return flights Zanzibar–Serengeti–Zanzibar",
+      "All airstrip transfers",
+      "Park fees and conservation charges",
+      "2 nights in a quality tented camp on full board",
+      "Shared game drives in a 4x4 safari vehicle",
+      "Bottled water on drives",
+      "English-speaking guide"
+    ],
+    "excludes": [
+      "International flights",
+      "Travel insurance",
+      "Drinks other than bottled water at meals",
+      "Personal expenses and tips",
+      "Any park or government taxes introduced after booking"
+    ]
   }
 ]

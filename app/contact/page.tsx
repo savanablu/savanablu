@@ -1,5 +1,6 @@
 import ContactForm from "@/components/contact/ContactForm";
 import Section from "@/components/ui/Section";
+import Image from "next/image";
 
 export const metadata = {
   title: "Contact | Savana Blu Luxury Expeditions",
@@ -111,7 +112,7 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
           </div>
 
           {/* SIDE NOTES BELOW – still helpful but don't steal width from the form */}
-          <aside className="grid gap-4 md:grid-cols-2">
+          <aside className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             <div className="rounded-3xl bg-sb-shell/70 p-4 sm:p-5">
               <h2 className="font-display text-sm text-sb-night">
                 Prefer WhatsApp?
@@ -125,6 +126,25 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
                 Zanzibar is usually UTC+3. If you message late at night our time,
                 we&apos;ll reply as soon as we&apos;re back online.
               </p>
+            </div>
+
+            <div className="flex flex-col items-center rounded-3xl bg-white/95 p-4 sm:p-5 shadow-sm">
+              <h3 className="font-display text-sm text-sb-night mb-2 text-center">
+                Save our contact
+              </h3>
+              <p className="text-[0.85rem] text-sb-ink/75 text-center mb-3">
+                Scan this QR code to save Savana Blu to your contacts
+              </p>
+              <div className="flex-shrink-0 relative w-40 h-40">
+                <Image
+                  src="/images/Contact save.png"
+                  alt="QR code to save Savana Blu contact"
+                  width={160}
+                  height={160}
+                  className="rounded-lg shadow-sm object-contain"
+                  unoptimized
+                />
+              </div>
             </div>
 
             <div className="space-y-2 rounded-3xl bg-white/95 p-4 text-[0.9rem] shadow-sm text-sb-ink/85">

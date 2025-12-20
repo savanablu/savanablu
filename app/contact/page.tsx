@@ -135,14 +135,11 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
               <p className="text-[0.85rem] text-sb-ink/75 text-center mb-3">
                 Scan this QR code to save Savana Blu to your contacts
               </p>
-              <div className="flex-shrink-0 relative w-40 h-40">
-                <Image
+              <div className="flex-shrink-0">
+                <img
                   src="/images/contact-save.png"
                   alt="QR code to save Savana Blu contact"
-                  width={160}
-                  height={160}
-                  className="rounded-lg shadow-sm object-contain"
-                  unoptimized
+                  className="w-40 h-40 rounded-lg shadow-sm object-contain"
                 />
               </div>
             </div>

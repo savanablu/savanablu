@@ -48,7 +48,7 @@
     "title": "1 Day Flying Safari from Zanzibar to Mikumi National Park",
     "shortDescription": "Fly from Zanzibar to Mikumi for a full-day game drive in classic Tanzanian savannah before returning to the islands by evening.",
     "image": "/images/safaris/mikumi-1d-hero.jpg",
-    "priceFrom": 599,
+    "priceFrom": 699,
     "gallery": [
       "/images/safaris/mikumi-1d-hero.jpg",
       "/images/safaris/mikumi-1d-game-drive.jpg",
@@ -83,7 +83,7 @@
     "title": "1 Day Flying Safari from Zanzibar to Selous Game Reserve",
     "shortDescription": "Fly from Zanzibar into the vast Selous wilderness for a full-day game drive before returning to the coast by evening.",
     "image": "/images/safaris/selous-1d-hero.jpg",
-    "priceFrom": 599,
+    "priceFrom": 699,
     "gallery": [
       "/images/safaris/selous-1d-hero.jpg",
       "/images/safaris/selous-1d-game-drive.jpg",
@@ -116,7 +116,7 @@
   },
   {
     "slug": "mikumi-2-day-flying-safari-from-zanzibar",
-    "title": "2 Days – Mikumi National Park Flying Safari",
+    "title": "2 Days – 1 Night Flying Safari from Zanzibar to Mikumi National Park",
     "shortDescription": "A calm two-day escape from Zanzibar to Mikumi National Park, with a full day on safari and a visit to a Maasai community before flying back.",
     "image": "/images/safaris/mikumi-2d-hero.jpg",
     "priceFrom": 1200,
@@ -154,7 +154,7 @@
   },
   {
     "slug": "manyara-tarangire-2-day-safari-from-zanzibar",
-    "title": "2 Days – Lake Manyara & Tarangire from Zanzibar",
+    "title": "2 Days – 1 Night Flying Safari from Zanzibar to Lake Manyara & Tarangire",
     "shortDescription": "Two contrasting northern parks in one short trip: flamingos and forested escarpments at Lake Manyara, then elephants and baobabs in Tarangire.",
     "image": "/images/safaris/manyara-tarangire-2d-hero.jpg",
     "priceFrom": 1050,
@@ -192,7 +192,7 @@
   },
   {
     "slug": "tarangire-ngorongoro-2-day-safari-from-zanzibar",
-    "title": "2 Days – Tarangire & Ngorongoro Crater",
+    "title": "2 Days – 1 Night Flying Safari from Zanzibar to Tarangire & Ngorongoro Crater",
     "shortDescription": "A focused two-day safari that pairs Tarangire's elephant country with a full game drive on the Ngorongoro Crater floor.",
     "image": "/images/safaris/tarangire-ngorongoro-2d-hero.jpg",
     "priceFrom": 1300,
@@ -230,7 +230,7 @@
   },
   {
     "slug": "ngorongoro-tarangire-manyara-3-day-safari-from-zanzibar",
-    "title": "3 Days – Ngorongoro, Tarangire & Lake Manyara",
+    "title": "3 Days – 2 Nights Flying Safari to Ngorongoro, Tarangire & Lake Manyara",
     "shortDescription": "Three classic northern parks in one itinerary, linking Tarangire's baobabs, Ngorongoro's crater floor and the lakeshore of Manyara.",
     "image": "/images/safaris/ngorongoro-tarangire-manyara-3d-hero.jpg",
     "priceFrom": 1650,
@@ -272,7 +272,7 @@
   },
   {
     "slug": "serengeti-3-day-flying-safari-from-zanzibar",
-    "title": "3 Days – Serengeti Flying Safari from Zanzibar",
+    "title": "3 Days – 2 Nights Flying Safari from Zanzibar to Serengeti National Park",
     "shortDescription": "A three-day flying safari from Zanzibar into the Serengeti, with long game drives on the plains and two nights in a tented camp.",
     "image": "/images/safaris/serengeti-3d-hero.jpg",
     "priceFrom": 2400,

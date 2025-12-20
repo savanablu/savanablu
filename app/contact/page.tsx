@@ -137,7 +137,7 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
               </p>
               <div className="flex-shrink-0 relative w-40 h-40">
                 <Image
-                  src="/images/Contact save.png"
+                  src="/images/contact-save.png"
                   alt="QR code to save Savana Blu contact"
                   width={160}
                   height={160}

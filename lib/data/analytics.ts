@@ -79,7 +79,7 @@ export type AnalyticsData = {
 /**
  * Read analytics from Redis (if available) or fallback to file system
  */
-async function readAnalyticsFromStorage(): Promise<AnalyticsData> {
+export async function readAnalyticsFromStorage(): Promise<AnalyticsData> {
   const defaultData: AnalyticsData = {
     visits: [],
     lastUpdated: new Date().toISOString(),

@@ -51,7 +51,7 @@ export default function GeographicChart({ data, title }: GeographicChartProps) {
               value: "Country",
               position: "insideBottom",
               offset: -10,
-              style: { textAnchor: "middle", fill: "#F9F3EB", fontSize: 14, fontWeight: 600 },
+              style: { textAnchor: "middle", fill: "#FFFFFF", fontSize: 14, fontWeight: 600, textShadow: "0 1px 2px rgba(0,0,0,0.5)" },
             }}
           />
           <YAxis
@@ -61,7 +61,7 @@ export default function GeographicChart({ data, title }: GeographicChartProps) {
               value: "Number of Visits",
               angle: -90,
               position: "insideLeft",
-              style: { textAnchor: "middle", fill: "#F9F3EB", fontSize: 14, fontWeight: 600 },
+              style: { textAnchor: "middle", fill: "#FFFFFF", fontSize: 14, fontWeight: 600, textShadow: "0 1px 2px rgba(0,0,0,0.5)" },
             }}
             width={80}
           />

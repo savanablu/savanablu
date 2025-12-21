@@ -61,7 +61,7 @@ export default function TimePatternChart({
                   value: "Hour of Day (24h)",
                   position: "insideBottom",
                   offset: -10,
-                  style: { textAnchor: "middle", fill: "#F9F3EB", fontSize: 14, fontWeight: 600 },
+                  style: { textAnchor: "middle", fill: "#FFFFFF", fontSize: 14, fontWeight: 600, textShadow: "0 1px 2px rgba(0,0,0,0.5)" },
                 }}
               />
               <YAxis
@@ -71,7 +71,7 @@ export default function TimePatternChart({
                   value: "Number of Visits",
                   angle: -90,
                   position: "insideLeft",
-                  style: { textAnchor: "middle", fill: "#F9F3EB", fontSize: 14, fontWeight: 600 },
+                  style: { textAnchor: "middle", fill: "#FFFFFF", fontSize: 14, fontWeight: 600, textShadow: "0 1px 2px rgba(0,0,0,0.5)" },
                 }}
                 width={80}
               />
@@ -121,7 +121,7 @@ export default function TimePatternChart({
                   value: "Day of Week",
                   position: "insideBottom",
                   offset: -10,
-                  style: { textAnchor: "middle", fill: "#F9F3EB", fontSize: 14, fontWeight: 600 },
+                  style: { textAnchor: "middle", fill: "#FFFFFF", fontSize: 14, fontWeight: 600, textShadow: "0 1px 2px rgba(0,0,0,0.5)" },
                 }}
               />
               <YAxis
@@ -131,7 +131,7 @@ export default function TimePatternChart({
                   value: "Number of Visits",
                   angle: -90,
                   position: "insideLeft",
-                  style: { textAnchor: "middle", fill: "#F9F3EB", fontSize: 14, fontWeight: 600 },
+                  style: { textAnchor: "middle", fill: "#FFFFFF", fontSize: 14, fontWeight: 600, textShadow: "0 1px 2px rgba(0,0,0,0.5)" },
                 }}
                 width={80}
               />

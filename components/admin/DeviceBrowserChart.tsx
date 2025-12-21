@@ -33,13 +33,15 @@ export default function DeviceBrowserChart({
     value: item.count,
   }));
 
-  const CustomTooltip = ({ active, payload }: any) => {
+  const CustomTooltip = ({ active, payload, data }: any) => {
     if (active && payload && payload.length) {
+      const total = data.reduce((sum: number, item: any) => sum + item.value, 0);
+      const percentage = total > 0 ? ((payload[0].value / total) * 100).toFixed(1) : "0";
       return (
         <div className="bg-sb-night/95 border border-sb-cream/20 rounded-lg p-3 shadow-lg">
           <p className="text-sb-cream font-semibold">{payload[0].name}</p>
           <p className="text-sb-cream/80 text-sm">
-            {payload[0].value} visits ({((payload[0].value / payload[0].payload.total) * 100).toFixed(1)}%)
+            {payload[0].value} visits ({percentage}%)
           </p>
         </div>
       );
@@ -72,7 +74,7 @@ export default function DeviceBrowserChart({
                   <Cell key={`cell-${index}`} fill={DEVICE_COLORS[index % DEVICE_COLORS.length]} />
                 ))}
               </Pie>
-              <Tooltip content={<CustomTooltip />} />
+              <Tooltip content={<CustomTooltip data={deviceChartData} />} />
             </PieChart>
           </ResponsiveContainer>
         )}
@@ -101,7 +103,7 @@ export default function DeviceBrowserChart({
                   <Cell key={`cell-${index}`} fill={BROWSER_COLORS[index % BROWSER_COLORS.length]} />
                 ))}
               </Pie>
-              <Tooltip content={<CustomTooltip />} />
+              <Tooltip content={<CustomTooltip data={browserChartData} />} />
             </PieChart>
           </ResponsiveContainer>
         )}

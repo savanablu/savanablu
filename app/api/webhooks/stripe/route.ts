@@ -1,14 +1,27 @@
 import { NextResponse } from "next/server";
 import { headers } from "next/headers";
-import Stripe from "stripe";
 import { appendBooking, type BookingRecord } from "@/lib/data/bookings";
 
-const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
-const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
+// Optional Stripe import (not required - using Ziina now)
+let Stripe: any = null;
+
+try {
+  Stripe = require("stripe").default;
+} catch (err) {
+  // Stripe not installed - that's fine, we're using Ziina now
+  console.log("[Stripe] Stripe package not installed - using Ziina for payments");
+}
 
 export const runtime = "nodejs"; // required to use Stripe's Node SDK & raw body
 
 export async function POST(req: Request) {
+  if (!Stripe) {
+    return NextResponse.json({ error: "Stripe not available" }, { status: 503 });
+  }
+
+  const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+  const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
+
   if (!stripeSecretKey) {
     console.error("Stripe secret key is not configured.");
     return NextResponse.json({ error: "Stripe not configured" }, { status: 500 });

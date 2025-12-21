@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import Stripe from "stripe";
 import { getTourBySlug } from "@/lib/data/tours";
 import { calculateBookingTotal } from "@/lib/booking/pricing";
 import { findPromoByCode } from "@/lib/data/promos";
@@ -10,11 +9,20 @@ import {
   type BookingSummary,
 } from "@/lib/email";
 
-const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+// Optional Stripe import (not required - using Ziina now)
+let Stripe: any = null;
+let stripe: any = null;
 
-const stripe = stripeSecretKey
-  ? new Stripe(stripeSecretKey, { apiVersion: "2022-11-15" })
-  : null;
+try {
+  Stripe = require("stripe").default;
+  const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+  stripe = stripeSecretKey
+    ? new Stripe(stripeSecretKey, { apiVersion: "2022-11-15" })
+    : null;
+} catch (err) {
+  // Stripe not installed - that's fine, we're using Ziina now
+  console.log("[Stripe] Stripe package not installed - using Ziina for payments");
+}
 
 const baseUrl =
   process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";

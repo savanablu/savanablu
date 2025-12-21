@@ -1,22 +1,29 @@
 import { NextResponse } from "next/server";
-import Stripe from "stripe";
 import { getTourBySlug } from "@/lib/data/tours";
 import { calculateBookingTotal } from "@/lib/booking/pricing";
 import { findPromoByCode } from "@/lib/data/promos";
 
-const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+// Optional Stripe import (not required - using Ziina now)
+let Stripe: any = null;
+let stripe: any = null;
 
-if (!stripeSecretKey) {
-  console.warn(
-    "[Stripe] STRIPE_SECRET_KEY is not set. Checkout will not function until configured."
-  );
+try {
+  Stripe = require("stripe").default;
+  const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+  if (!stripeSecretKey) {
+    console.warn(
+      "[Stripe] STRIPE_SECRET_KEY is not set. Checkout will not function until configured."
+    );
+  }
+  stripe = stripeSecretKey
+    ? new Stripe(stripeSecretKey, {
+        apiVersion: "2023-10-16"
+      })
+    : null;
+} catch (err) {
+  // Stripe not installed - that's fine, we're using Ziina now
+  console.log("[Stripe] Stripe package not installed - using Ziina for payments");
 }
-
-const stripe = stripeSecretKey
-  ? new Stripe(stripeSecretKey, {
-      apiVersion: "2023-10-16"
-    })
-  : null;
 
 // 30% deposit
 const DEPOSIT_RATE = 0.3;

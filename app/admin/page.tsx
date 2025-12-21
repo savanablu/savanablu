@@ -4,6 +4,7 @@ import { readBookings } from "@/lib/data/bookings";
 import { readCrmLeads } from "@/lib/data/crm-leads";
 import { getBookingStatus } from "@/components/admin/StatusBadge";
 import { getFinanceSummary } from "@/lib/finance/summary";
+import { getPageVisits, getVisitStatsByType } from "@/lib/data/page-visits";
 import RevenueByMonthChart from "@/components/admin/RevenueByMonthChart";
 import BookingStatusChart from "@/components/admin/BookingStatusChart";
 import RevenueByTypeChart from "@/components/admin/RevenueByTypeChart";
@@ -25,6 +26,9 @@ export default async function AdminDashboardPage() {
   let totalBalances = 0;
   let financeSummary = null;
   let cancelledCount = 0;
+  let totalPageVisits = 0;
+  let safariVisits = 0;
+  let tourVisits = 0;
 
   try {
     const bookings = await readBookings();
@@ -62,6 +66,16 @@ export default async function AdminDashboardPage() {
     totalBalances = financeSummary.totals.totalBalanceUSD;
   } catch (err) {
     console.error("Error loading finance:", err);
+  }
+
+  try {
+    const visitsData = await getPageVisits();
+    totalPageVisits = visitsData.totalVisits;
+    const statsByType = await getVisitStatsByType();
+    safariVisits = statsByType.safaris.total;
+    tourVisits = statsByType.tours.total;
+  } catch (err) {
+    console.error("Error loading page visits:", err);
   }
 
 
@@ -190,6 +204,43 @@ export default async function AdminDashboardPage() {
             </p>
             <p className="mt-1 text-[11px] text-sb-cream/60">
               Advances / Revenue
+            </p>
+          </div>
+        </div>
+
+        {/* Page Visits Stats */}
+        <div className="mb-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="rounded-xl border border-sb-sand/20 bg-sb-cream/5 p-4">
+            <p className="text-[10px] uppercase tracking-[0.2em] text-sb-cream/60">
+              Total page visits
+            </p>
+            <p className="mt-2 text-2xl font-semibold text-sb-cream">
+              {totalPageVisits.toLocaleString()}
+            </p>
+            <p className="mt-1 text-[11px] text-sb-cream/60">
+              All safari & tour pages
+            </p>
+          </div>
+          <div className="rounded-xl border border-sb-sand/20 bg-sb-cream/5 p-4">
+            <p className="text-[10px] uppercase tracking-[0.2em] text-sb-cream/60">
+              Safari page visits
+            </p>
+            <p className="mt-2 text-2xl font-semibold text-sb-cream">
+              {safariVisits.toLocaleString()}
+            </p>
+            <p className="mt-1 text-[11px] text-sb-cream/60">
+              Flying safari pages
+            </p>
+          </div>
+          <div className="rounded-xl border border-sb-sand/20 bg-sb-cream/5 p-4">
+            <p className="text-[10px] uppercase tracking-[0.2em] text-sb-cream/60">
+              Tour page visits
+            </p>
+            <p className="mt-2 text-2xl font-semibold text-sb-cream">
+              {tourVisits.toLocaleString()}
+            </p>
+            <p className="mt-1 text-[11px] text-sb-cream/60">
+              Zanzibar day tours
             </p>
           </div>
         </div>

@@ -11,6 +11,7 @@ import Section from "@/components/ui/Section";
 import BookingWidget from "@/components/booking/BookingWidget";
 import { SafariPriceDisplay } from "@/components/ui/SafariPriceDisplay";
 import { PriceInfoBlock } from "@/components/ui/PriceInfoBlock";
+import PageVisitTracker from "@/components/analytics/PageVisitTracker";
 
 
 
@@ -255,6 +256,7 @@ export default function PackageDetailPage({
 
   return (
     <>
+      <PageVisitTracker slug={pkg.slug} type="safari" />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}

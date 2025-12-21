@@ -36,14 +36,14 @@ export default function GeographicChart({ data, title }: GeographicChartProps) {
 
   return (
     <div>
-      <h4 className="text-sm font-semibold text-sb-cream mb-4">{title}</h4>
+      <h4 className="text-sm font-semibold text-white mb-4">{title}</h4>
       <ResponsiveContainer width="100%" height={300}>
         <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 60 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#F9F3EB" opacity={0.2} />
+          <CartesianGrid strokeDasharray="3 3" stroke="#FFFFFF" opacity={0.2} />
           <XAxis
             dataKey="name"
-            stroke="#F9F3EB"
-            tick={{ fill: "#F9F3EB", fontWeight: 500, fontSize: 13 }}
+            stroke="#FFFFFF"
+            tick={{ fill: "#FFFFFF", fontWeight: 500, fontSize: 13 }}
             angle={-45}
             textAnchor="end"
             height={80}
@@ -51,31 +51,31 @@ export default function GeographicChart({ data, title }: GeographicChartProps) {
               value: "Country",
               position: "insideBottom",
               offset: -10,
-              style: { textAnchor: "middle", fill: "#FFFFFF", fontSize: 14, fontWeight: 600, textShadow: "0 1px 2px rgba(0,0,0,0.5)" },
+              style: { textAnchor: "middle", fill: "#FFFFFF", fontSize: 14, fontWeight: 600 },
             }}
           />
           <YAxis
-            stroke="#F9F3EB"
-            tick={{ fill: "#F9F3EB", fontWeight: 500, fontSize: 13 }}
+            stroke="#FFFFFF"
+            tick={{ fill: "#FFFFFF", fontWeight: 500, fontSize: 13 }}
             label={{
               value: "Number of Visits",
               angle: -90,
               position: "insideLeft",
-              style: { textAnchor: "middle", fill: "#FFFFFF", fontSize: 14, fontWeight: 600, textShadow: "0 1px 2px rgba(0,0,0,0.5)" },
+              style: { textAnchor: "middle", fill: "#FFFFFF", fontSize: 14, fontWeight: 600 },
             }}
             width={80}
           />
           <Tooltip
             contentStyle={{
-              backgroundColor: "#0F6F7C",
-              border: "2px solid #F9F3EB",
+              backgroundColor: "#020617",
+              border: "2px solid #FFFFFF",
               borderRadius: "8px",
-              color: "#F9F3EB",
+              color: "#FFFFFF",
               fontWeight: 500,
               padding: "10px 14px",
             }}
-            labelStyle={{ color: "#F9F3EB", fontWeight: 600, fontSize: "14px", marginBottom: "6px" }}
-            itemStyle={{ color: "#F9F3EB", fontWeight: 500, fontSize: "13px" }}
+            labelStyle={{ color: "#FFFFFF", fontWeight: 600, fontSize: "14px", marginBottom: "6px" }}
+            itemStyle={{ color: "#FFFFFF", fontWeight: 500, fontSize: "13px" }}
           />
           <Bar dataKey="visits" radius={[4, 4, 0, 0]}>
             {chartData.map((entry, index) => (

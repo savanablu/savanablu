@@ -60,16 +60,16 @@ export default function BookingStatusChart({
                   y={textY - labelHeight / 2}
                   width={labelWidth}
                   height={labelHeight}
-                  fill="#0B3C49"
+                  fill="#020617"
                   fillOpacity={0.95}
                   rx={4}
-                  stroke="#F9F3EB"
+                  stroke="#FFFFFF"
                   strokeWidth={1.5}
                 />
                 <text
                   x={textX}
                   y={textY - 6}
-                  fill="#F9F3EB"
+                  fill="#FFFFFF"
                   textAnchor="middle"
                   fontSize={11}
                   fontWeight={600}
@@ -80,7 +80,7 @@ export default function BookingStatusChart({
                 <text
                   x={textX}
                   y={textY + 8}
-                  fill="#F9F3EB"
+                  fill="#FFFFFF"
                   textAnchor="middle"
                   fontSize={10}
                   fontWeight={500}
@@ -102,15 +102,15 @@ export default function BookingStatusChart({
         </Pie>
         <Tooltip
           contentStyle={{
-            backgroundColor: "#0F6F7C",
-            border: "2px solid #F9F3EB",
+            backgroundColor: "#020617",
+            border: "2px solid #FFFFFF",
             borderRadius: "8px",
-            color: "#F9F3EB",
+            color: "#FFFFFF",
             padding: "10px 14px",
             fontWeight: 500,
           }}
-          labelStyle={{ color: "#F9F3EB", fontWeight: 600, fontSize: "14px", marginBottom: "6px" }}
-          itemStyle={{ color: "#F9F3EB", fontWeight: 500, fontSize: "13px" }}
+          labelStyle={{ color: "#FFFFFF", fontWeight: 600, fontSize: "14px", marginBottom: "6px" }}
+          itemStyle={{ color: "#FFFFFF", fontWeight: 500, fontSize: "13px" }}
           formatter={(value: number | undefined, name: string | undefined) => {
             const val = value ?? 0;
             const nameStr = name ?? "";
@@ -123,12 +123,12 @@ export default function BookingStatusChart({
           verticalAlign="bottom"
           height={36}
           wrapperStyle={{ 
-            color: "#F9F3EB", 
+            color: "#FFFFFF", 
             fontSize: "12px",
             paddingTop: "16px"
           }}
           iconType="circle"
-          formatter={(value) => <span style={{ color: "#F9F3EB", opacity: 0.9 }}>{value}</span>}
+          formatter={(value) => <span style={{ color: "#FFFFFF", opacity: 1 }}>{value}</span>}
         />
       </PieChart>
     </ResponsiveContainer>

@@ -1,6 +1,36 @@
 // lib/analytics/geolocation.ts
 
 /**
+ * Get IP address from request headers
+ * Vercel provides x-forwarded-for or x-real-ip
+ */
+export function getIPFromRequest(headers: Headers): string | undefined {
+  // Try Vercel's forwarded IP first
+  const forwardedFor = headers.get("x-forwarded-for");
+  if (forwardedFor) {
+    // x-forwarded-for can contain multiple IPs, take the first one
+    const firstIP = forwardedFor.split(",")[0].trim();
+    if (firstIP) {
+      return firstIP;
+    }
+  }
+
+  // Try x-real-ip (some proxies use this)
+  const realIP = headers.get("x-real-ip");
+  if (realIP) {
+    return realIP.trim();
+  }
+
+  // Try CF-Connecting-IP (Cloudflare)
+  const cfIP = headers.get("cf-connecting-ip");
+  if (cfIP) {
+    return cfIP.trim();
+  }
+
+  return undefined;
+}
+
+/**
  * Get geolocation from request headers (Vercel provides this automatically)
  * Vercel automatically adds x-vercel-ip-country and x-vercel-ip-city headers
  */

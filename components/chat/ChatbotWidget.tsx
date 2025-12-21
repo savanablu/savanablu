@@ -596,6 +596,7 @@ export default function ChatbotWidget() {
   const [lastAnswer, setLastAnswer] = useState<string | null>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   // Close on outside click
   useEffect(() => {
@@ -617,6 +618,18 @@ export default function ChatbotWidget() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isOpen]);
+
+  // Auto-scroll to bottom when new messages are added or panel opens
+  useEffect(() => {
+    if (scrollContainerRef.current && (lastQuestion || lastAnswer || isOpen)) {
+      // Small delay to ensure DOM is updated
+      setTimeout(() => {
+        if (scrollContainerRef.current) {
+          scrollContainerRef.current.scrollTop = scrollContainerRef.current.scrollHeight;
+        }
+      }, 100);
+    }
+  }, [lastQuestion, lastAnswer, isOpen]);
 
   const handleAsk = (question: string) => {
     const trimmed = question.trim();
@@ -680,7 +693,7 @@ export default function ChatbotWidget() {
           </div>
 
           {/* Scrollable content */}
-          <div className="min-h-0 flex-1 space-y-3 overflow-y-auto">
+          <div ref={scrollContainerRef} className="min-h-0 flex-1 space-y-3 overflow-y-auto">
             {/* Suggested questions */}
             <div className="space-y-2">
               <div className="flex flex-wrap gap-2">

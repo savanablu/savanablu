@@ -1,5 +1,3 @@
-// components/admin/ReferrerChart.tsx
-
 "use client";
 
 import {
@@ -13,35 +11,37 @@ import {
   Cell,
 } from "recharts";
 
-interface ReferrerChartProps {
-  data: Array<{ referrer: string; count: number }>;
+interface PageVisitsChartProps {
+  totalVisits: number;
+  safariVisits: number;
+  tourVisits: number;
 }
 
-const COLORS: Record<string, string> = {
-  direct: "#0F6F7C",
-  search: "#0B3C49",
-  social: "#F9735B",
-  other: "#F3E2C7",
-};
+const COLORS = ["#0F6F7C", "#10B981", "#0F6F7C"];
 
-export default function ReferrerChart({ data }: ReferrerChartProps) {
-  const chartData = data.map((item) => ({
-    name: item.referrer.charAt(0).toUpperCase() + item.referrer.slice(1),
-    visits: item.count,
-    color: COLORS[item.referrer] || "#E5EEF2",
-  }));
-
-  if (chartData.length === 0) {
-    return (
-      <div className="flex h-64 items-center justify-center text-sm text-sb-cream/60">
-        No referrer data available yet
-      </div>
-    );
-  }
+export default function PageVisitsChart({
+  totalVisits,
+  safariVisits,
+  tourVisits,
+}: PageVisitsChartProps) {
+  const chartData = [
+    {
+      name: "Total Visits",
+      visits: totalVisits,
+    },
+    {
+      name: "Safari Visits",
+      visits: safariVisits,
+    },
+    {
+      name: "Tour Visits",
+      visits: tourVisits,
+    },
+  ];
 
   return (
     <div>
-      <h4 className="text-sm font-semibold text-white mb-4">Traffic Sources</h4>
+      <h4 className="text-sm font-semibold text-white mb-4">Page Visits Overview</h4>
       <ResponsiveContainer width="100%" height={300}>
         <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="#FFFFFF" opacity={0.2} />
@@ -50,7 +50,7 @@ export default function ReferrerChart({ data }: ReferrerChartProps) {
             stroke="#FFFFFF"
             tick={{ fill: "#FFFFFF", fontWeight: 500, fontSize: 13 }}
             label={{
-              value: "Traffic Source",
+              value: "Visit Type",
               position: "insideBottom",
               offset: -10,
               style: { textAnchor: "middle", fill: "#FFFFFF", fontSize: 14, fontWeight: 600 },
@@ -78,10 +78,14 @@ export default function ReferrerChart({ data }: ReferrerChartProps) {
             }}
             labelStyle={{ color: "#FFFFFF", fontWeight: 600, fontSize: "14px", marginBottom: "6px" }}
             itemStyle={{ color: "#FFFFFF", fontWeight: 500, fontSize: "13px" }}
+            formatter={(value: number | undefined) => {
+              const val = value ?? 0;
+              return [`${val.toLocaleString()} visits`, "Visits"];
+            }}
           />
           <Bar dataKey="visits" radius={[4, 4, 0, 0]}>
             {chartData.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={entry.color} />
+              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
             ))}
           </Bar>
         </BarChart>

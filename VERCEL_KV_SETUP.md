@@ -40,3 +40,6 @@ After setup, create a test booking and verify it appears in the admin panel. Che
 - `[Bookings] Saved X bookings to Vercel KV` - confirms KV is working
 - `[Bookings] Read X bookings from Vercel KV` - confirms reads are working
 
+
+
+

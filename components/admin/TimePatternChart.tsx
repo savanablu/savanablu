@@ -41,7 +41,7 @@ export default function TimePatternChart({
   return (
     <div className="grid gap-6 md:grid-cols-2">
       <div>
-        <h4 className="text-sm font-semibold text-sb-cream mb-4">Visits by Hour of Day</h4>
+        <h4 className="text-sm font-semibold text-white mb-4">Visits by Hour of Day</h4>
         {hourlyChartData.length === 0 ? (
           <div className="flex h-64 items-center justify-center text-sm text-sb-cream/60">
             No hourly data available
@@ -49,11 +49,11 @@ export default function TimePatternChart({
         ) : (
           <ResponsiveContainer width="100%" height={300}>
             <LineChart data={hourlyChartData} margin={{ top: 20, right: 30, left: 20, bottom: 60 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#F9F3EB" opacity={0.2} />
+              <CartesianGrid strokeDasharray="3 3" stroke="#FFFFFF" opacity={0.2} />
               <XAxis
                 dataKey="hour"
-                stroke="#F9F3EB"
-                tick={{ fill: "#F9F3EB", fontWeight: 500, fontSize: 13 }}
+                stroke="#FFFFFF"
+                tick={{ fill: "#FFFFFF", fontWeight: 500, fontSize: 13 }}
                 angle={-45}
                 textAnchor="end"
                 height={70}
@@ -61,31 +61,31 @@ export default function TimePatternChart({
                   value: "Hour of Day (24h)",
                   position: "insideBottom",
                   offset: -10,
-                  style: { textAnchor: "middle", fill: "#FFFFFF", fontSize: 14, fontWeight: 600, textShadow: "0 1px 2px rgba(0,0,0,0.5)" },
+                  style: { textAnchor: "middle", fill: "#FFFFFF", fontSize: 14, fontWeight: 600 },
                 }}
               />
               <YAxis
-                stroke="#F9F3EB"
-                tick={{ fill: "#F9F3EB", fontWeight: 500, fontSize: 13 }}
+                stroke="#FFFFFF"
+                tick={{ fill: "#FFFFFF", fontWeight: 500, fontSize: 13 }}
                 label={{
                   value: "Number of Visits",
                   angle: -90,
                   position: "insideLeft",
-                  style: { textAnchor: "middle", fill: "#FFFFFF", fontSize: 14, fontWeight: 600, textShadow: "0 1px 2px rgba(0,0,0,0.5)" },
+                  style: { textAnchor: "middle", fill: "#FFFFFF", fontSize: 14, fontWeight: 600 },
                 }}
                 width={80}
               />
               <Tooltip
                 contentStyle={{
-                  backgroundColor: "#0F6F7C",
-                  border: "2px solid #F9F3EB",
+                  backgroundColor: "#020617",
+                  border: "2px solid #FFFFFF",
                   borderRadius: "8px",
-                  color: "#F9F3EB",
+                  color: "#FFFFFF",
                   fontWeight: 500,
                   padding: "10px 14px",
                 }}
-                labelStyle={{ color: "#F9F3EB", fontWeight: 600, fontSize: "14px", marginBottom: "6px" }}
-                itemStyle={{ color: "#F9F3EB", fontWeight: 500, fontSize: "13px" }}
+                labelStyle={{ color: "#FFFFFF", fontWeight: 600, fontSize: "14px", marginBottom: "6px" }}
+                itemStyle={{ color: "#FFFFFF", fontWeight: 500, fontSize: "13px" }}
               />
               <Line
                 type="monotone"
@@ -101,7 +101,7 @@ export default function TimePatternChart({
       </div>
 
       <div>
-        <h4 className="text-sm font-semibold text-sb-cream mb-4">Visits by Day of Week</h4>
+        <h4 className="text-sm font-semibold text-white mb-4">Visits by Day of Week</h4>
         {dailyChartData.length === 0 ? (
           <div className="flex h-64 items-center justify-center text-sm text-sb-cream/60">
             No daily data available
@@ -109,11 +109,11 @@ export default function TimePatternChart({
         ) : (
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={dailyChartData} margin={{ top: 20, right: 30, left: 20, bottom: 60 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#F9F3EB" opacity={0.2} />
+              <CartesianGrid strokeDasharray="3 3" stroke="#FFFFFF" opacity={0.2} />
               <XAxis
                 dataKey="day"
-                stroke="#F9F3EB"
-                tick={{ fill: "#F9F3EB", fontWeight: 500, fontSize: 13 }}
+                stroke="#FFFFFF"
+                tick={{ fill: "#FFFFFF", fontWeight: 500, fontSize: 13 }}
                 angle={-45}
                 textAnchor="end"
                 height={70}
@@ -121,31 +121,31 @@ export default function TimePatternChart({
                   value: "Day of Week",
                   position: "insideBottom",
                   offset: -10,
-                  style: { textAnchor: "middle", fill: "#FFFFFF", fontSize: 14, fontWeight: 600, textShadow: "0 1px 2px rgba(0,0,0,0.5)" },
+                  style: { textAnchor: "middle", fill: "#FFFFFF", fontSize: 14, fontWeight: 600 },
                 }}
               />
               <YAxis
-                stroke="#F9F3EB"
-                tick={{ fill: "#F9F3EB", fontWeight: 500, fontSize: 13 }}
+                stroke="#FFFFFF"
+                tick={{ fill: "#FFFFFF", fontWeight: 500, fontSize: 13 }}
                 label={{
                   value: "Number of Visits",
                   angle: -90,
                   position: "insideLeft",
-                  style: { textAnchor: "middle", fill: "#FFFFFF", fontSize: 14, fontWeight: 600, textShadow: "0 1px 2px rgba(0,0,0,0.5)" },
+                  style: { textAnchor: "middle", fill: "#FFFFFF", fontSize: 14, fontWeight: 600 },
                 }}
                 width={80}
               />
               <Tooltip
                 contentStyle={{
-                  backgroundColor: "#0F6F7C",
-                  border: "2px solid #F9F3EB",
+                  backgroundColor: "#020617",
+                  border: "2px solid #FFFFFF",
                   borderRadius: "8px",
-                  color: "#F9F3EB",
+                  color: "#FFFFFF",
                   fontWeight: 500,
                   padding: "10px 14px",
                 }}
-                labelStyle={{ color: "#F9F3EB", fontWeight: 600, fontSize: "14px", marginBottom: "6px" }}
-                itemStyle={{ color: "#F9F3EB", fontWeight: 500, fontSize: "13px" }}
+                labelStyle={{ color: "#FFFFFF", fontWeight: 600, fontSize: "14px", marginBottom: "6px" }}
+                itemStyle={{ color: "#FFFFFF", fontWeight: 500, fontSize: "13px" }}
               />
               <Bar dataKey="visits" fill="#0F6F7C" radius={[4, 4, 0, 0]} />
             </BarChart>

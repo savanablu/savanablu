@@ -272,3 +272,7 @@ export default function ToursList({ tours }: ToursListProps) {
   );
 }
 
+
+
+
+

@@ -3,7 +3,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { incrementPageVisit } from "@/lib/data/page-visits";
 import { addVisitRecord } from "@/lib/data/analytics";
-import { getLocationFromRequest, parseUserAgent, parseReferrer } from "@/lib/analytics/geolocation";
+import { getLocationFromRequest, parseUserAgent, parseReferrer, getIPFromRequest } from "@/lib/analytics/geolocation";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -33,15 +33,18 @@ export async function POST(request: NextRequest) {
 
     // Get advanced analytics data
     const headers = request.headers;
+    const ipAddress = getIPFromRequest(headers);
     const location = await getLocationFromRequest(headers);
     const { device, browser } = parseUserAgent(userAgent);
     const { referrer: parsedReferrer, referrerType } = parseReferrer(referrer);
 
     // Add detailed visit record (only if cookie consent is given - checked client-side)
+    // This will automatically exclude your IP and count only unique visits
     try {
       await addVisitRecord({
         slug,
         type,
+        ipAddress,
         country: location.country,
         city: location.city,
         device,

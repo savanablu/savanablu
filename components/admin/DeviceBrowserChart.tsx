@@ -38,9 +38,9 @@ export default function DeviceBrowserChart({
       const total = data.reduce((sum: number, item: any) => sum + item.value, 0);
       const percentage = total > 0 ? ((payload[0].value / total) * 100).toFixed(1) : "0";
       return (
-        <div className="bg-sb-ocean border-2 border-sb-cream/40 rounded-lg p-3 shadow-xl backdrop-blur-sm">
-          <p className="text-sb-cream font-semibold text-sm mb-1">{payload[0].name}</p>
-          <p className="text-sb-cream text-sm font-medium">
+        <div className="bg-sb-night border-2 border-white/40 rounded-lg p-3 shadow-xl backdrop-blur-sm">
+          <p className="text-white font-semibold text-sm mb-1">{payload[0].name}</p>
+          <p className="text-white text-sm font-medium">
             {payload[0].value} visits ({percentage}%)
           </p>
         </div>
@@ -52,7 +52,7 @@ export default function DeviceBrowserChart({
   return (
     <div className="grid gap-6 md:grid-cols-2">
       <div>
-        <h4 className="text-sm font-semibold text-sb-cream mb-4">Device Types</h4>
+        <h4 className="text-sm font-semibold text-white mb-4">Device Types</h4>
         {deviceChartData.length === 0 ? (
           <div className="flex h-64 items-center justify-center text-sm text-sb-cream/60">
             No device data available
@@ -79,16 +79,16 @@ export default function DeviceBrowserChart({
                         y={textY - 8}
                         width={70}
                         height={16}
-                        fill="#0B3C49"
-                        fillOpacity={0.9}
+                        fill="#020617"
+                        fillOpacity={0.95}
                         rx={4}
-                        stroke="#F9F3EB"
+                        stroke="#FFFFFF"
                         strokeWidth={1}
                       />
                       <text
                         x={textX}
                         y={textY}
-                        fill="#F9F3EB"
+                        fill="#FFFFFF"
                         textAnchor="middle"
                         fontSize={11}
                         fontWeight={600}
@@ -114,7 +114,7 @@ export default function DeviceBrowserChart({
       </div>
 
       <div>
-        <h4 className="text-sm font-semibold text-sb-cream mb-4">Browsers</h4>
+        <h4 className="text-sm font-semibold text-white mb-4">Browsers</h4>
         {browserChartData.length === 0 ? (
           <div className="flex h-64 items-center justify-center text-sm text-sb-cream/60">
             No browser data available
@@ -141,16 +141,16 @@ export default function DeviceBrowserChart({
                         y={textY - 8}
                         width={70}
                         height={16}
-                        fill="#0B3C49"
-                        fillOpacity={0.9}
+                        fill="#020617"
+                        fillOpacity={0.95}
                         rx={4}
-                        stroke="#F9F3EB"
+                        stroke="#FFFFFF"
                         strokeWidth={1}
                       />
                       <text
                         x={textX}
                         y={textY}
-                        fill="#F9F3EB"
+                        fill="#FFFFFF"
                         textAnchor="middle"
                         fontSize={11}
                         fontWeight={600}

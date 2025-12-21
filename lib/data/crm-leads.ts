@@ -65,6 +65,10 @@ async function writeCrmLeads(leads: CrmLead[]) {
   }
 }
 
+export async function writeCrmLeadsData(leads: CrmLead[]): Promise<void> {
+  await writeCrmLeads(leads);
+}
+
 export async function getCrmLeadById(id: string): Promise<CrmLead | null> {
   const leads = await readCrmLeads();
   const found = leads.find((l) => l.id === id);

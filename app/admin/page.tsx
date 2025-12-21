@@ -5,7 +5,7 @@ import { readCrmLeads } from "@/lib/data/crm-leads";
 import { getBookingStatus } from "@/components/admin/StatusBadge";
 import { getFinanceSummary } from "@/lib/finance/summary";
 import { getPageVisits, getVisitStatsByType } from "@/lib/data/page-visits";
-import { getAnalyticsSummary } from "@/lib/data/analytics";
+import { getAnalyticsSummary, getUniqueVisitStatsByType, getTotalUniqueVisits } from "@/lib/data/analytics";
 import RevenueByMonthChart from "@/components/admin/RevenueByMonthChart";
 import BookingStatusChart from "@/components/admin/BookingStatusChart";
 import RevenueByTypeChart from "@/components/admin/RevenueByTypeChart";
@@ -14,6 +14,10 @@ import DeviceBrowserChart from "@/components/admin/DeviceBrowserChart";
 import ReferrerChart from "@/components/admin/ReferrerChart";
 import TimePatternChart from "@/components/admin/TimePatternChart";
 import TopPagesTable from "@/components/admin/TopPagesTable";
+import PageVisitsChart from "@/components/admin/PageVisitsChart";
+import BookingStatsChart from "@/components/admin/BookingStatsChart";
+import RevenueStatsChart from "@/components/admin/RevenueStatsChart";
+import ClearAllBookingsButton from "@/components/admin/ClearAllBookingsButton";
 import { MoneyDisplay } from "@/components/admin/MoneyDisplay";
 
 // Force dynamic rendering to prevent caching
@@ -76,13 +80,23 @@ export default async function AdminDashboardPage() {
   }
 
   try {
-    const visitsData = await getPageVisits();
-    totalPageVisits = visitsData.totalVisits;
-    const statsByType = await getVisitStatsByType();
-    safariVisits = statsByType.safaris.total;
-    tourVisits = statsByType.tours.total;
+    // Use unique visit counts from analytics (excludes your IP and counts only unique visitors)
+    const uniqueStats = await getUniqueVisitStatsByType();
+    totalPageVisits = await getTotalUniqueVisits();
+    safariVisits = uniqueStats.safaris.total;
+    tourVisits = uniqueStats.tours.total;
   } catch (err) {
     console.error("Error loading page visits:", err);
+    // Fallback to simple counts if analytics fails
+    try {
+      const visitsData = await getPageVisits();
+      totalPageVisits = visitsData.totalVisits;
+      const statsByType = await getVisitStatsByType();
+      safariVisits = statsByType.safaris.total;
+      tourVisits = statsByType.tours.total;
+    } catch (fallbackErr) {
+      console.error("Error loading fallback page visits:", fallbackErr);
+    }
   }
 
   try {
@@ -112,89 +126,184 @@ export default async function AdminDashboardPage() {
           </div>
         </header>
 
-        {/* Quick Stats */}
-        <div className="mb-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6">
-          {/* Bookings Stats */}
-          <div className="rounded-xl border border-sb-sand/20 bg-sb-cream/5 p-4">
-            <p className="text-[10px] uppercase tracking-[0.2em] text-sb-cream/60">
-              Total bookings
-            </p>
-            <p className="mt-2 text-2xl font-semibold text-sb-cream">
-              {bookingsCount}
-            </p>
+        {/* Clear All Bookings Button - Temporary */}
+        <ClearAllBookingsButton />
+
+        {/* Main Actions */}
+        <section className="mb-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <Link
+            href="/admin/bookings"
+            className="group relative overflow-hidden rounded-2xl border border-white/20 bg-gradient-to-br from-sb-night/90 to-sb-ocean/80 p-6 transition-all duration-300 hover:border-white/40 hover:shadow-xl hover:shadow-sb-ocean/20"
+          >
+            <div className="absolute right-4 top-4 opacity-20 transition-opacity group-hover:opacity-30">
+              <svg
+                className="h-12 w-12 text-white"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1.5}
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                />
+              </svg>
+            </div>
+            <div className="relative">
+              <p className="text-[10px] uppercase tracking-[0.24em] text-white/60">
+                Core operations
+              </p>
+              <h2 className="mt-3 text-lg font-semibold text-white">
+                Bookings
+              </h2>
+              <p className="mt-2 text-sm leading-relaxed text-white/70">
+                View all bookings, manage statuses, download CSV exports and send
+                WhatsApp handovers with complete guest details.
+              </p>
+              <div className="mt-4 inline-flex items-center text-xs font-medium text-white/80 group-hover:text-white transition-colors">
+                Open bookings
+                <svg
+                  className="ml-1.5 h-3.5 w-3.5 transition-transform group-hover:translate-x-1"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </div>
+            </div>
+          </Link>
+
+          <Link
+            href="/admin/finance"
+            className="group relative overflow-hidden rounded-2xl border border-white/20 bg-gradient-to-br from-sb-night/90 to-sb-ocean/80 p-6 transition-all duration-300 hover:border-white/40 hover:shadow-xl hover:shadow-sb-ocean/20"
+          >
+            <div className="absolute right-4 top-4 opacity-20 transition-opacity group-hover:opacity-30">
+              <svg
+                className="h-12 w-12 text-white"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1.5}
+                  d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                />
+              </svg>
+            </div>
+            <div className="relative">
+              <p className="text-[10px] uppercase tracking-[0.24em] text-white/60">
+                Financial overview
+              </p>
+              <h2 className="mt-3 text-lg font-semibold text-white">
+                Revenue snapshot
+              </h2>
+              <p className="mt-2 text-sm leading-relaxed text-white/70">
+                Download CSV exports with booking totals, revenue breakdowns and
+                financial summaries for Excel or Google Sheets.
+              </p>
+              <div className="mt-4 inline-flex items-center text-xs font-medium text-white/80 group-hover:text-white transition-colors">
+                View finance
+                <svg
+                  className="ml-1.5 h-3.5 w-3.5 transition-transform group-hover:translate-x-1"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </div>
+            </div>
+          </Link>
+
+          <Link
+            href="/admin/crm"
+            className="group relative overflow-hidden rounded-2xl border border-white/20 bg-gradient-to-br from-sb-night/90 to-sb-ocean/80 p-6 transition-all duration-300 hover:border-white/40 hover:shadow-xl hover:shadow-sb-ocean/20"
+          >
+            <div className="absolute right-4 top-4 opacity-20 transition-opacity group-hover:opacity-30">
+              <svg
+                className="h-12 w-12 text-white"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1.5}
+                  d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                />
+              </svg>
+            </div>
+            <div className="relative">
+              <p className="text-[10px] uppercase tracking-[0.24em] text-white/60">
+                Guest communications
+              </p>
+              <h2 className="mt-3 text-lg font-semibold text-white">
+                Enquiries
+              </h2>
+              <p className="mt-2 text-sm leading-relaxed text-white/70">
+                View all contact-form enquiries and follow up with guests over
+                email or WhatsApp with a calm, personal touch.
+              </p>
+              <div className="mt-4 inline-flex items-center text-xs font-medium text-white/80 group-hover:text-white transition-colors">
+                View enquiries
+                <svg
+                  className="ml-1.5 h-3.5 w-3.5 transition-transform group-hover:translate-x-1"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </div>
+            </div>
+          </Link>
+        </section>
+
+        {/* Booking & Revenue Charts */}
+        <div className="mb-10 grid gap-6 lg:grid-cols-2">
+          <div className="rounded-2xl border border-white/20 bg-gradient-to-br from-sb-night/90 to-sb-ocean/80 p-6 shadow-lg backdrop-blur-sm">
+            <Suspense fallback={<div className="h-64 flex items-center justify-center text-white/60">Loading chart...</div>}>
+              <BookingStatsChart
+                total={bookingsCount}
+                upcoming={upcomingCount}
+                confirmed={confirmedCount}
+                onHold={onHoldCount}
+              />
+            </Suspense>
           </div>
-          <div className="rounded-xl border border-sb-sand/20 bg-sb-cream/5 p-4">
-            <p className="text-[10px] uppercase tracking-[0.2em] text-sb-cream/60">
-              Upcoming
-            </p>
-            <p className="mt-2 text-2xl font-semibold text-sb-cream">
-              {upcomingCount}
-            </p>
-            <p className="mt-1 text-[11px] text-sb-cream/60">
-              Future dates
-            </p>
-          </div>
-          <div className="rounded-xl border border-sb-sand/20 bg-sb-cream/5 p-4">
-            <p className="text-[10px] uppercase tracking-[0.2em] text-sb-cream/60">
-              Confirmed
-            </p>
-            <p className="mt-2 text-2xl font-semibold text-emerald-400">
-              {confirmedCount}
-            </p>
-            <p className="mt-1 text-[11px] text-sb-cream/60">
-              20% advance paid
-            </p>
-          </div>
-          <div className="rounded-xl border border-sb-sand/20 bg-sb-cream/5 p-4">
-            <p className="text-[10px] uppercase tracking-[0.2em] text-sb-cream/60">
-              On hold
-            </p>
-            <p className="mt-2 text-2xl font-semibold text-sb-coral">
-              {onHoldCount}
-            </p>
-            <p className="mt-1 text-[11px] text-sb-cream/60">
-              Awaiting advance
-            </p>
-          </div>
-          
-          {/* Revenue Stats */}
-          <div className="rounded-xl border border-sb-sand/20 bg-sb-cream/5 p-4">
-            <p className="text-[10px] uppercase tracking-[0.2em] text-sb-cream/60">
-              Total revenue
-            </p>
-            <p className="mt-2 text-xl font-semibold text-sb-cream">
-              <MoneyDisplay amountUSD={totalRevenue} />
-            </p>
-            <p className="mt-1 text-[11px] text-sb-cream/60">
-              Trip value
-            </p>
-          </div>
-          <div className="rounded-xl border border-sb-sand/20 bg-sb-cream/5 p-4">
-            <p className="text-[10px] uppercase tracking-[0.2em] text-sb-cream/60">
-              Advances
-            </p>
-            <p className="mt-2 text-xl font-semibold text-emerald-400">
-              <MoneyDisplay amountUSD={totalAdvances} />
-            </p>
-            <p className="mt-1 text-[11px] text-sb-cream/60">
-              Paid online
-            </p>
+          <div className="rounded-2xl border border-white/20 bg-gradient-to-br from-sb-night/90 to-sb-ocean/80 p-6 shadow-lg backdrop-blur-sm">
+            <Suspense fallback={<div className="h-64 flex items-center justify-center text-white/60">Loading chart...</div>}>
+              <RevenueStatsChart
+                totalRevenue={totalRevenue}
+                advances={totalAdvances}
+                balances={totalBalances}
+              />
+            </Suspense>
           </div>
         </div>
 
-        {/* Revenue Details Row */}
-        <div className="mb-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          <div className="rounded-xl border border-sb-sand/20 bg-sb-cream/5 p-4">
-            <p className="text-[10px] uppercase tracking-[0.2em] text-sb-cream/60">
-              Balances on arrival
-            </p>
-            <p className="mt-2 text-xl font-semibold text-sb-cream">
-              <MoneyDisplay amountUSD={totalBalances} />
-            </p>
-            <p className="mt-1 text-[11px] text-sb-cream/60">
-              To be collected
-            </p>
-          </div>
+        {/* Additional Stats */}
+        <div className="mb-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-2">
           <div className="rounded-xl border border-sb-sand/20 bg-sb-cream/5 p-4">
             <p className="text-[10px] uppercase tracking-[0.2em] text-sb-cream/60">
               Enquiries
@@ -221,249 +330,7 @@ export default async function AdminDashboardPage() {
           </div>
         </div>
 
-        {/* Page Visits Stats - Enhanced UX */}
-        <div className="mb-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          <div className="group rounded-xl border border-sb-sand/20 bg-gradient-to-br from-sb-cream/8 to-sb-cream/3 p-5 shadow-sm hover:shadow-md hover:border-sb-cream/30 transition-all duration-300">
-            <div className="flex items-center justify-between mb-3">
-              <div className="rounded-lg bg-sb-ocean/20 p-2">
-                <svg
-                  className="h-5 w-5 text-sb-cream"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-                  />
-                </svg>
-              </div>
-            </div>
-            <p className="text-[10px] uppercase tracking-[0.2em] text-sb-cream/60 font-semibold">
-              Total page visits
-            </p>
-            <p className="mt-2 text-3xl font-bold text-sb-cream">
-              {totalPageVisits.toLocaleString()}
-            </p>
-            <p className="mt-2 text-[11px] text-sb-cream/70 leading-relaxed">
-              All safari & tour pages combined
-            </p>
-          </div>
-          <div className="group rounded-xl border border-sb-sand/20 bg-gradient-to-br from-sb-cream/8 to-sb-cream/3 p-5 shadow-sm hover:shadow-md hover:border-sb-cream/30 transition-all duration-300">
-            <div className="flex items-center justify-between mb-3">
-              <div className="rounded-lg bg-emerald-500/20 p-2">
-                <svg
-                  className="h-5 w-5 text-emerald-400"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-              </div>
-            </div>
-            <p className="text-[10px] uppercase tracking-[0.2em] text-sb-cream/60 font-semibold">
-              Safari page visits
-            </p>
-            <p className="mt-2 text-3xl font-bold text-emerald-400">
-              {safariVisits.toLocaleString()}
-            </p>
-            <p className="mt-2 text-[11px] text-sb-cream/70 leading-relaxed">
-              Flying safari pages
-            </p>
-          </div>
-          <div className="group rounded-xl border border-sb-sand/20 bg-gradient-to-br from-sb-cream/8 to-sb-cream/3 p-5 shadow-sm hover:shadow-md hover:border-sb-cream/30 transition-all duration-300">
-            <div className="flex items-center justify-between mb-3">
-              <div className="rounded-lg bg-sb-lagoon/20 p-2">
-                <svg
-                  className="h-5 w-5 text-sb-lagoon"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                </svg>
-              </div>
-            </div>
-            <p className="text-[10px] uppercase tracking-[0.2em] text-sb-cream/60 font-semibold">
-              Tour page visits
-            </p>
-            <p className="mt-2 text-3xl font-bold text-sb-lagoon">
-              {tourVisits.toLocaleString()}
-            </p>
-            <p className="mt-2 text-[11px] text-sb-cream/70 leading-relaxed">
-              Zanzibar day tours
-            </p>
-          </div>
-        </div>
 
-        {/* Main Actions - moved above charts */}
-        <section className="mb-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          <Link
-            href="/admin/bookings"
-            className="group relative overflow-hidden rounded-2xl border border-sb-sand/20 bg-gradient-to-br from-sb-cream/8 to-sb-cream/3 p-6 transition-all duration-300 hover:border-sb-cream/50 hover:bg-gradient-to-br hover:from-sb-cream/12 hover:to-sb-cream/6 hover:shadow-lg"
-          >
-            <div className="absolute right-4 top-4 opacity-10 transition-opacity group-hover:opacity-20">
-              <svg
-                className="h-12 w-12 text-sb-cream"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={1.5}
-                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                />
-              </svg>
-            </div>
-            <div className="relative">
-              <p className="text-[10px] uppercase tracking-[0.24em] text-sb-cream/60">
-                Core operations
-              </p>
-              <h2 className="mt-3 text-lg font-semibold text-sb-cream">
-                Bookings
-              </h2>
-              <p className="mt-2 text-sm leading-relaxed text-sb-cream/70">
-                View all bookings, manage statuses, download CSV exports and send
-                WhatsApp handovers with complete guest details.
-              </p>
-              <div className="mt-4 inline-flex items-center text-xs font-medium text-sb-cream/80 group-hover:text-sb-cream">
-                Open bookings
-                <svg
-                  className="ml-1.5 h-3.5 w-3.5 transition-transform group-hover:translate-x-1"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </div>
-            </div>
-          </Link>
-
-          <Link
-            href="/admin/finance"
-            className="group relative overflow-hidden rounded-2xl border border-sb-sand/20 bg-gradient-to-br from-sb-cream/8 to-sb-cream/3 p-6 transition-all duration-300 hover:border-sb-cream/50 hover:bg-gradient-to-br hover:from-sb-cream/12 hover:to-sb-cream/6 hover:shadow-lg"
-          >
-            <div className="absolute right-4 top-4 opacity-10 transition-opacity group-hover:opacity-20">
-              <svg
-                className="h-12 w-12 text-sb-cream"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={1.5}
-                  d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-                />
-              </svg>
-            </div>
-            <div className="relative">
-              <p className="text-[10px] uppercase tracking-[0.24em] text-sb-cream/60">
-                Financial overview
-              </p>
-              <h2 className="mt-3 text-lg font-semibold text-sb-cream">
-                Revenue snapshot
-              </h2>
-              <p className="mt-2 text-sm leading-relaxed text-sb-cream/70">
-                Download CSV exports with booking totals, revenue breakdowns and
-                financial summaries for Excel or Google Sheets.
-              </p>
-              <div className="mt-4 inline-flex items-center text-xs font-medium text-sb-cream/80 group-hover:text-sb-cream">
-                View finance
-                <svg
-                  className="ml-1.5 h-3.5 w-3.5 transition-transform group-hover:translate-x-1"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </div>
-            </div>
-          </Link>
-
-          <Link
-            href="/admin/crm"
-            className="group relative overflow-hidden rounded-2xl border border-sb-sand/20 bg-gradient-to-br from-sb-cream/8 to-sb-cream/3 p-6 transition-all duration-300 hover:border-sb-cream/50 hover:bg-gradient-to-br hover:from-sb-cream/12 hover:to-sb-cream/6 hover:shadow-lg"
-          >
-            <div className="absolute right-4 top-4 opacity-10 transition-opacity group-hover:opacity-20">
-              <svg
-                className="h-12 w-12 text-sb-cream"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={1.5}
-                  d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                />
-              </svg>
-            </div>
-            <div className="relative">
-              <p className="text-[10px] uppercase tracking-[0.24em] text-sb-cream/60">
-                Guest communications
-              </p>
-              <h2 className="mt-3 text-lg font-semibold text-sb-cream">
-                Enquiries
-              </h2>
-              <p className="mt-2 text-sm leading-relaxed text-sb-cream/70">
-                View all contact-form enquiries and follow up with guests over
-                email or WhatsApp with a calm, personal touch.
-              </p>
-              <div className="mt-4 inline-flex items-center text-xs font-medium text-sb-cream/80 group-hover:text-sb-cream">
-                View enquiries
-                <svg
-                  className="ml-1.5 h-3.5 w-3.5 transition-transform group-hover:translate-x-1"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </div>
-            </div>
-          </Link>
-        </section>
 
         {/* Charts Section */}
         {financeSummary && (
@@ -477,32 +344,32 @@ export default async function AdminDashboardPage() {
               </p>
             </div>
             <div className="grid gap-6 lg:grid-cols-2">
-              <div className="rounded-2xl border border-sb-cream/20 bg-gradient-to-br from-sb-deep/60 to-sb-deep/40 p-6 shadow-lg backdrop-blur-sm">
+              <div className="rounded-2xl border border-white/20 bg-gradient-to-br from-sb-night/90 to-sb-ocean/80 p-6 shadow-lg backdrop-blur-sm">
                 <div className="mb-5">
-                  <h3 className="text-lg font-semibold text-sb-cream">
+                  <h3 className="text-lg font-semibold text-white">
                     Revenue Trends by Month
                   </h3>
-                  <p className="mt-1.5 text-xs leading-relaxed text-sb-cream/70">
+                  <p className="mt-1.5 text-xs leading-relaxed text-white/70">
                     Monthly breakdown showing total trip value (revenue) and advances collected. 
                     Helps identify seasonal patterns and payment collection trends over time.
                   </p>
                 </div>
-                <Suspense fallback={<div className="h-64 flex items-center justify-center text-sb-cream/60">Loading chart...</div>}>
+                <Suspense fallback={<div className="h-64 flex items-center justify-center text-white/60">Loading chart...</div>}>
                   <RevenueByMonthChart data={financeSummary.byMonth} />
                 </Suspense>
               </div>
 
-              <div className="rounded-2xl border border-sb-cream/20 bg-gradient-to-br from-sb-deep/60 to-sb-deep/40 p-6 shadow-lg backdrop-blur-sm">
+              <div className="rounded-2xl border border-white/20 bg-gradient-to-br from-sb-night/90 to-sb-ocean/80 p-6 shadow-lg backdrop-blur-sm">
                 <div className="mb-5">
-                  <h3 className="text-lg font-semibold text-sb-cream">
+                  <h3 className="text-lg font-semibold text-white">
                     Booking Status Distribution
                   </h3>
-                  <p className="mt-1.5 text-xs leading-relaxed text-sb-cream/70">
+                  <p className="mt-1.5 text-xs leading-relaxed text-white/70">
                     Visual breakdown of all bookings by status: confirmed (20% advance paid), 
                     on hold (awaiting payment), and cancelled. Shows overall booking health.
                   </p>
                 </div>
-                <Suspense fallback={<div className="h-64 flex items-center justify-center text-sb-cream/60">Loading chart...</div>}>
+                <Suspense fallback={<div className="h-64 flex items-center justify-center text-white/60">Loading chart...</div>}>
                   <BookingStatusChart
                     confirmed={confirmedCount}
                     onHold={onHoldCount}
@@ -511,18 +378,18 @@ export default async function AdminDashboardPage() {
                 </Suspense>
               </div>
 
-              <div className="rounded-2xl border border-sb-cream/20 bg-gradient-to-br from-sb-deep/60 to-sb-deep/40 p-6 shadow-lg backdrop-blur-sm lg:col-span-2">
+              <div className="rounded-2xl border border-white/20 bg-gradient-to-br from-sb-night/90 to-sb-ocean/80 p-6 shadow-lg backdrop-blur-sm lg:col-span-2">
                 <div className="mb-5">
-                  <h3 className="text-lg font-semibold text-sb-cream">
+                  <h3 className="text-lg font-semibold text-white">
                     Revenue Comparison by Tour Category
                   </h3>
-                  <p className="mt-1.5 text-xs leading-relaxed text-sb-cream/70">
+                  <p className="mt-1.5 text-xs leading-relaxed text-white/70">
                     Side-by-side comparison of day tours vs. multi-day packages showing total revenue, 
                     advances collected, and balances due on arrival. Useful for understanding which category 
                     generates more revenue and payment collection efficiency.
                   </p>
                 </div>
-                <Suspense fallback={<div className="h-64 flex items-center justify-center text-sb-cream/60">Loading chart...</div>}>
+                <Suspense fallback={<div className="h-64 flex items-center justify-center text-white/60">Loading chart...</div>}>
                   <RevenueByTypeChart
                     tours={financeSummary.byType.tours}
                     packages={financeSummary.byType.packages}
@@ -547,25 +414,25 @@ export default async function AdminDashboardPage() {
 
             {/* Geographic Analytics */}
             <div className="mb-6 grid gap-6 lg:grid-cols-2">
-              <div className="rounded-2xl border border-sb-cream/20 bg-gradient-to-br from-sb-deep/60 to-sb-deep/40 p-6 shadow-lg backdrop-blur-sm">
+              <div className="rounded-2xl border border-white/20 bg-gradient-to-br from-sb-night/90 to-sb-ocean/80 p-6 shadow-lg backdrop-blur-sm">
                 <GeographicChart
                   data={analyticsSummary.byCountry}
                   title="Visits by Country"
                 />
               </div>
-              <div className="rounded-2xl border border-sb-cream/20 bg-gradient-to-br from-sb-deep/60 to-sb-deep/40 p-6 shadow-lg backdrop-blur-sm">
+              <div className="rounded-2xl border border-white/20 bg-gradient-to-br from-sb-night/90 to-sb-ocean/80 p-6 shadow-lg backdrop-blur-sm">
                 <div>
-                  <h4 className="text-sm font-semibold text-sb-cream mb-4">Top Cities</h4>
+                  <h4 className="text-sm font-semibold text-white mb-4">Top Cities</h4>
                   <div className="space-y-2">
                     {analyticsSummary.byCity.slice(0, 10).map((item, index) => (
                       <div
                         key={item.city}
-                        className="flex items-center justify-between py-2 px-3 rounded-lg bg-sb-cream/5 border border-sb-cream/10"
+                        className="flex items-center justify-between py-2 px-3 rounded-lg bg-white/5 border border-white/10"
                       >
-                        <span className="text-sm text-sb-cream/80">
+                        <span className="text-sm text-white/80">
                           #{index + 1} {item.city}
                         </span>
-                        <span className="text-sm font-semibold text-sb-cream">
+                        <span className="text-sm font-semibold text-white">
                           {item.count}
                         </span>
                       </div>
@@ -576,7 +443,7 @@ export default async function AdminDashboardPage() {
             </div>
 
             {/* Device & Browser Analytics */}
-            <div className="mb-6 rounded-2xl border border-sb-cream/20 bg-gradient-to-br from-sb-deep/60 to-sb-deep/40 p-6 shadow-lg backdrop-blur-sm">
+            <div className="mb-6 rounded-2xl border border-white/20 bg-gradient-to-br from-sb-night/90 to-sb-ocean/80 p-6 shadow-lg backdrop-blur-sm">
               <DeviceBrowserChart
                 deviceData={analyticsSummary.byDevice}
                 browserData={analyticsSummary.byBrowser}
@@ -584,20 +451,31 @@ export default async function AdminDashboardPage() {
             </div>
 
             {/* Referrer Analytics */}
-            <div className="mb-6 rounded-2xl border border-sb-cream/20 bg-gradient-to-br from-sb-deep/60 to-sb-deep/40 p-6 shadow-lg backdrop-blur-sm">
+            <div className="mb-6 rounded-2xl border border-white/20 bg-gradient-to-br from-sb-night/90 to-sb-ocean/80 p-6 shadow-lg backdrop-blur-sm">
               <ReferrerChart data={analyticsSummary.byReferrer} />
             </div>
 
             {/* Time Patterns */}
-            <div className="mb-6 rounded-2xl border border-sb-cream/20 bg-gradient-to-br from-sb-deep/60 to-sb-deep/40 p-6 shadow-lg backdrop-blur-sm">
+            <div className="mb-6 rounded-2xl border border-white/20 bg-gradient-to-br from-sb-night/90 to-sb-ocean/80 p-6 shadow-lg backdrop-blur-sm">
               <TimePatternChart
                 hourlyData={analyticsSummary.byHour}
                 dailyData={analyticsSummary.byDayOfWeek}
               />
             </div>
 
+            {/* Page Visits Chart */}
+            <div className="mb-6 rounded-2xl border border-white/20 bg-gradient-to-br from-sb-night/90 to-sb-ocean/80 p-6 shadow-lg backdrop-blur-sm">
+              <Suspense fallback={<div className="h-64 flex items-center justify-center text-white/60">Loading chart...</div>}>
+                <PageVisitsChart
+                  totalVisits={totalPageVisits}
+                  safariVisits={safariVisits}
+                  tourVisits={tourVisits}
+                />
+              </Suspense>
+            </div>
+
             {/* Top Pages */}
-            <div className="rounded-2xl border border-sb-cream/20 bg-gradient-to-br from-sb-deep/60 to-sb-deep/40 p-6 shadow-lg backdrop-blur-sm">
+            <div className="rounded-2xl border border-white/20 bg-gradient-to-br from-sb-night/90 to-sb-ocean/80 p-6 shadow-lg backdrop-blur-sm">
               <TopPagesTable pages={analyticsSummary.topPages} />
             </div>
           </section>

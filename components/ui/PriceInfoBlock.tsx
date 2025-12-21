@@ -24,3 +24,7 @@ export function PriceInfoBlock({ label, price, className = "" }: PriceInfoBlockP
   );
 }
 
+
+
+
+

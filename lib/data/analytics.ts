@@ -6,6 +6,29 @@ import path from "path";
 const ANALYTICS_PATH = path.join(process.cwd(), "data", "analytics.json");
 const REDIS_ANALYTICS_KEY = "savanablu:analytics";
 
+/**
+ * Get list of excluded IP addresses (from environment variable)
+ * Format: comma-separated list of IPs, e.g., "1.2.3.4,5.6.7.8"
+ */
+function getExcludedIPs(): string[] {
+  const excluded = process.env.EXCLUDED_ANALYTICS_IPS || "";
+  if (!excluded.trim()) {
+    return [];
+  }
+  return excluded.split(",").map((ip) => ip.trim()).filter((ip) => ip.length > 0);
+}
+
+/**
+ * Check if an IP address should be excluded from analytics
+ */
+function isIPExcluded(ip?: string): boolean {
+  if (!ip) {
+    return false;
+  }
+  const excludedIPs = getExcludedIPs();
+  return excludedIPs.includes(ip);
+}
+
 // Lazy load Redis client (only when needed)
 let redisClient: any = null;
 async function getRedis(): Promise<any> {
@@ -38,6 +61,7 @@ export type VisitRecord = {
   slug: string;
   type: "safari" | "tour";
   timestamp: string;
+  ipAddress?: string; // IP address for unique visit tracking
   country?: string;
   city?: string;
   device?: "desktop" | "mobile" | "tablet";
@@ -132,11 +156,38 @@ async function writeAnalyticsToStorage(data: AnalyticsData): Promise<void> {
 }
 
 /**
- * Add a visit record
+ * Add a visit record (only if IP is not excluded)
  */
 export async function addVisitRecord(visit: Omit<VisitRecord, "id" | "timestamp">): Promise<void> {
+  // Skip if IP is excluded
+  if (isIPExcluded(visit.ipAddress)) {
+    console.log(`[Analytics] Skipping visit from excluded IP: ${visit.ipAddress}`);
+    return;
+  }
+
   const data = await readAnalyticsFromStorage();
   const now = new Date().toISOString();
+
+  // Check for duplicate visit: same IP + slug + date (to count unique visits per day)
+  const visitDate = new Date(now).toISOString().split("T")[0]; // YYYY-MM-DD
+  const isDuplicate = data.visits.some((v) => {
+    if (!v.ipAddress || !visit.ipAddress) {
+      return false; // If no IP, allow tracking (backward compatibility)
+    }
+    const vDate = new Date(v.timestamp).toISOString().split("T")[0];
+    return (
+      v.ipAddress === visit.ipAddress &&
+      v.slug === visit.slug &&
+      v.type === visit.type &&
+      vDate === visitDate
+    );
+  });
+
+  // Skip duplicate visits (same IP visiting same page on same day)
+  if (isDuplicate) {
+    console.log(`[Analytics] Skipping duplicate visit: ${visit.ipAddress} -> ${visit.slug} on ${visitDate}`);
+    return;
+  }
 
   const record: VisitRecord = {
     ...visit,
@@ -151,96 +202,206 @@ export async function addVisitRecord(visit: Omit<VisitRecord, "id" | "timestamp"
 }
 
 /**
- * Get analytics summary
+ * Get analytics summary (excluding filtered IPs and counting unique visits)
  */
 export async function getAnalyticsSummary() {
   const data = await readAnalyticsFromStorage();
-  const visits = data.visits;
-
-  // Geographic breakdown
-  const byCountry: Record<string, number> = {};
-  const byCity: Record<string, number> = {};
+  
+  // Filter out excluded IPs
+  const visits = data.visits.filter((v) => !isIPExcluded(v.ipAddress));
+  
+  // Count unique visits: same IP + slug combination counts as 1
+  const uniqueVisits = new Set<string>();
   visits.forEach((v) => {
-    if (v.country) {
-      byCountry[v.country] = (byCountry[v.country] || 0) + 1;
-    }
-    if (v.city) {
-      const key = `${v.city}, ${v.country || "Unknown"}`;
-      byCity[key] = (byCity[key] || 0) + 1;
+    if (v.ipAddress) {
+      uniqueVisits.add(`${v.ipAddress}:${v.type}:${v.slug}`);
     }
   });
 
-  // Device breakdown
-  const byDevice: Record<string, number> = {};
+  // Geographic breakdown (count unique IPs per country/city)
+  const byCountry: Record<string, Set<string>> = {};
+  const byCity: Record<string, Set<string>> = {};
   visits.forEach((v) => {
-    const device = v.device || "unknown";
-    byDevice[device] = (byDevice[device] || 0) + 1;
+    if (v.ipAddress) {
+      if (v.country) {
+        if (!byCountry[v.country]) {
+          byCountry[v.country] = new Set();
+        }
+        byCountry[v.country].add(v.ipAddress);
+      }
+      if (v.city) {
+        const key = `${v.city}, ${v.country || "Unknown"}`;
+        if (!byCity[key]) {
+          byCity[key] = new Set();
+        }
+        byCity[key].add(v.ipAddress);
+      }
+    }
   });
 
-  // Browser breakdown
-  const byBrowser: Record<string, number> = {};
+  // Device breakdown (count unique IPs per device)
+  const byDevice: Record<string, Set<string>> = {};
   visits.forEach((v) => {
-    const browser = v.browser || "unknown";
-    byBrowser[browser] = (byBrowser[browser] || 0) + 1;
+    if (v.ipAddress) {
+      const device = v.device || "unknown";
+      if (!byDevice[device]) {
+        byDevice[device] = new Set();
+      }
+      byDevice[device].add(v.ipAddress);
+    }
   });
 
-  // Referrer breakdown
-  const byReferrer: Record<string, number> = {};
+  // Browser breakdown (count unique IPs per browser)
+  const byBrowser: Record<string, Set<string>> = {};
   visits.forEach((v) => {
-    const referrer = v.referrerType || "direct";
-    byReferrer[referrer] = (byReferrer[referrer] || 0) + 1;
+    if (v.ipAddress) {
+      const browser = v.browser || "unknown";
+      if (!byBrowser[browser]) {
+        byBrowser[browser] = new Set();
+      }
+      byBrowser[browser].add(v.ipAddress);
+    }
   });
 
-  // Time patterns (hourly)
-  const byHour: Record<number, number> = {};
+  // Referrer breakdown (count unique IPs per referrer)
+  const byReferrer: Record<string, Set<string>> = {};
   visits.forEach((v) => {
-    const hour = new Date(v.timestamp).getHours();
-    byHour[hour] = (byHour[hour] || 0) + 1;
+    if (v.ipAddress) {
+      const referrer = v.referrerType || "direct";
+      if (!byReferrer[referrer]) {
+        byReferrer[referrer] = new Set();
+      }
+      byReferrer[referrer].add(v.ipAddress);
+    }
   });
 
-  // Time patterns (day of week)
-  const byDayOfWeek: Record<string, number> = {};
+  // Time patterns (hourly) - count unique IPs per hour
+  const byHour: Record<number, Set<string>> = {};
   visits.forEach((v) => {
-    const day = new Date(v.timestamp).toLocaleDateString("en-US", { weekday: "long" });
-    byDayOfWeek[day] = (byDayOfWeek[day] || 0) + 1;
+    if (v.ipAddress) {
+      const hour = new Date(v.timestamp).getHours();
+      if (!byHour[hour]) {
+        byHour[hour] = new Set();
+      }
+      byHour[hour].add(v.ipAddress);
+    }
   });
 
-  // Top pages
-  const byPage: Record<string, number> = {};
+  // Time patterns (day of week) - count unique IPs per day
+  const byDayOfWeek: Record<string, Set<string>> = {};
+  visits.forEach((v) => {
+    if (v.ipAddress) {
+      const day = new Date(v.timestamp).toLocaleDateString("en-US", { weekday: "long" });
+      if (!byDayOfWeek[day]) {
+        byDayOfWeek[day] = new Set();
+      }
+      byDayOfWeek[day].add(v.ipAddress);
+    }
+  });
+
+  // Top pages (count unique visits per page)
+  const byPage: Record<string, Set<string>> = {};
   visits.forEach((v) => {
     const key = `${v.type}:${v.slug}`;
-    byPage[key] = (byPage[key] || 0) + 1;
+    if (!byPage[key]) {
+      byPage[key] = new Set();
+    }
+    if (v.ipAddress) {
+      byPage[key].add(v.ipAddress);
+    }
   });
 
   const topPages = Object.entries(byPage)
-    .map(([key, count]) => {
+    .map(([key, uniqueIPs]) => {
       const [type, slug] = key.split(":");
-      return { type, slug, count };
+      return { type, slug, count: uniqueIPs.size };
     })
     .sort((a, b) => b.count - a.count)
     .slice(0, 10);
 
   return {
-    total: visits.length,
+    total: uniqueVisits.size, // Total unique visits
     byCountry: Object.entries(byCountry)
-      .map(([country, count]) => ({ country, count }))
+      .map(([country, uniqueIPs]) => ({ country, count: uniqueIPs.size }))
       .sort((a, b) => b.count - a.count),
     byCity: Object.entries(byCity)
-      .map(([city, count]) => ({ city, count }))
+      .map(([city, uniqueIPs]) => ({ city, count: uniqueIPs.size }))
       .sort((a, b) => b.count - a.count)
       .slice(0, 20),
-    byDevice: Object.entries(byDevice).map(([device, count]) => ({ device, count })),
+    byDevice: Object.entries(byDevice).map(([device, uniqueIPs]) => ({ device, count: uniqueIPs.size })),
     byBrowser: Object.entries(byBrowser)
-      .map(([browser, count]) => ({ browser, count }))
+      .map(([browser, uniqueIPs]) => ({ browser, count: uniqueIPs.size }))
       .sort((a, b) => b.count - a.count)
       .slice(0, 10),
-    byReferrer: Object.entries(byReferrer).map(([referrer, count]) => ({ referrer, count })),
+    byReferrer: Object.entries(byReferrer).map(([referrer, uniqueIPs]) => ({ referrer, count: uniqueIPs.size })),
     byHour: Object.entries(byHour)
-      .map(([hour, count]) => ({ hour: parseInt(hour), count }))
+      .map(([hour, uniqueIPs]) => ({ hour: parseInt(hour), count: uniqueIPs.size }))
       .sort((a, b) => a.hour - b.hour),
-    byDayOfWeek: Object.entries(byDayOfWeek).map(([day, count]) => ({ day, count })),
+    byDayOfWeek: Object.entries(byDayOfWeek).map(([day, uniqueIPs]) => ({ day, count: uniqueIPs.size })),
     topPages,
   };
+}
+
+/**
+ * Get unique visit statistics by type (safari vs tour)
+ */
+export async function getUniqueVisitStatsByType(): Promise<{
+  safaris: { total: number; pages: number };
+  tours: { total: number; pages: number };
+}> {
+  const data = await readAnalyticsFromStorage();
+  
+  // Filter out excluded IPs
+  const visits = data.visits.filter((v) => !isIPExcluded(v.ipAddress));
+  
+  // Count unique visits per type
+  const safariUniqueIPs = new Set<string>();
+  const tourUniqueIPs = new Set<string>();
+  const safariPages = new Set<string>();
+  const tourPages = new Set<string>();
+  
+  visits.forEach((v) => {
+    if (v.ipAddress) {
+      if (v.type === "safari") {
+        safariUniqueIPs.add(v.ipAddress);
+        safariPages.add(v.slug);
+      } else if (v.type === "tour") {
+        tourUniqueIPs.add(v.ipAddress);
+        tourPages.add(v.slug);
+      }
+    }
+  });
+  
+  return {
+    safaris: {
+      total: safariUniqueIPs.size,
+      pages: safariPages.size,
+    },
+    tours: {
+      total: tourUniqueIPs.size,
+      pages: tourPages.size,
+    },
+  };
+}
+
+/**
+ * Get total unique visits across all pages
+ */
+export async function getTotalUniqueVisits(): Promise<number> {
+  const data = await readAnalyticsFromStorage();
+  
+  // Filter out excluded IPs
+  const visits = data.visits.filter((v) => !isIPExcluded(v.ipAddress));
+  
+  // Count unique IPs across all visits
+  const uniqueIPs = new Set<string>();
+  visits.forEach((v) => {
+    if (v.ipAddress) {
+      uniqueIPs.add(v.ipAddress);
+    }
+  });
+  
+  return uniqueIPs.size;
 }
 
 /**
@@ -248,7 +409,9 @@ export async function getAnalyticsSummary() {
  */
 export async function getRecentVisits(limit: number = 50): Promise<VisitRecord[]> {
   const data = await readAnalyticsFromStorage();
-  return data.visits
+  // Filter out excluded IPs
+  const filteredVisits = data.visits.filter((v) => !isIPExcluded(v.ipAddress));
+  return filteredVisits
     .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
     .slice(0, limit);
 }

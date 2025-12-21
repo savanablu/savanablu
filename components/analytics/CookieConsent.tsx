@@ -39,19 +39,19 @@ export default function CookieConsent() {
   }
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 bg-sb-night/95 backdrop-blur-sm border-t border-sb-cream/20 shadow-lg">
+    <div className="fixed bottom-0 left-0 right-0 z-50 bg-white/98 backdrop-blur-sm border-t-2 border-sb-ocean/30 shadow-2xl">
       <div className="mx-auto max-w-6xl px-4 py-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div className="flex-1">
-            <p className="text-sm font-semibold text-sb-cream mb-1">
+            <p className="text-sm font-semibold text-sb-night mb-1">
               Cookie Consent
             </p>
-            <p className="text-xs leading-relaxed text-sb-cream/80">
+            <p className="text-xs leading-relaxed text-sb-ink/80">
               We use cookies to analyze website traffic and improve your experience. 
               Your data is anonymized and used only for analytics purposes.{" "}
               <a
                 href="/privacy"
-                className="underline hover:text-sb-cream transition-colors"
+                className="underline text-sb-ocean hover:text-sb-lagoon transition-colors font-medium"
               >
                 Learn more
               </a>
@@ -60,13 +60,13 @@ export default function CookieConsent() {
           <div className="flex gap-3">
             <button
               onClick={handleReject}
-              className="px-4 py-2 text-xs font-semibold text-sb-cream/80 hover:text-sb-cream border border-sb-cream/30 rounded-lg hover:border-sb-cream/50 transition-colors"
+              className="px-4 py-2 text-xs font-semibold text-sb-ink/70 hover:text-sb-ink border border-sb-ink/30 rounded-lg hover:border-sb-ink/50 bg-white hover:bg-sb-shell/50 transition-colors"
             >
               Reject
             </button>
             <button
               onClick={handleAccept}
-              className="px-4 py-2 text-xs font-semibold text-sb-cream bg-sb-ocean hover:bg-sb-lagoon rounded-lg transition-colors"
+              className="px-4 py-2 text-xs font-semibold text-white bg-sb-ocean hover:bg-sb-lagoon rounded-lg transition-colors shadow-sm"
             >
               Accept
             </button>

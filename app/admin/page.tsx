@@ -5,9 +5,15 @@ import { readCrmLeads } from "@/lib/data/crm-leads";
 import { getBookingStatus } from "@/components/admin/StatusBadge";
 import { getFinanceSummary } from "@/lib/finance/summary";
 import { getPageVisits, getVisitStatsByType } from "@/lib/data/page-visits";
+import { getAnalyticsSummary } from "@/lib/data/analytics";
 import RevenueByMonthChart from "@/components/admin/RevenueByMonthChart";
 import BookingStatusChart from "@/components/admin/BookingStatusChart";
 import RevenueByTypeChart from "@/components/admin/RevenueByTypeChart";
+import GeographicChart from "@/components/admin/GeographicChart";
+import DeviceBrowserChart from "@/components/admin/DeviceBrowserChart";
+import ReferrerChart from "@/components/admin/ReferrerChart";
+import TimePatternChart from "@/components/admin/TimePatternChart";
+import TopPagesTable from "@/components/admin/TopPagesTable";
 import { MoneyDisplay } from "@/components/admin/MoneyDisplay";
 
 // Force dynamic rendering to prevent caching
@@ -29,6 +35,7 @@ export default async function AdminDashboardPage() {
   let totalPageVisits = 0;
   let safariVisits = 0;
   let tourVisits = 0;
+  let analyticsSummary = null;
 
   try {
     const bookings = await readBookings();
@@ -76,6 +83,12 @@ export default async function AdminDashboardPage() {
     tourVisits = statsByType.tours.total;
   } catch (err) {
     console.error("Error loading page visits:", err);
+  }
+
+  try {
+    analyticsSummary = await getAnalyticsSummary();
+  } catch (err) {
+    console.error("Error loading analytics summary:", err);
   }
 
 
@@ -208,38 +221,95 @@ export default async function AdminDashboardPage() {
           </div>
         </div>
 
-        {/* Page Visits Stats */}
+        {/* Page Visits Stats - Enhanced UX */}
         <div className="mb-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          <div className="rounded-xl border border-sb-sand/20 bg-sb-cream/5 p-4">
-            <p className="text-[10px] uppercase tracking-[0.2em] text-sb-cream/60">
+          <div className="group rounded-xl border border-sb-sand/20 bg-gradient-to-br from-sb-cream/8 to-sb-cream/3 p-5 shadow-sm hover:shadow-md hover:border-sb-cream/30 transition-all duration-300">
+            <div className="flex items-center justify-between mb-3">
+              <div className="rounded-lg bg-sb-ocean/20 p-2">
+                <svg
+                  className="h-5 w-5 text-sb-cream"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                  />
+                </svg>
+              </div>
+            </div>
+            <p className="text-[10px] uppercase tracking-[0.2em] text-sb-cream/60 font-semibold">
               Total page visits
             </p>
-            <p className="mt-2 text-2xl font-semibold text-sb-cream">
+            <p className="mt-2 text-3xl font-bold text-sb-cream">
               {totalPageVisits.toLocaleString()}
             </p>
-            <p className="mt-1 text-[11px] text-sb-cream/60">
-              All safari & tour pages
+            <p className="mt-2 text-[11px] text-sb-cream/70 leading-relaxed">
+              All safari & tour pages combined
             </p>
           </div>
-          <div className="rounded-xl border border-sb-sand/20 bg-sb-cream/5 p-4">
-            <p className="text-[10px] uppercase tracking-[0.2em] text-sb-cream/60">
+          <div className="group rounded-xl border border-sb-sand/20 bg-gradient-to-br from-sb-cream/8 to-sb-cream/3 p-5 shadow-sm hover:shadow-md hover:border-sb-cream/30 transition-all duration-300">
+            <div className="flex items-center justify-between mb-3">
+              <div className="rounded-lg bg-emerald-500/20 p-2">
+                <svg
+                  className="h-5 w-5 text-emerald-400"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </div>
+            </div>
+            <p className="text-[10px] uppercase tracking-[0.2em] text-sb-cream/60 font-semibold">
               Safari page visits
             </p>
-            <p className="mt-2 text-2xl font-semibold text-sb-cream">
+            <p className="mt-2 text-3xl font-bold text-emerald-400">
               {safariVisits.toLocaleString()}
             </p>
-            <p className="mt-1 text-[11px] text-sb-cream/60">
+            <p className="mt-2 text-[11px] text-sb-cream/70 leading-relaxed">
               Flying safari pages
             </p>
           </div>
-          <div className="rounded-xl border border-sb-sand/20 bg-sb-cream/5 p-4">
-            <p className="text-[10px] uppercase tracking-[0.2em] text-sb-cream/60">
+          <div className="group rounded-xl border border-sb-sand/20 bg-gradient-to-br from-sb-cream/8 to-sb-cream/3 p-5 shadow-sm hover:shadow-md hover:border-sb-cream/30 transition-all duration-300">
+            <div className="flex items-center justify-between mb-3">
+              <div className="rounded-lg bg-sb-lagoon/20 p-2">
+                <svg
+                  className="h-5 w-5 text-sb-lagoon"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                </svg>
+              </div>
+            </div>
+            <p className="text-[10px] uppercase tracking-[0.2em] text-sb-cream/60 font-semibold">
               Tour page visits
             </p>
-            <p className="mt-2 text-2xl font-semibold text-sb-cream">
+            <p className="mt-2 text-3xl font-bold text-sb-lagoon">
               {tourVisits.toLocaleString()}
             </p>
-            <p className="mt-1 text-[11px] text-sb-cream/60">
+            <p className="mt-2 text-[11px] text-sb-cream/70 leading-relaxed">
               Zanzibar day tours
             </p>
           </div>
@@ -459,6 +529,76 @@ export default async function AdminDashboardPage() {
                   />
                 </Suspense>
               </div>
+            </div>
+          </section>
+        )}
+
+        {/* Advanced Analytics Section */}
+        {analyticsSummary && (
+          <section className="mb-10">
+            <div className="mb-6">
+              <h2 className="text-xl font-semibold text-sb-cream">
+                Advanced Page Analytics
+              </h2>
+              <p className="mt-2 text-sm text-sb-cream/70">
+                Detailed insights into visitor behavior, geographic distribution, device usage, and traffic sources
+              </p>
+            </div>
+
+            {/* Geographic Analytics */}
+            <div className="mb-6 grid gap-6 lg:grid-cols-2">
+              <div className="rounded-2xl border border-sb-cream/20 bg-gradient-to-br from-sb-deep/60 to-sb-deep/40 p-6 shadow-lg backdrop-blur-sm">
+                <GeographicChart
+                  data={analyticsSummary.byCountry}
+                  title="Visits by Country"
+                />
+              </div>
+              <div className="rounded-2xl border border-sb-cream/20 bg-gradient-to-br from-sb-deep/60 to-sb-deep/40 p-6 shadow-lg backdrop-blur-sm">
+                <div>
+                  <h4 className="text-sm font-semibold text-sb-cream mb-4">Top Cities</h4>
+                  <div className="space-y-2">
+                    {analyticsSummary.byCity.slice(0, 10).map((item, index) => (
+                      <div
+                        key={item.city}
+                        className="flex items-center justify-between py-2 px-3 rounded-lg bg-sb-cream/5 border border-sb-cream/10"
+                      >
+                        <span className="text-sm text-sb-cream/80">
+                          #{index + 1} {item.city}
+                        </span>
+                        <span className="text-sm font-semibold text-sb-cream">
+                          {item.count}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Device & Browser Analytics */}
+            <div className="mb-6 rounded-2xl border border-sb-cream/20 bg-gradient-to-br from-sb-deep/60 to-sb-deep/40 p-6 shadow-lg backdrop-blur-sm">
+              <DeviceBrowserChart
+                deviceData={analyticsSummary.byDevice}
+                browserData={analyticsSummary.byBrowser}
+              />
+            </div>
+
+            {/* Referrer Analytics */}
+            <div className="mb-6 rounded-2xl border border-sb-cream/20 bg-gradient-to-br from-sb-deep/60 to-sb-deep/40 p-6 shadow-lg backdrop-blur-sm">
+              <ReferrerChart data={analyticsSummary.byReferrer} />
+            </div>
+
+            {/* Time Patterns */}
+            <div className="mb-6 rounded-2xl border border-sb-cream/20 bg-gradient-to-br from-sb-deep/60 to-sb-deep/40 p-6 shadow-lg backdrop-blur-sm">
+              <TimePatternChart
+                hourlyData={analyticsSummary.byHour}
+                dailyData={analyticsSummary.byDayOfWeek}
+              />
+            </div>
+
+            {/* Top Pages */}
+            <div className="rounded-2xl border border-sb-cream/20 bg-gradient-to-br from-sb-deep/60 to-sb-deep/40 p-6 shadow-lg backdrop-blur-sm">
+              <TopPagesTable pages={analyticsSummary.topPages} />
             </div>
           </section>
         )}

@@ -5,6 +5,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/layout/WhatsAppButton";
 import ChatbotWidget from "@/components/chat/ChatbotWidget";
+import CookieConsent from "@/components/analytics/CookieConsent";
 import { CurrencyProvider } from "@/contexts/CurrencyContext";
 
 const sans = DM_Sans({
@@ -81,6 +82,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
 
           <ChatbotWidget />
           <WhatsAppButton />
+          <CookieConsent />
 
           <Footer />
         </CurrencyProvider>

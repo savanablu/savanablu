@@ -48,8 +48,7 @@ export default function ReferrerChart({ data }: ReferrerChartProps) {
           <XAxis
             dataKey="name"
             stroke="#F9F3EB"
-            fontSize={12}
-            tick={{ fill: "#F9F3EB", fontWeight: 500 }}
+            tick={{ fill: "#F9F3EB", fontWeight: 500, fontSize: 13 }}
             label={{
               value: "Traffic Source",
               position: "insideBottom",
@@ -59,8 +58,7 @@ export default function ReferrerChart({ data }: ReferrerChartProps) {
           />
           <YAxis
             stroke="#F9F3EB"
-            fontSize={12}
-            tick={{ fill: "#F9F3EB", fontWeight: 500 }}
+            tick={{ fill: "#F9F3EB", fontWeight: 500, fontSize: 13 }}
             label={{
               value: "Number of Visits",
               angle: -90,

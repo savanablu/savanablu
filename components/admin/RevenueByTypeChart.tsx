@@ -52,8 +52,7 @@ export default function RevenueByTypeChart({
         <XAxis
           dataKey="name"
           stroke="#F9F3EB"
-          fontSize={12}
-          tick={{ fill: "#F9F3EB", fontWeight: 500 }}
+          tick={{ fill: "#F9F3EB", fontWeight: 500, fontSize: 13 }}
           label={{ 
             value: "Tour Category", 
             position: "insideBottom", 
@@ -63,8 +62,7 @@ export default function RevenueByTypeChart({
         />
         <YAxis
           stroke="#F9F3EB"
-          fontSize={12}
-          tick={{ fill: "#F9F3EB", fontWeight: 500 }}
+          tick={{ fill: "#F9F3EB", fontWeight: 500, fontSize: 13 }}
           tickFormatter={(value) => `$${value.toLocaleString()}`}
           label={{ 
             value: "Revenue Amount (USD)", 

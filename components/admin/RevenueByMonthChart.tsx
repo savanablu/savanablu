@@ -61,8 +61,7 @@ export default function RevenueByMonthChart({
         <XAxis
           dataKey="month"
           stroke="#F9F3EB"
-          fontSize={12}
-          tick={{ fill: "#F9F3EB", fontWeight: 500 }}
+          tick={{ fill: "#F9F3EB", fontWeight: 500, fontSize: 13 }}
           label={{ 
             value: "Month (Year)", 
             position: "insideBottom", 
@@ -75,8 +74,7 @@ export default function RevenueByMonthChart({
         />
         <YAxis
           stroke="#F9F3EB"
-          fontSize={12}
-          tick={{ fill: "#F9F3EB", fontWeight: 500 }}
+          tick={{ fill: "#F9F3EB", fontWeight: 500, fontSize: 13 }}
           tickFormatter={(value) => `$${value.toLocaleString()}`}
           label={{ 
             value: "Revenue Amount (USD)", 

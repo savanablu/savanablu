@@ -53,8 +53,7 @@ export default function TimePatternChart({
               <XAxis
                 dataKey="hour"
                 stroke="#F9F3EB"
-                fontSize={12}
-                tick={{ fill: "#F9F3EB", fontWeight: 500 }}
+                tick={{ fill: "#F9F3EB", fontWeight: 500, fontSize: 13 }}
                 angle={-45}
                 textAnchor="end"
                 height={70}
@@ -67,8 +66,7 @@ export default function TimePatternChart({
               />
               <YAxis
                 stroke="#F9F3EB"
-                fontSize={12}
-                tick={{ fill: "#F9F3EB", fontWeight: 500 }}
+                tick={{ fill: "#F9F3EB", fontWeight: 500, fontSize: 13 }}
                 label={{
                   value: "Number of Visits",
                   angle: -90,
@@ -115,8 +113,7 @@ export default function TimePatternChart({
               <XAxis
                 dataKey="day"
                 stroke="#F9F3EB"
-                fontSize={12}
-                tick={{ fill: "#F9F3EB", fontWeight: 500 }}
+                tick={{ fill: "#F9F3EB", fontWeight: 500, fontSize: 13 }}
                 angle={-45}
                 textAnchor="end"
                 height={70}
@@ -129,8 +126,7 @@ export default function TimePatternChart({
               />
               <YAxis
                 stroke="#F9F3EB"
-                fontSize={12}
-                tick={{ fill: "#F9F3EB", fontWeight: 500 }}
+                tick={{ fill: "#F9F3EB", fontWeight: 500, fontSize: 13 }}
                 label={{
                   value: "Number of Visits",
                   angle: -90,

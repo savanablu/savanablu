@@ -43,8 +43,7 @@ export default function GeographicChart({ data, title }: GeographicChartProps) {
           <XAxis
             dataKey="name"
             stroke="#F9F3EB"
-            fontSize={12}
-            tick={{ fill: "#F9F3EB", fontWeight: 500 }}
+            tick={{ fill: "#F9F3EB", fontWeight: 500, fontSize: 13 }}
             angle={-45}
             textAnchor="end"
             height={80}
@@ -57,8 +56,7 @@ export default function GeographicChart({ data, title }: GeographicChartProps) {
           />
           <YAxis
             stroke="#F9F3EB"
-            fontSize={12}
-            tick={{ fill: "#F9F3EB", fontWeight: 500 }}
+            tick={{ fill: "#F9F3EB", fontWeight: 500, fontSize: 13 }}
             label={{
               value: "Number of Visits",
               angle: -90,

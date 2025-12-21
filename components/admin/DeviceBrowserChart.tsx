@@ -68,17 +68,35 @@ export default function DeviceBrowserChart({
                 label={(props: any) => {
                   const name = props.name || "";
                   const percent = props.percent || 0;
+                  const labelText = `${name} ${(percent * 100).toFixed(0)}%`;
+                  const textX = props.x || 0;
+                  const textY = props.y || 0;
                   return (
-                    <text
-                      x={props.x}
-                      y={props.y}
-                      fill="#F9F3EB"
-                      textAnchor={props.textAnchor}
-                      fontSize={11}
-                      fontWeight={500}
-                    >
-                      {`${name} ${(percent * 100).toFixed(0)}%`}
-                    </text>
+                    <g>
+                      {/* Background rectangle for better visibility */}
+                      <rect
+                        x={textX - 35}
+                        y={textY - 8}
+                        width={70}
+                        height={16}
+                        fill="#0B3C49"
+                        fillOpacity={0.9}
+                        rx={4}
+                        stroke="#F9F3EB"
+                        strokeWidth={1}
+                      />
+                      <text
+                        x={textX}
+                        y={textY}
+                        fill="#F9F3EB"
+                        textAnchor="middle"
+                        fontSize={11}
+                        fontWeight={600}
+                        dominantBaseline="middle"
+                      >
+                        {labelText}
+                      </text>
+                    </g>
                   );
                 }}
                 outerRadius={80}
@@ -112,17 +130,35 @@ export default function DeviceBrowserChart({
                 label={(props: any) => {
                   const name = props.name || "";
                   const percent = props.percent || 0;
+                  const labelText = `${name} ${(percent * 100).toFixed(0)}%`;
+                  const textX = props.x || 0;
+                  const textY = props.y || 0;
                   return (
-                    <text
-                      x={props.x}
-                      y={props.y}
-                      fill="#F9F3EB"
-                      textAnchor={props.textAnchor}
-                      fontSize={11}
-                      fontWeight={500}
-                    >
-                      {`${name} ${(percent * 100).toFixed(0)}%`}
-                    </text>
+                    <g>
+                      {/* Background rectangle for better visibility */}
+                      <rect
+                        x={textX - 35}
+                        y={textY - 8}
+                        width={70}
+                        height={16}
+                        fill="#0B3C49"
+                        fillOpacity={0.9}
+                        rx={4}
+                        stroke="#F9F3EB"
+                        strokeWidth={1}
+                      />
+                      <text
+                        x={textX}
+                        y={textY}
+                        fill="#F9F3EB"
+                        textAnchor="middle"
+                        fontSize={11}
+                        fontWeight={600}
+                        dominantBaseline="middle"
+                      >
+                        {labelText}
+                      </text>
+                    </g>
                   );
                 }}
                 outerRadius={80}

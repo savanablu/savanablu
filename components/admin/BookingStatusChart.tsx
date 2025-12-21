@@ -48,19 +48,47 @@ export default function BookingStatusChart({
             const value = props.value || 0;
             const percent = props.percent || 0;
             const pct = (percent * 100).toFixed(0);
+            const textX = props.x || 0;
+            const textY = props.y || 0;
+            const labelHeight = 28;
+            const labelWidth = Math.max(name.length * 7, 60);
             return (
-              <text
-                x={props.x}
-                y={props.y}
-                fill="#F9F3EB"
-                textAnchor={props.textAnchor}
-                fontSize={11}
-                fontWeight={600}
-                dominantBaseline="middle"
-              >
-                <tspan x={props.x} dy="0">{name}</tspan>
-                <tspan x={props.x} dy="14">{value} ({pct}%)</tspan>
-              </text>
+              <g>
+                {/* Background rectangle for better visibility */}
+                <rect
+                  x={textX - labelWidth / 2}
+                  y={textY - labelHeight / 2}
+                  width={labelWidth}
+                  height={labelHeight}
+                  fill="#0B3C49"
+                  fillOpacity={0.95}
+                  rx={4}
+                  stroke="#F9F3EB"
+                  strokeWidth={1.5}
+                />
+                <text
+                  x={textX}
+                  y={textY - 6}
+                  fill="#F9F3EB"
+                  textAnchor="middle"
+                  fontSize={11}
+                  fontWeight={600}
+                  dominantBaseline="middle"
+                >
+                  {name}
+                </text>
+                <text
+                  x={textX}
+                  y={textY + 8}
+                  fill="#F9F3EB"
+                  textAnchor="middle"
+                  fontSize={10}
+                  fontWeight={500}
+                  dominantBaseline="middle"
+                >
+                  {value} ({pct}%)
+                </text>
+              </g>
             );
           }}
           outerRadius={100}

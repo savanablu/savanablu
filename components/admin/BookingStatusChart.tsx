@@ -109,7 +109,7 @@ export default function BookingStatusChart({
             padding: "10px 14px",
             fontWeight: 500,
           }}
-          labelStyle={{ color: "#F9F3EB", fontWeight: 600, fontSize: "13px" }}
+          labelStyle={{ color: "#F9F3EB", fontWeight: 600, fontSize: "13px", marginBottom: "6px" }}
           itemStyle={{ color: "#F9F3EB", fontWeight: 500 }}
           formatter={(value: number | undefined, name: string | undefined) => {
             const val = value ?? 0;
@@ -117,7 +117,6 @@ export default function BookingStatusChart({
             const percentage = total > 0 ? ((val / total) * 100).toFixed(1) : "0";
             return [`${val} booking${val !== 1 ? 's' : ''} (${percentage}% of total)`, nameStr];
           }}
-          labelStyle={{ marginBottom: "6px", fontWeight: 600, fontSize: "13px" }}
           labelFormatter={() => `Booking Status Distribution`}
         />
         <Legend

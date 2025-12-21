@@ -95,7 +95,7 @@ export default function RevenueByMonthChart({
             padding: "10px 14px",
             fontWeight: 500,
           }}
-          labelStyle={{ color: "#F9F3EB", fontWeight: 600, fontSize: "13px" }}
+          labelStyle={{ color: "#F9F3EB", fontWeight: 600, fontSize: "13px", marginBottom: "6px" }}
           itemStyle={{ color: "#F9F3EB", fontWeight: 500 }}
           formatter={(value: number | undefined, name: string | undefined) => {
             const val = value ?? 0;
@@ -103,7 +103,6 @@ export default function RevenueByMonthChart({
             const formattedValue = `USD ${val.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
             return [formattedValue, nameStr];
           }}
-          labelStyle={{ marginBottom: "6px", fontWeight: 600, fontSize: "13px" }}
           labelFormatter={(label) => `Period: ${label}`}
         />
         <Legend

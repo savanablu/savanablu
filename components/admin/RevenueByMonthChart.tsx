@@ -61,13 +61,13 @@ export default function RevenueByMonthChart({
         <XAxis
           dataKey="month"
           stroke="#F9F3EB"
-          fontSize={11}
-          tick={{ fill: "#F9F3EB", opacity: 0.8 }}
+          fontSize={12}
+          tick={{ fill: "#F9F3EB", fontWeight: 500 }}
           label={{ 
             value: "Month (Year)", 
             position: "insideBottom", 
             offset: -10,
-            style: { textAnchor: "middle", fill: "#F9F3EB", opacity: 0.9, fontSize: 13, fontWeight: 500 }
+            style: { textAnchor: "middle", fill: "#F9F3EB", fontSize: 14, fontWeight: 600 }
           }}
           angle={-45}
           textAnchor="end"
@@ -75,14 +75,14 @@ export default function RevenueByMonthChart({
         />
         <YAxis
           stroke="#F9F3EB"
-          fontSize={11}
-          tick={{ fill: "#F9F3EB", opacity: 0.8 }}
+          fontSize={12}
+          tick={{ fill: "#F9F3EB", fontWeight: 500 }}
           tickFormatter={(value) => `$${value.toLocaleString()}`}
           label={{ 
             value: "Revenue Amount (USD)", 
             angle: -90, 
             position: "insideLeft",
-            style: { textAnchor: "middle", fill: "#F9F3EB", opacity: 0.9, fontSize: 13, fontWeight: 500 }
+            style: { textAnchor: "middle", fill: "#F9F3EB", fontSize: 14, fontWeight: 600 }
           }}
           width={90}
         />
@@ -95,8 +95,8 @@ export default function RevenueByMonthChart({
             padding: "10px 14px",
             fontWeight: 500,
           }}
-          labelStyle={{ color: "#F9F3EB", fontWeight: 600, fontSize: "13px", marginBottom: "6px" }}
-          itemStyle={{ color: "#F9F3EB", fontWeight: 500 }}
+          labelStyle={{ color: "#F9F3EB", fontWeight: 600, fontSize: "14px", marginBottom: "6px" }}
+          itemStyle={{ color: "#F9F3EB", fontWeight: 500, fontSize: "13px" }}
           formatter={(value: number | undefined, name: string | undefined) => {
             const val = value ?? 0;
             const nameStr = name === "revenue" ? "Total Revenue" : name === "advances" ? "Advances Paid" : name ?? "";

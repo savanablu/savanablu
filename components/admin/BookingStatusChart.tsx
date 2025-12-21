@@ -109,8 +109,8 @@ export default function BookingStatusChart({
             padding: "10px 14px",
             fontWeight: 500,
           }}
-          labelStyle={{ color: "#F9F3EB", fontWeight: 600, fontSize: "13px", marginBottom: "6px" }}
-          itemStyle={{ color: "#F9F3EB", fontWeight: 500 }}
+          labelStyle={{ color: "#F9F3EB", fontWeight: 600, fontSize: "14px", marginBottom: "6px" }}
+          itemStyle={{ color: "#F9F3EB", fontWeight: 500, fontSize: "13px" }}
           formatter={(value: number | undefined, name: string | undefined) => {
             const val = value ?? 0;
             const nameStr = name ?? "";

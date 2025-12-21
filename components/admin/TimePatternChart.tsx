@@ -53,8 +53,8 @@ export default function TimePatternChart({
               <XAxis
                 dataKey="hour"
                 stroke="#F9F3EB"
-                fontSize={10}
-                tick={{ fill: "#F9F3EB", opacity: 0.8 }}
+                fontSize={12}
+                tick={{ fill: "#F9F3EB", fontWeight: 500 }}
                 angle={-45}
                 textAnchor="end"
                 height={70}
@@ -62,18 +62,18 @@ export default function TimePatternChart({
                   value: "Hour of Day (24h)",
                   position: "insideBottom",
                   offset: -10,
-                  style: { textAnchor: "middle", fill: "#F9F3EB", opacity: 0.9, fontSize: 13, fontWeight: 500 },
+                  style: { textAnchor: "middle", fill: "#F9F3EB", fontSize: 14, fontWeight: 600 },
                 }}
               />
               <YAxis
                 stroke="#F9F3EB"
-                fontSize={11}
-                tick={{ fill: "#F9F3EB", opacity: 0.8 }}
+                fontSize={12}
+                tick={{ fill: "#F9F3EB", fontWeight: 500 }}
                 label={{
                   value: "Number of Visits",
                   angle: -90,
                   position: "insideLeft",
-                  style: { textAnchor: "middle", fill: "#F9F3EB", opacity: 0.9, fontSize: 13, fontWeight: 500 },
+                  style: { textAnchor: "middle", fill: "#F9F3EB", fontSize: 14, fontWeight: 600 },
                 }}
                 width={80}
               />
@@ -84,9 +84,10 @@ export default function TimePatternChart({
                   borderRadius: "8px",
                   color: "#F9F3EB",
                   fontWeight: 500,
+                  padding: "10px 14px",
                 }}
-                labelStyle={{ color: "#F9F3EB", fontWeight: 600, fontSize: "13px" }}
-                itemStyle={{ color: "#F9F3EB", fontWeight: 500 }}
+                labelStyle={{ color: "#F9F3EB", fontWeight: 600, fontSize: "14px", marginBottom: "6px" }}
+                itemStyle={{ color: "#F9F3EB", fontWeight: 500, fontSize: "13px" }}
               />
               <Line
                 type="monotone"
@@ -114,8 +115,8 @@ export default function TimePatternChart({
               <XAxis
                 dataKey="day"
                 stroke="#F9F3EB"
-                fontSize={11}
-                tick={{ fill: "#F9F3EB", opacity: 0.8 }}
+                fontSize={12}
+                tick={{ fill: "#F9F3EB", fontWeight: 500 }}
                 angle={-45}
                 textAnchor="end"
                 height={70}
@@ -123,18 +124,18 @@ export default function TimePatternChart({
                   value: "Day of Week",
                   position: "insideBottom",
                   offset: -10,
-                  style: { textAnchor: "middle", fill: "#F9F3EB", opacity: 0.9, fontSize: 13, fontWeight: 500 },
+                  style: { textAnchor: "middle", fill: "#F9F3EB", fontSize: 14, fontWeight: 600 },
                 }}
               />
               <YAxis
                 stroke="#F9F3EB"
-                fontSize={11}
-                tick={{ fill: "#F9F3EB", opacity: 0.8 }}
+                fontSize={12}
+                tick={{ fill: "#F9F3EB", fontWeight: 500 }}
                 label={{
                   value: "Number of Visits",
                   angle: -90,
                   position: "insideLeft",
-                  style: { textAnchor: "middle", fill: "#F9F3EB", opacity: 0.9, fontSize: 13, fontWeight: 500 },
+                  style: { textAnchor: "middle", fill: "#F9F3EB", fontSize: 14, fontWeight: 600 },
                 }}
                 width={80}
               />
@@ -145,9 +146,10 @@ export default function TimePatternChart({
                   borderRadius: "8px",
                   color: "#F9F3EB",
                   fontWeight: 500,
+                  padding: "10px 14px",
                 }}
-                labelStyle={{ color: "#F9F3EB", fontWeight: 600, fontSize: "13px" }}
-                itemStyle={{ color: "#F9F3EB", fontWeight: 500 }}
+                labelStyle={{ color: "#F9F3EB", fontWeight: 600, fontSize: "14px", marginBottom: "6px" }}
+                itemStyle={{ color: "#F9F3EB", fontWeight: 500, fontSize: "13px" }}
               />
               <Bar dataKey="visits" fill="#0F6F7C" radius={[4, 4, 0, 0]} />
             </BarChart>

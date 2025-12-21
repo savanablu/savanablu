@@ -26,13 +26,18 @@ export async function sendEmail({
   bcc,
 }: SendEmailOptions) {
   if (!RESEND_API_KEY) {
-    console.warn("[Email] RESEND_API_KEY not configured. Email would be sent to:", {
+    const errorMsg = "[Email] RESEND_API_KEY not configured. Email would be sent to:";
+    console.error(errorMsg, {
       to,
       subject,
       from: from ?? DEFAULT_FROM,
     });
-    console.warn("[Email] This is a stub - no actual email will be sent!");
-    return { ok: true, stub: true };
+    console.error("[Email] CRITICAL: No actual email will be sent! Add RESEND_API_KEY to environment variables.");
+    // In production, throw an error so it's visible in logs
+    if (process.env.NODE_ENV === "production") {
+      throw new Error("RESEND_API_KEY is not configured. Cannot send emails.");
+    }
+    return { ok: false, stub: true, error: "RESEND_API_KEY not configured" };
   }
 
   // Validate email address

@@ -93,9 +93,21 @@ export async function getSEOSummary(): Promise<SEOSummary> {
   const visits = data.visits.filter((v) => !isIPExcluded(v.ipAddress));
   
   // Filter for search engine referrers
+  // Check both referrerType === "search" OR if referrerType is missing, check the referrer URL directly
   const searchVisits = visits.filter((v) => {
-    if (!v.referrer || v.referrerType !== "search") return false;
-    return identifySearchEngine(v.referrer) !== null;
+    if (!v.referrer) return false;
+    
+    // If referrerType is set, use it
+    if (v.referrerType === "search") {
+      return identifySearchEngine(v.referrer) !== null;
+    }
+    
+    // If referrerType is missing (old data), check the referrer URL directly
+    if (!v.referrerType) {
+      return identifySearchEngine(v.referrer) !== null;
+    }
+    
+    return false;
   });
   
   // Extract search queries - count unique IPs per query (not total visits)

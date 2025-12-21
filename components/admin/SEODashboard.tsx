@@ -34,13 +34,25 @@ export default function SEODashboard() {
 
   useEffect(() => {
     fetch("/api/admin/seo-stats")
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        return res.json();
+      })
       .then((data) => {
-        setData(data);
+        console.log("[SEO Dashboard] Received data:", data);
+        if (data.error) {
+          console.error("[SEO Dashboard] API returned error:", data.error);
+          setData(null);
+        } else {
+          setData(data);
+        }
         setLoading(false);
       })
       .catch((err) => {
-        console.error("Error loading SEO stats:", err);
+        console.error("[SEO Dashboard] Error loading SEO stats:", err);
+        setData(null);
         setLoading(false);
       });
   }, []);
@@ -56,7 +68,10 @@ export default function SEODashboard() {
   if (!data) {
     return (
       <div className="rounded-xl border border-white/20 bg-gradient-to-br from-sb-night/90 to-sb-ocean/80 p-8 text-center">
-        <p className="text-white/70">No SEO data available</p>
+        <p className="text-white/70 mb-2">No SEO data available</p>
+        <p className="text-sm text-white/50">
+          SEO tracking will populate as visitors arrive from search engines (Google, Bing, etc.)
+        </p>
       </div>
     );
   }
@@ -195,9 +210,12 @@ export default function SEODashboard() {
             </div>
           ))}
           {(!searchQueries || searchQueries.length === 0) && (
-            <p className="py-8 text-center text-white/70">
-              No search queries tracked yet
-            </p>
+            <div className="py-8 text-center">
+              <p className="text-white/70 mb-2">No search queries tracked yet</p>
+              <p className="text-xs text-white/50">
+                Search queries will appear here when visitors arrive from Google, Bing, or other search engines
+              </p>
+            </div>
           )}
         </div>
       </div>
@@ -230,9 +248,12 @@ export default function SEODashboard() {
             </div>
           ))}
           {(!topSearchPages || topSearchPages.length === 0) && (
-            <p className="py-8 text-center text-white/70">
-              No search traffic to pages yet
-            </p>
+            <div className="py-8 text-center">
+              <p className="text-white/70 mb-2">No search traffic to pages yet</p>
+              <p className="text-xs text-white/50">
+                Pages will appear here once visitors arrive from search engines
+              </p>
+            </div>
           )}
         </div>
       </div>

@@ -31,7 +31,7 @@ export async function POST(req: Request) {
     apiVersion: "2022-11-15",
   });
 
-  let event: Stripe.Event;
+  let event: any;
 
   try {
     const rawBody = await req.text();
@@ -52,7 +52,7 @@ export async function POST(req: Request) {
       console.warn(
         "[stripe webhook] STRIPE_WEBHOOK_SECRET not set – skipping signature verification (dev mode)."
       );
-      event = JSON.parse(rawBody) as Stripe.Event;
+      event = JSON.parse(rawBody);
     }
   } catch (err: any) {
     console.error("Stripe webhook error:", err.message);
@@ -63,7 +63,7 @@ export async function POST(req: Request) {
   }
 
   if (event.type === "checkout.session.completed") {
-    const session = event.data.object as Stripe.Checkout.Session;
+    const session = event.data.object as any;
     const meta = session.metadata || {};
 
     try {

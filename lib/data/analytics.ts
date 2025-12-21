@@ -21,7 +21,7 @@ function getExcludedIPs(): string[] {
 /**
  * Check if an IP address should be excluded from analytics
  */
-function isIPExcluded(ip?: string): boolean {
+export function isIPExcluded(ip?: string): boolean {
   if (!ip) {
     return false;
   }

@@ -19,6 +19,7 @@ import BookingStatsChart from "@/components/admin/BookingStatsChart";
 import RevenueStatsChart from "@/components/admin/RevenueStatsChart";
 import ClearAllBookingsButton from "@/components/admin/ClearAllBookingsButton";
 import { MoneyDisplay } from "@/components/admin/MoneyDisplay";
+import SEODashboard from "@/components/admin/SEODashboard";
 
 // Force dynamic rendering to prevent caching
 export const dynamic = "force-dynamic";
@@ -480,6 +481,21 @@ export default async function AdminDashboardPage() {
             </div>
           </section>
         )}
+
+        {/* SEO & Search Performance Section */}
+        <section className="mb-10">
+          <div className="mb-6">
+            <h2 className="text-xl font-semibold text-sb-cream">
+              SEO & Search Performance
+            </h2>
+            <p className="mt-2 text-sm text-sb-cream/70">
+              Track organic search traffic, search queries, and which pages are performing best in search engines
+            </p>
+          </div>
+          <div className="rounded-2xl border border-white/20 bg-gradient-to-br from-sb-night/90 to-sb-ocean/80 p-6 shadow-lg backdrop-blur-sm">
+            <SEODashboard />
+          </div>
+        </section>
       </div>
     </main>
   );

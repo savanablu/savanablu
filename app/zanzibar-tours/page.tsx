@@ -19,9 +19,35 @@ type Tour = {
 const tours = toursData as Tour[];
 
 export const metadata = {
-  title: "Zanzibar Tours | Savana Blu Luxury Expeditions",
+  title: "Zanzibar Day Tours | Savana Blu Luxury Expeditions",
   description:
-    "Small-group and private tours in Zanzibar – Safari Blue, Stone Town, Prison Island, spice farms, Jozani Forest and coastal escapes.",
+    "Small-group and private day tours in Zanzibar – Safari Blue, Stone Town, Prison Island, spice farms, Jozani Forest, dolphin tours and coastal escapes. Book your Zanzibar experience.",
+  keywords: [
+    "Zanzibar tours",
+    "Safari Blue",
+    "Stone Town tour",
+    "Prison Island",
+    "spice farm Zanzibar",
+    "Jozani Forest",
+    "dolphin tour Zanzibar",
+    "Nakupenda sandbank",
+    "Mnemba snorkeling",
+    "Zanzibar day trips",
+    "small group tour Zanzibar",
+    "private tour Zanzibar",
+    "boutique tour Zanzibar",
+  ].join(", "),
+  openGraph: {
+    title: "Zanzibar Day Tours | Savana Blu",
+    description:
+      "Small-group and private day tours in Zanzibar – Safari Blue, Stone Town, Prison Island, spice farms and coastal escapes.",
+    type: "website",
+    url: "https://savanablu.com/zanzibar-tours",
+    siteName: "Savana Blu Luxury Expeditions",
+  },
+  alternates: {
+    canonical: "/zanzibar-tours",
+  },
 };
 
 export default function ToursPage() {

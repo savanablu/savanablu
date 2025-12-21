@@ -18,9 +18,36 @@ type Package = {
 const packages = packagesData as Package[];
 
 export const metadata = {
-  title: "Zanzibar Packages | Savana Blu Luxury Expeditions",
+  title: "Flying Safaris from Zanzibar | Savana Blu Luxury Expeditions",
   description:
-    "Multi-day Zanzibar itineraries combining beaches, culture and ocean days – curated by Savana Blu for couples, families and small groups.",
+    "Flying safaris from Zanzibar to Tanzania's national parks – Selous, Mikumi, Tarangire, Ngorongoro, Serengeti and Lake Manyara. 1-3 day safari packages with flights included. Small-group and private options.",
+  keywords: [
+    "Zanzibar safari",
+    "flying safari Tanzania",
+    "Selous safari from Zanzibar",
+    "Mikumi safari",
+    "Tarangire safari",
+    "Ngorongoro crater safari",
+    "Serengeti safari from Zanzibar",
+    "Lake Manyara safari",
+    "Tanzania safari packages",
+    "short safari from Zanzibar",
+    "1 day safari",
+    "2 day safari",
+    "3 day safari",
+    "boutique safari Tanzania",
+  ].join(", "),
+  openGraph: {
+    title: "Flying Safaris from Zanzibar | Savana Blu",
+    description:
+      "Flying safaris from Zanzibar to Tanzania's national parks. 1-3 day safari packages with flights included. Small-group and private options.",
+    type: "website",
+    url: "https://savanablu.com/safaris",
+    siteName: "Savana Blu Luxury Expeditions",
+  },
+  alternates: {
+    canonical: "/safaris",
+  },
 };
 
 export default function PackagesPage() {

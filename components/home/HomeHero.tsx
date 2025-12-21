@@ -71,7 +71,7 @@ export default function HomeHero() {
           </h1>
 
           <p className="max-w-2xl text-[0.98rem] leading-relaxed text-sb-shell/95">
-            We are a Zanzibar-based team connecting island days with mainland safaris – from sandbanks and dhows to Selous and Mikumi – with one calm, human conversation.
+            We are a Zanzibar-based team connecting island days with mainland safaris – from sandbanks and dhows to Selous, Mikumi, Tarangire, Ngorongoro and the Serengeti – with one calm, human conversation.
           </p>
 
           <div className="flex flex-wrap gap-3 pt-1">

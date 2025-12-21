@@ -4,6 +4,7 @@ import toursData from "@/data/tours.json";
 
 import Link from "next/link";
 import Image from "next/image";
+import type { Metadata } from "next";
 
 import Section from "@/components/ui/Section";
 
@@ -48,6 +49,82 @@ type Tour = {
 
 
 const allTours = toursData as Tour[];
+
+
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const tour = allTours.find((t) => t.slug === params.slug);
+
+  if (!tour) {
+    return {
+      title: "Tour Not Found",
+      description: "The requested Zanzibar tour could not be found.",
+    };
+  }
+
+  const basePrice = typeof tour.basePrice === "number" ? tour.basePrice : 0;
+  const duration = tour.durationHours ? `${tour.durationHours} hours` : "Full day";
+  
+  // Build SEO-friendly description
+  const description = tour.shortDescription 
+    ? `${tour.shortDescription} ${duration} ${tour.location ? `in ${tour.location}` : "in Zanzibar"}. Book with Savana Blu for small-group and private tours. From $${basePrice} per person.`
+    : `Book ${tour.title} with Savana Blu. ${duration} ${tour.location ? `in ${tour.location}` : "Zanzibar tour"}. Small-group and private options available.`;
+
+  const imageUrl = tour.images && tour.images.length > 0
+    ? `https://savanablu.com${tour.images[0]}`
+    : "https://savanablu.com/images/og-image.jpg";
+
+  // Extract category keywords
+  const categoryKeywords = tour.category 
+    ? tour.category.toLowerCase()
+    : "zanzibar tour";
+
+  return {
+    title: `${tour.title} | Savana Blu Luxury Expeditions`,
+    description,
+    keywords: [
+      "Zanzibar tour",
+      categoryKeywords,
+      tour.location || "Zanzibar",
+      "Safari Blue",
+      "Stone Town",
+      "Prison Island",
+      "spice farm",
+      "Jozani Forest",
+      "Zanzibar day trip",
+      "small group tour Zanzibar",
+      "boutique tour Zanzibar",
+    ].join(", "),
+    openGraph: {
+      title: `${tour.title} | Savana Blu`,
+      description,
+      type: "website",
+      url: `https://savanablu.com/zanzibar-tours/${tour.slug}`,
+      siteName: "Savana Blu Luxury Expeditions",
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: tour.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${tour.title} | Savana Blu`,
+      description,
+      images: [imageUrl],
+    },
+    alternates: {
+      canonical: `/zanzibar-tours/${tour.slug}`,
+    },
+  };
+}
 
 
 
@@ -129,13 +206,61 @@ export default function TourDetailPage({
 
     typeof tour.basePrice === "number" ? tour.basePrice : 0;
 
-
+  // Build structured data for SEO
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "TouristTrip",
+    "name": tour.title,
+    "description": tour.shortDescription || tour.description || tour.title,
+    "url": `https://savanablu.com/zanzibar-tours/${tour.slug}`,
+    "image": galleryImages.length > 0 
+      ? `https://savanablu.com${galleryImages[0]}` 
+      : "https://savanablu.com/images/og-image.jpg",
+    "provider": {
+      "@type": "TouristInformationCenter",
+      "name": "Savana Blu Luxury Expeditions",
+      "url": "https://savanablu.com",
+    },
+    "tourBookingPage": `https://savanablu.com/zanzibar-tours/${tour.slug}`,
+    ...(tour.location && {
+      "location": {
+        "@type": "Place",
+        "name": tour.location,
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Zanzibar",
+          "addressCountry": "TZ",
+        },
+      },
+    }),
+    ...(tour.durationHours && {
+      "duration": `PT${tour.durationHours}H`,
+    }),
+    ...(basePrice > 0 && {
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "USD",
+        "price": basePrice,
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "priceCurrency": "USD",
+          "price": basePrice,
+          "valueAddedTaxIncluded": false,
+        },
+        "availability": "https://schema.org/InStock",
+        "url": `https://savanablu.com/zanzibar-tours/${tour.slug}`,
+      },
+    }),
+  };
 
   return (
-
-    <Section className="pb-20 pt-16">
-
-      <div className="mx-auto max-w-5xl space-y-10">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <Section className="pb-20 pt-16">
+        <div className="mx-auto max-w-5xl space-y-10">
 
         {/* HERO BANNER */}
 
@@ -887,8 +1012,8 @@ export default function TourDetailPage({
 
       </div>
 
-    </Section>
-
+      </Section>
+    </>
   );
 
 }

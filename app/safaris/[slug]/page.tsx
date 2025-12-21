@@ -4,6 +4,7 @@ import packagesData from "@/data/packages.json";
 
 import Link from "next/link";
 import Image from "next/image";
+import type { Metadata } from "next";
 
 import Section from "@/components/ui/Section";
 
@@ -38,6 +39,85 @@ type Package = {
 
 
 const allPackages = packagesData as Package[];
+
+
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const pkg = allPackages.find((p) => p.slug === params.slug);
+
+  if (!pkg) {
+    return {
+      title: "Safari Package Not Found",
+      description: "The requested safari package could not be found.",
+    };
+  }
+
+  const days = Array.isArray(pkg.days) ? pkg.days : [];
+  const nights = days.length > 0 ? days.length : undefined;
+  const priceFrom = typeof pkg.priceFrom === "number" ? pkg.priceFrom : 0;
+  
+  // Build SEO-friendly description
+  const description = pkg.shortDescription 
+    ? `${pkg.shortDescription} Book your ${nights ? `${nights}-night ` : ""}flying safari from Zanzibar to Tanzania's national parks with Savana Blu. From $${priceFrom} per person.`
+    : `Book ${pkg.title} with Savana Blu. Flying safari from Zanzibar to Tanzania's national parks. Small-group and private options available.`;
+
+  // Extract location keywords from title
+  const locationKeywords = pkg.title
+    .toLowerCase()
+    .match(/(selous|mikumi|tarangire|ngorongoro|serengeti|manyara)/g)
+    ?.join(", ") || "Tanzania";
+
+  const imageUrl = pkg.image 
+    ? `https://savanablu.com${pkg.image}`
+    : "https://savanablu.com/images/og-image.jpg";
+
+  return {
+    title: `${pkg.title} | Savana Blu Luxury Expeditions`,
+    description,
+    keywords: [
+      "Zanzibar safari",
+      "flying safari",
+      "Tanzania safari",
+      locationKeywords,
+      "Selous safari",
+      "Mikumi safari",
+      "Tarangire safari",
+      "Ngorongoro safari",
+      "Serengeti safari",
+      "Zanzibar to mainland safari",
+      "small group safari",
+      "boutique safari Tanzania",
+    ].join(", "),
+    openGraph: {
+      title: `${pkg.title} | Savana Blu`,
+      description,
+      type: "website",
+      url: `https://savanablu.com/safaris/${pkg.slug}`,
+      siteName: "Savana Blu Luxury Expeditions",
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: pkg.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${pkg.title} | Savana Blu`,
+      description,
+      images: [imageUrl],
+    },
+    alternates: {
+      canonical: `/safaris/${pkg.slug}`,
+    },
+  };
+}
 
 
 
@@ -132,11 +212,55 @@ export default function PackageDetailPage({
 
 
 
+  // Build structured data for SEO
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "TouristTrip",
+    "name": pkg.title,
+    "description": pkg.shortDescription || pkg.title,
+    "url": `https://savanablu.com/safaris/${pkg.slug}`,
+    "image": pkg.image ? `https://savanablu.com${pkg.image}` : "https://savanablu.com/images/og-image.jpg",
+    "provider": {
+      "@type": "TouristInformationCenter",
+      "name": "Savana Blu Luxury Expeditions",
+      "url": "https://savanablu.com",
+    },
+    "tourBookingPage": `https://savanablu.com/safaris/${pkg.slug}`,
+    "itinerary": {
+      "@type": "ItemList",
+      "numberOfItems": days.length,
+      "itemListElement": days.map((day, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "name": typeof day === "object" && day.title ? day.title : `Day ${index + 1}`,
+        "description": typeof day === "object" && day.description ? day.description : (typeof day === "string" ? day : ""),
+      })),
+    },
+    ...(basePrice > 0 && {
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "USD",
+        "price": basePrice,
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "priceCurrency": "USD",
+          "price": basePrice,
+          "valueAddedTaxIncluded": false,
+        },
+        "availability": "https://schema.org/InStock",
+        "url": `https://savanablu.com/safaris/${pkg.slug}`,
+      },
+    }),
+  };
+
   return (
-
-    <Section className="pb-20 pt-16">
-
-      <div className="mx-auto max-w-5xl space-y-10">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <Section className="pb-20 pt-16">
+        <div className="mx-auto max-w-5xl space-y-10">
 
         {/* HERO BANNER */}
 
@@ -943,8 +1067,8 @@ export default function PackageDetailPage({
 
       </div>
 
-    </Section>
-
+      </Section>
+    </>
   );
 
 }

@@ -1,57 +1,17 @@
 // lib/analytics/geolocation.ts
 
 /**
- * Get geolocation from request headers (Vercel provides this)
- * Falls back to IP geolocation API if needed
+ * Get geolocation from request headers (Vercel provides this automatically)
+ * Vercel automatically adds x-vercel-ip-country and x-vercel-ip-city headers
  */
 export async function getLocationFromRequest(
   headers: Headers
 ): Promise<{ country?: string; city?: string }> {
-  // Try Vercel's geolocation headers first (available on Vercel)
+  // Vercel automatically provides geolocation headers
   const country = headers.get("x-vercel-ip-country") || undefined;
   const city = headers.get("x-vercel-ip-city") || undefined;
 
-  if (country) {
-    return { country, city };
-  }
-
-  // Fallback: Try to get IP and use free geolocation API
-  const forwardedFor = headers.get("x-forwarded-for");
-  const realIp = headers.get("x-real-ip");
-  const ip = forwardedFor?.split(",")[0]?.trim() || realIp || undefined;
-
-  if (ip && !ip.startsWith("127.") && !ip.startsWith("192.168.") && !ip.startsWith("10.")) {
-    try {
-      // Use ip-api.com (free, no API key needed, rate limited)
-      // Use https for Vercel compatibility
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 3000);
-      
-      const response = await fetch(`https://ip-api.com/json/${ip}?fields=status,country,city`, {
-        headers: {
-          "User-Agent": "SavanaBlu/1.0",
-        },
-        signal: controller.signal,
-      });
-      
-      clearTimeout(timeoutId);
-      
-      if (response.ok) {
-        const data = await response.json();
-        if (data.status === "success") {
-          return {
-            country: data.country || undefined,
-            city: data.city || undefined,
-          };
-        }
-      }
-    } catch (err) {
-      // Silently fail - geolocation is optional
-      console.warn("[Geolocation] Failed to fetch location:", err);
-    }
-  }
-
-  return {};
+  return { country, city };
 }
 
 /**

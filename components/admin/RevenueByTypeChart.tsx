@@ -76,12 +76,15 @@ export default function RevenueByTypeChart({
         />
         <Tooltip
           contentStyle={{
-            backgroundColor: "#0B3C49",
-            border: "1px solid #F3E2C7",
+            backgroundColor: "#0F6F7C",
+            border: "2px solid #F9F3EB",
             borderRadius: "8px",
             color: "#F9F3EB",
             padding: "10px 14px",
+            fontWeight: 500,
           }}
+          labelStyle={{ color: "#F9F3EB", fontWeight: 600, fontSize: "13px" }}
+          itemStyle={{ color: "#F9F3EB", fontWeight: 500 }}
           formatter={(value: number | undefined, name: string | undefined) => {
             const val = value ?? 0;
             const nameStr = name === "revenue" ? "Total Revenue" : name === "advances" ? "Advances Paid" : name === "balances" ? "Balances on Arrival" : name ?? "";

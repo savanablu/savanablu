@@ -79,12 +79,14 @@ export default function TimePatternChart({
               />
               <Tooltip
                 contentStyle={{
-                  backgroundColor: "#0B3C49",
-                  border: "1px solid #F9F3EB",
+                  backgroundColor: "#0F6F7C",
+                  border: "2px solid #F9F3EB",
                   borderRadius: "8px",
                   color: "#F9F3EB",
+                  fontWeight: 500,
                 }}
-                labelStyle={{ color: "#F9F3EB", fontWeight: 600 }}
+                labelStyle={{ color: "#F9F3EB", fontWeight: 600, fontSize: "13px" }}
+                itemStyle={{ color: "#F9F3EB", fontWeight: 500 }}
               />
               <Line
                 type="monotone"
@@ -138,12 +140,14 @@ export default function TimePatternChart({
               />
               <Tooltip
                 contentStyle={{
-                  backgroundColor: "#0B3C49",
-                  border: "1px solid #F9F3EB",
+                  backgroundColor: "#0F6F7C",
+                  border: "2px solid #F9F3EB",
                   borderRadius: "8px",
                   color: "#F9F3EB",
+                  fontWeight: 500,
                 }}
-                labelStyle={{ color: "#F9F3EB", fontWeight: 600 }}
+                labelStyle={{ color: "#F9F3EB", fontWeight: 600, fontSize: "13px" }}
+                itemStyle={{ color: "#F9F3EB", fontWeight: 500 }}
               />
               <Bar dataKey="visits" fill="#0F6F7C" radius={[4, 4, 0, 0]} />
             </BarChart>

@@ -38,9 +38,9 @@ export default function DeviceBrowserChart({
       const total = data.reduce((sum: number, item: any) => sum + item.value, 0);
       const percentage = total > 0 ? ((payload[0].value / total) * 100).toFixed(1) : "0";
       return (
-        <div className="bg-sb-night/95 border border-sb-cream/20 rounded-lg p-3 shadow-lg">
-          <p className="text-sb-cream font-semibold">{payload[0].name}</p>
-          <p className="text-sb-cream/80 text-sm">
+        <div className="bg-sb-ocean border-2 border-sb-cream/40 rounded-lg p-3 shadow-xl backdrop-blur-sm">
+          <p className="text-sb-cream font-semibold text-sm mb-1">{payload[0].name}</p>
+          <p className="text-sb-cream text-sm font-medium">
             {payload[0].value} visits ({percentage}%)
           </p>
         </div>
@@ -68,7 +68,18 @@ export default function DeviceBrowserChart({
                 label={(props: any) => {
                   const name = props.name || "";
                   const percent = props.percent || 0;
-                  return `${name} ${(percent * 100).toFixed(0)}%`;
+                  return (
+                    <text
+                      x={props.x}
+                      y={props.y}
+                      fill="#F9F3EB"
+                      textAnchor={props.textAnchor}
+                      fontSize={11}
+                      fontWeight={500}
+                    >
+                      {`${name} ${(percent * 100).toFixed(0)}%`}
+                    </text>
+                  );
                 }}
                 outerRadius={80}
                 fill="#8884d8"
@@ -101,7 +112,18 @@ export default function DeviceBrowserChart({
                 label={(props: any) => {
                   const name = props.name || "";
                   const percent = props.percent || 0;
-                  return `${name} ${(percent * 100).toFixed(0)}%`;
+                  return (
+                    <text
+                      x={props.x}
+                      y={props.y}
+                      fill="#F9F3EB"
+                      textAnchor={props.textAnchor}
+                      fontSize={11}
+                      fontWeight={500}
+                    >
+                      {`${name} ${(percent * 100).toFixed(0)}%`}
+                    </text>
+                  );
                 }}
                 outerRadius={80}
                 fill="#8884d8"

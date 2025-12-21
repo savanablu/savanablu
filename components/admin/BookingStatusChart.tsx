@@ -43,9 +43,25 @@ export default function BookingStatusChart({
           cx="50%"
           cy="50%"
           labelLine={false}
-          label={({ name, value, percent }) => {
-            const pct = percent ? (percent * 100).toFixed(0) : "0";
-            return `${name}\n${value} (${pct}%)`;
+          label={(props: any) => {
+            const name = props.name || "";
+            const value = props.value || 0;
+            const percent = props.percent || 0;
+            const pct = (percent * 100).toFixed(0);
+            return (
+              <text
+                x={props.x}
+                y={props.y}
+                fill="#F9F3EB"
+                textAnchor={props.textAnchor}
+                fontSize={11}
+                fontWeight={600}
+                dominantBaseline="middle"
+              >
+                <tspan x={props.x} dy="0">{name}</tspan>
+                <tspan x={props.x} dy="14">{value} ({pct}%)</tspan>
+              </text>
+            );
           }}
           outerRadius={100}
           fill="#8884d8"
@@ -58,12 +74,15 @@ export default function BookingStatusChart({
         </Pie>
         <Tooltip
           contentStyle={{
-            backgroundColor: "#0B3C49",
-            border: "1px solid #F3E2C7",
+            backgroundColor: "#0F6F7C",
+            border: "2px solid #F9F3EB",
             borderRadius: "8px",
             color: "#F9F3EB",
             padding: "10px 14px",
+            fontWeight: 500,
           }}
+          labelStyle={{ color: "#F9F3EB", fontWeight: 600, fontSize: "13px" }}
+          itemStyle={{ color: "#F9F3EB", fontWeight: 500 }}
           formatter={(value: number | undefined, name: string | undefined) => {
             const val = value ?? 0;
             const nameStr = name ?? "";

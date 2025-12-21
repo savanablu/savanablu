@@ -15,3 +15,7 @@ export function MoneyDisplay({ amountUSD, className = "" }: MoneyDisplayProps) {
   return <span className={className}>{formatted}</span>;
 }
 
+
+
+
+

@@ -270,35 +270,34 @@ export async function POST(req: Request) {
 
     // 4) Send on-hold emails (guest + admin)
     //    Fire-and-forget – we don't block the API response on email success
+    //    Emails are now non-blocking - booking succeeds even if emails fail
     (async () => {
       try {
         if (!emailPayload.guestEmail) {
-          console.error("[Email] No guest email address in payload:", emailPayload);
+          console.error("[Booking] No guest email address in payload:", emailPayload);
           return;
         }
-        console.log("[Email] Sending on-hold email to guest:", emailPayload.guestEmail);
+        console.log("[Booking] Attempting to send on-hold email to guest:", emailPayload.guestEmail);
         await sendBookingOnHoldToGuest(emailPayload);
-        console.log("[Email] Guest email sent successfully to:", emailPayload.guestEmail);
+        // Function now handles errors internally and doesn't throw
       } catch (err) {
-        console.error("[Email] on-hold guest error:", err);
-        console.error("[Email] Error details:", {
+        // This catch is now a safety net - email function shouldn't throw anymore
+        console.error("[Booking] Unexpected error sending guest email (non-blocking):", {
           guestEmail: emailPayload.guestEmail,
           error: err instanceof Error ? err.message : String(err),
-          stack: err instanceof Error ? err.stack : undefined,
         });
       }
     })();
     
     (async () => {
       try {
-        console.log("[Email] Sending on-hold email to admin");
+        console.log("[Booking] Attempting to send on-hold email to admin");
         await sendBookingOnHoldToAdmin(emailPayload);
-        console.log("[Email] Admin email sent successfully");
+        // Function now handles errors internally and doesn't throw
       } catch (err) {
-        console.error("[Email] on-hold admin error:", err);
-        console.error("[Email] Error details:", {
+        // This catch is now a safety net - email function shouldn't throw anymore
+        console.error("[Booking] Unexpected error sending admin email (non-blocking):", {
           error: err instanceof Error ? err.message : String(err),
-          stack: err instanceof Error ? err.stack : undefined,
         });
       }
     })();

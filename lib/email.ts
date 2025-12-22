@@ -33,10 +33,7 @@ export async function sendEmail({
       from: from ?? DEFAULT_FROM,
     });
     console.error("[Email] CRITICAL: No actual email will be sent! Add RESEND_API_KEY to environment variables.");
-    // In production, throw an error so it's visible in logs
-    if (process.env.NODE_ENV === "production") {
-      throw new Error("RESEND_API_KEY is not configured. Cannot send emails.");
-    }
+    // Don't throw - return error object so caller can handle gracefully
     return { ok: false, stub: true, error: "RESEND_API_KEY not configured" };
   }
 
@@ -47,47 +44,93 @@ export async function sendEmail({
     throw new Error(`Invalid email address: ${to}`);
   }
 
-  try {
-    const response = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${RESEND_API_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        from: from ?? DEFAULT_FROM,
-        to: Array.isArray(to) ? to : [to],
-        subject,
-        html,
-        cc,
-        bcc,
-      }),
-    });
+  // Retry logic for email sending
+  const maxRetries = 3;
+  let lastError: any = null;
 
-    if (!response.ok) {
-      const text = await response.text();
-      console.error("Resend API error:", {
-        status: response.status,
-        statusText: response.statusText,
-        body: text,
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      const response = await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${RESEND_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          from: from ?? DEFAULT_FROM,
+          to: Array.isArray(to) ? to : [to],
+          subject,
+          html,
+          cc,
+          bcc,
+        }),
       });
-      throw new Error(`Resend API error (${response.status}): ${text}`);
-    }
 
-    const result = await response.json();
-    console.log("Email sent via Resend:", {
-      id: result.id,
-      to: Array.isArray(to) ? to : [to],
-    });
-    return result;
-  } catch (err: any) {
-    console.error("Email sending error:", {
-      error: err?.message,
-      stack: err?.stack,
-      to: Array.isArray(to) ? to : [to],
-    });
-    throw err;
+      if (!response.ok) {
+        const text = await response.text();
+        const errorInfo = {
+          status: response.status,
+          statusText: response.statusText,
+          body: text,
+        };
+        
+        // Don't retry on 4xx errors (client errors like invalid API key)
+        if (response.status >= 400 && response.status < 500) {
+          console.error("[Email] Resend API client error (no retry):", errorInfo);
+          throw new Error(`Resend API error (${response.status}): ${text}`);
+        }
+        
+        // Retry on 5xx errors (server errors)
+        if (attempt < maxRetries) {
+          console.warn(`[Email] Resend API server error, retrying (attempt ${attempt}/${maxRetries}):`, errorInfo);
+          await new Promise(resolve => setTimeout(resolve, 1000 * attempt)); // Exponential backoff
+          lastError = new Error(`Resend API error (${response.status}): ${text}`);
+          continue;
+        }
+        
+        console.error("[Email] Resend API error (max retries reached):", errorInfo);
+        throw new Error(`Resend API error (${response.status}): ${text}`);
+      }
+
+      const result = await response.json();
+      console.log("[Email] Email sent via Resend:", {
+        id: result.id,
+        to: Array.isArray(to) ? to : [to],
+        attempt,
+      });
+      return result;
+    } catch (err: any) {
+      lastError = err;
+      
+      // Don't retry on certain errors
+      if (err?.message?.includes("Invalid email address") || 
+          err?.message?.includes("RESEND_API_KEY not configured")) {
+        throw err;
+      }
+      
+      // Retry on network errors or 5xx errors
+      if (attempt < maxRetries) {
+        console.warn(`[Email] Email sending error, retrying (attempt ${attempt}/${maxRetries}):`, {
+          error: err?.message,
+          to: Array.isArray(to) ? to : [to],
+        });
+        await new Promise(resolve => setTimeout(resolve, 1000 * attempt)); // Exponential backoff
+        continue;
+      }
+      
+      // Max retries reached
+      console.error("[Email] Email sending failed after retries:", {
+        error: err?.message,
+        stack: err?.stack,
+        to: Array.isArray(to) ? to : [to],
+        attempts: maxRetries,
+      });
+      throw err;
+    }
   }
+
+  // Should never reach here, but TypeScript needs it
+  throw lastError || new Error("Email sending failed");
 }
 
 type BookingKind = "tour" | "package";
@@ -509,6 +552,17 @@ export async function sendBookingOnHoldToGuest(
       subject,
       html,
     });
+    
+    // Check if email was actually sent or just stubbed
+    if (result && 'stub' in result && result.stub) {
+      console.error("[Email] sendBookingOnHoldToGuest: Email NOT sent (stub mode):", {
+        to: booking.guestEmail,
+        error: result.error,
+      });
+      // Don't throw - allow booking to continue, but log the issue
+      return;
+    }
+    
     console.log("[Email] sendBookingOnHoldToGuest: Email sent successfully:", {
       to: booking.guestEmail,
       resultId: result?.id,
@@ -517,8 +571,10 @@ export async function sendBookingOnHoldToGuest(
     console.error("[Email] sendBookingOnHoldToGuest: Failed to send email:", {
       to: booking.guestEmail,
       error: err instanceof Error ? err.message : String(err),
+      stack: err instanceof Error ? err.stack : undefined,
     });
-    throw err;
+    // Don't throw - allow booking to continue even if email fails
+    // The booking is more important than the email notification
   }
 }
 
@@ -599,11 +655,33 @@ export async function sendBookingOnHoldToAdmin(
 
   `;
 
-  await sendEmail({
-    to: ADMIN_EMAIL,
-    subject,
-    html,
-  });
+  try {
+    const result = await sendEmail({
+      to: ADMIN_EMAIL,
+      subject,
+      html,
+    });
+    
+    // Check if email was actually sent or just stubbed
+    if (result && 'stub' in result && result.stub) {
+      console.error("[Email] sendBookingOnHoldToAdmin: Email NOT sent (stub mode):", {
+        to: ADMIN_EMAIL,
+        error: result.error,
+      });
+      return;
+    }
+    
+    console.log("[Email] sendBookingOnHoldToAdmin: Email sent successfully:", {
+      to: ADMIN_EMAIL,
+      resultId: result?.id,
+    });
+  } catch (err) {
+    console.error("[Email] sendBookingOnHoldToAdmin: Failed to send email:", {
+      to: ADMIN_EMAIL,
+      error: err instanceof Error ? err.message : String(err),
+    });
+    // Don't throw - allow booking to continue
+  }
 }
 
 export async function sendBookingConfirmedToGuest(
@@ -755,6 +833,17 @@ export async function sendBookingConfirmedToGuest(
       subject,
       html,
     });
+    
+    // Check if email was actually sent or just stubbed
+    if (result && 'stub' in result && result.stub) {
+      console.error("[Email] sendBookingConfirmedToGuest: Email NOT sent (stub mode):", {
+        to: booking.guestEmail,
+        error: result.error,
+      });
+      // Don't throw - allow payment confirmation to continue
+      return;
+    }
+    
     console.log("[Email] sendBookingConfirmedToGuest: Email sent successfully:", {
       to: booking.guestEmail,
       resultId: result?.id,
@@ -765,7 +854,7 @@ export async function sendBookingConfirmedToGuest(
       error: err instanceof Error ? err.message : String(err),
       stack: err instanceof Error ? err.stack : undefined,
     });
-    throw err; // Re-throw so caller can handle
+    // Don't throw - payment confirmation is more important than email
   }
 }
 
@@ -880,6 +969,16 @@ export async function sendBookingConfirmedToAdmin(
       subject,
       html,
     });
+    
+    // Check if email was actually sent or just stubbed
+    if (result && 'stub' in result && result.stub) {
+      console.error("[Email] sendBookingConfirmedToAdmin: Email NOT sent (stub mode):", {
+        to: ADMIN_EMAIL,
+        error: result.error,
+      });
+      return;
+    }
+    
     console.log("[Email] sendBookingConfirmedToAdmin: Email sent successfully:", {
       to: ADMIN_EMAIL,
       resultId: result?.id,
@@ -890,6 +989,6 @@ export async function sendBookingConfirmedToAdmin(
       error: err instanceof Error ? err.message : String(err),
       stack: err instanceof Error ? err.stack : undefined,
     });
-    throw err; // Re-throw so caller can handle
+    // Don't throw - payment confirmation is more important than email
   }
 }

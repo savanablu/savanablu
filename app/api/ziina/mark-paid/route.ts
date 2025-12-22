@@ -188,29 +188,28 @@ export async function POST(req: NextRequest) {
 
     // Only send if not already sent
     if (!emailsAlreadySent) {
-      // Send emails with better error handling and logging
+      // Send emails - now non-blocking, won't throw errors
+      // Payment confirmation succeeds even if emails fail
       try {
-        console.log("[Ziina] Sending confirmation email to guest:", emailPayload.guestEmail);
+        console.log("[Ziina] Attempting to send confirmation email to guest:", emailPayload.guestEmail);
         await sendBookingConfirmedToGuest(emailPayload);
-        console.log("[Ziina] Guest confirmation email sent successfully");
+        // Function handles errors internally and doesn't throw
       } catch (err) {
-        console.error("[Ziina] Guest confirm email error:", err);
-        console.error("[Ziina] Error details:", {
+        // Safety net - email function shouldn't throw anymore
+        console.error("[Ziina] Unexpected error sending guest email (non-blocking):", {
           guestEmail: emailPayload.guestEmail,
           error: err instanceof Error ? err.message : String(err),
-          stack: err instanceof Error ? err.stack : undefined,
         });
       }
 
       try {
-        console.log("[Ziina] Sending confirmation email to admin");
+        console.log("[Ziina] Attempting to send confirmation email to admin");
         await sendBookingConfirmedToAdmin(emailPayload);
-        console.log("[Ziina] Admin confirmation email sent successfully");
+        // Function handles errors internally and doesn't throw
       } catch (err) {
-        console.error("[Ziina] Admin confirm email error:", err);
-        console.error("[Ziina] Error details:", {
+        // Safety net - email function shouldn't throw anymore
+        console.error("[Ziina] Unexpected error sending admin email (non-blocking):", {
           error: err instanceof Error ? err.message : String(err),
-          stack: err instanceof Error ? err.stack : undefined,
         });
       }
     } else {

@@ -1,11 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { DM_Sans, Playfair_Display } from "next/font/google";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
-import WhatsAppButton from "@/components/layout/WhatsAppButton";
 import ConditionalChatbot from "@/components/layout/ConditionalChatbot";
-import CookieConsent from "@/components/analytics/CookieConsent";
+import ConditionalLayout from "@/components/layout/ConditionalLayout";
 import { CurrencyProvider } from "@/contexts/CurrencyContext";
 
 const sans = DM_Sans({
@@ -37,10 +34,15 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/icon.png", sizes: "any", type: "image/png" },
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", sizes: "48x48", type: "image/png" },
+      { url: "/favicon.png", sizes: "32x32", type: "image/png" },
     ],
     apple: [
       { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+    shortcut: [
+      { url: "/favicon.ico" },
     ],
   },
   openGraph: {
@@ -82,15 +84,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
         className={`${sans.variable} ${display.variable} font-sans min-h-screen bg-sb-shell text-sb-ink antialiased flex flex-col`}
       >
         <CurrencyProvider>
-          <Header />
-
-          <main className="flex-1 bg-sb-shell pt-16">{children}</main>
+          <ConditionalLayout>
+            {children}
+          </ConditionalLayout>
 
           <ConditionalChatbot />
-          <WhatsAppButton />
-          <CookieConsent />
-
-          <Footer />
         </CurrencyProvider>
       </body>
     </html>

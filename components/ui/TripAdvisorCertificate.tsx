@@ -19,6 +19,42 @@ export default function TripAdvisorCertificate() {
         };
         document.body.appendChild(script);
       }
+
+      // Disable all TripAdvisor links after they're injected
+      const disableTripAdvisorLinks = () => {
+        const tripAdvisorContainer = document.getElementById("TA_cdsratingsonlynarrow22");
+        if (tripAdvisorContainer) {
+          const links = tripAdvisorContainer.querySelectorAll("a");
+          links.forEach((link) => {
+            link.style.pointerEvents = "none";
+            link.style.cursor = "default";
+            link.onclick = (e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              return false;
+            };
+          });
+        }
+      };
+
+      // Try to disable links immediately and after a delay (when script loads)
+      disableTripAdvisorLinks();
+      setTimeout(disableTripAdvisorLinks, 1000);
+      setTimeout(disableTripAdvisorLinks, 3000);
+
+      // Also use MutationObserver to catch dynamically added links
+      const observer = new MutationObserver(() => {
+        disableTripAdvisorLinks();
+      });
+
+      const container = document.getElementById("TA_cdsratingsonlynarrow22");
+      if (container) {
+        observer.observe(container, { childList: true, subtree: true });
+      }
+
+      return () => {
+        observer.disconnect();
+      };
     }
   }, []);
 

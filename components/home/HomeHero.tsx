@@ -89,7 +89,7 @@ export default function HomeHero() {
             Start with a simple message – tell us your dates, where you are staying and who is travelling. We will suggest a mix of sea days, town time and safari that actually fits.
           </p>
 
-          <div className="mt-4 grid gap-3 text-[0.82rem] text-sb-shell/90 sm:grid-cols-2">
+          <div className="mt-4 flex flex-wrap gap-3 text-[0.82rem] text-sb-shell/90">
             <div className="rounded-full bg-sb-shell/15 px-3 py-1.5">
               Boutique · team-led
             </div>

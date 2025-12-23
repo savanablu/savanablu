@@ -34,7 +34,10 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
+      // Primary favicon - Google requires at least 48x48, prefers .ico or .png
+      { url: "/favicon.ico", sizes: "48x48", type: "image/x-icon" },
       { url: "/favicon.ico", sizes: "any" },
+      // PNG fallbacks
       { url: "/icon.png", sizes: "48x48", type: "image/png" },
       { url: "/favicon.png", sizes: "32x32", type: "image/png" },
     ],

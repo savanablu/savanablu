@@ -34,18 +34,14 @@ export default function TripAdvisorCertificate() {
         >
           <ul id="3NR13aQk6" className="TA_links hDQP68B0oMiF">
             <li id="NEjZhXsto" className="u0SfO8ZZ">
-              <a
-                target="_blank"
-                href="https://www.tripadvisor.com/Attraction_Review-g8055401-d7187090-Reviews-Savana_Blu_Luxury_Expeditions-Zanzibar_City_Zanzibar_Island_Zanzibar_Archipelago.html"
-                rel="noopener noreferrer"
-              >
+              <span style={{ cursor: "default", pointerEvents: "none" }}>
                 <img
                   src="https://www.tripadvisor.com/img/cdsi/img2/branding/v2/Tripadvisor_lockup_horizontal_secondary_registered-18034-2.svg"
                   alt="TripAdvisor"
                   className="h-auto"
                   style={{ maxWidth: "200px", height: "auto" }}
                 />
-              </a>
+              </span>
             </li>
           </ul>
         </div>

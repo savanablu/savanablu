@@ -49,7 +49,7 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
                 <p className="max-w-3xl text-[0.95rem] leading-relaxed text-sb-shell/95">
                   Share your dates, where you&apos;re staying and who you&apos;re
                   travelling with. We&apos;ll suggest a simple outline for your time on
-                  the islands &ndash; no pressure to book, no automated scripts.
+                  the islands — no pressure to book, no automated scripts.
                 </p>
               </div>
             </div>
@@ -76,7 +76,7 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
                   How we reply
                 </p>
                 <p className="mt-0.5 text-sb-shell/95">
-                  A clear, human message with simple options – not a template.
+                  A clear, human message with simple options — not a template.
                 </p>
               </div>
             </div>

@@ -257,7 +257,7 @@ export default async function BlogPostPage({ params }: BlogPageProps) {
 
                 you&apos;re travelling with. We&apos;ll suggest a calm outline
 
-                for your time in Zanzibar – no pressure to book.
+                for your time in Zanzibar — no pressure to book.
 
               </p>
 

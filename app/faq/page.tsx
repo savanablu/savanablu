@@ -11,7 +11,7 @@ export const metadata = {
 
   description:
 
-    "Answers to common questions about Savana Blu tours in Zanzibar – payments, deposits, children, timings, weather and private options.",
+    "Answers to common questions about Savana Blu experiences in Zanzibar — payments, deposits, children, timings, weather and private options.",
 
 };
 
@@ -31,7 +31,7 @@ const faqs: FaqItem[] = [
 
   {
 
-    question: "How do payments work for Savana Blu tours and safaris?",
+    question: "How do payments work for Savana Blu experiences and safaris?",
 
     answer: (
 
@@ -39,7 +39,7 @@ const faqs: FaqItem[] = [
 
         For most experiences, you pay the balance in Zanzibar on the day of your
 
-        tour or safari. To secure the date, we usually take a{" "}
+        experience or safari. To secure the date, we usually take a{" "}
 
         <strong>small 20% advance</strong> via our secure online payment
 
@@ -65,9 +65,9 @@ const faqs: FaqItem[] = [
 
         commit guides, boats and vehicles in advance. If you need to adjust your
 
-        date or timing, we&apos;re flexible where tides, flights and availability allow.
+        date or timing, our team is flexible where tides, flights and availability allow.
 
-        The best thing is to contact us as early as possible if your plans
+        We recommend contacting us as early as possible if your plans
 
         change.
 
@@ -111,7 +111,7 @@ const faqs: FaqItem[] = [
 
         You&apos;ll see a confirmation page and receive an{" "}
 
-        <strong>on-hold email</strong> with your tour or safari details, party
+        <strong>on-hold email</strong> with your experience or safari details, party
 
         size and a summary of the total. That email also includes a secure link
 
@@ -127,7 +127,7 @@ const faqs: FaqItem[] = [
 
   {
 
-    question: "Can you organise airport pick-ups for my tour or safari?",
+    question: "Can you organise airport pick-ups for my experience or safari?",
 
     answer: (
 
@@ -159,7 +159,7 @@ const faqs: FaqItem[] = [
 
       <>
 
-        We host <strong>Zanzibar tours</strong> directly and also curate{" "}
+        We host <strong>Zanzibar experiences</strong> directly and also curate{" "}
 
         <strong>safaris from Zanzibar</strong> to parks such as Selous and
 
@@ -183,7 +183,7 @@ const faqs: FaqItem[] = [
 
       <>
 
-        Yes. Many of our Zanzibar tours and short safaris are{" "}
+        Yes. Many of our Zanzibar experiences and short safaris are{" "}
 
         <strong>family-friendly</strong>, and we keep group sizes small so that
 
@@ -221,7 +221,7 @@ const faqs: FaqItem[] = [
 
         share your dates, hotel and any must-do experiences. You&apos;ll receive
 
-        a clear, human reply from our team – not an automated script.
+        a clear, human reply from our team — not an automated script.
 
       </>
 
@@ -290,13 +290,13 @@ export default function FaqPage() {
 
                 <h1 className="font-display text-2xl text-sb-shell sm:text-3xl">
 
-                  FAQs for calm, well–understood days in Zanzibar
+                  FAQs for calm, well-understood days in Zanzibar
 
                 </h1>
 
                 <p className="max-w-3xl text-[0.95rem] leading-relaxed text-sb-shell/95">
 
-                  These notes cover the questions guests most often ask us –
+                  These notes cover the questions guests most often ask us —
 
                   payments, children, timings and what happens if the weather
 
@@ -324,7 +324,7 @@ export default function FaqPage() {
 
                 <p className="mt-0.5 text-sb-shell/95">
 
-                  Payment normally in Zanzibar, optional advance online – always shown in writing.
+                  Payment normally in Zanzibar, optional advance online — always shown in writing.
 
                 </p>
 
@@ -446,7 +446,7 @@ export default function FaqPage() {
 
                 Send us a short note with your dates, hotel and any must-do
 
-                experiences. We&apos;ll reply with a clear, human answer – not
+                experiences. Our team will reply with a clear, human answer — not
 
                 an automated script.
 

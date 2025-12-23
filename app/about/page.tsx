@@ -182,9 +182,9 @@ export default function AboutPage() {
 
               Our guests are often couples, families, friends and honeymooners
 
-              who value calm hosting over loud entertainment – people who would
+              who value calm hosting over loud entertainment — people who would
 
-              rather remember a few well–chosen experiences than rush through a
+              rather remember a few well-chosen experiences than rush through a
 
               crowded schedule.
 
@@ -216,7 +216,7 @@ export default function AboutPage() {
 
               When you share your dates, who you&apos;re travelling with and any
 
-              must–do ideas, we treat it as the start of a conversation, not a
+              must-do ideas, we treat it as the start of a conversation, not a
 
               booking funnel.
 
@@ -253,7 +253,7 @@ export default function AboutPage() {
 
                 A Savana Blu stay is usually a mix of sea, town and quieter
 
-                pauses – not a race from one photo stop to the next.
+                pauses — not a race from one photo stop to the next.
 
               </p>
 
@@ -341,7 +341,7 @@ export default function AboutPage() {
 
               Tanzania. We arrange safari combinations with the same calm approach we use for
 
-              our island days – realistic travel times, breathing space and an
+              our island days — realistic travel times, breathing space and an
 
               honest eye on how you might feel at each stage.
 
@@ -349,11 +349,11 @@ export default function AboutPage() {
 
             <p className="text-[0.95rem] leading-relaxed text-sb-ink/90">
 
-              Rather than pushing rigid, one–size–fits–all routes, we offer
+              Rather than pushing rigid, one-size-fits-all routes, we offer
 
               guidance on where to leave room to rest, which types of days tend
 
-              to pair well with wildlife time, and how to avoid over–scheduling
+              to pair well with wildlife time, and how to avoid over-scheduling
 
               your stay on the islands.
 
@@ -415,7 +415,7 @@ export default function AboutPage() {
 
             <h2 className="font-display text-lg text-sb-night">
 
-              A locally–connected team
+              A locally connected team
 
             </h2>
 
@@ -431,7 +431,7 @@ export default function AboutPage() {
 
             <p>
 
-              From your first WhatsApp message to the day you fly home, you speak with the same Savana Blu team – even when we are arranging lodge stays and game drives on the mainland. We read what you share, ask a few clarifying questions when needed and then suggest a way forward that fits your dates, pace and preferences.
+              From your first WhatsApp message to the day you fly home, you speak with the same Savana Blu team — even when we are arranging lodge stays and game drives on the mainland. We read what you share, ask a few clarifying questions when needed and then suggest a way forward that fits your dates, pace and preferences.
 
             </p>
 
@@ -469,7 +469,7 @@ export default function AboutPage() {
 
             <p>
 
-              For last–minute or in–trip questions, the WhatsApp button on your
+              For last-minute or in-trip questions, the WhatsApp button on your
 
               screen is usually the quickest way to reach us in Zanzibar time
 

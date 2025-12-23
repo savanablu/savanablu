@@ -14,7 +14,7 @@ export const metadata = {
 
   description:
 
-    "Calm, practical notes from Savana Blu on when to visit Zanzibar, how to choose tours, and how to travel gently around the islands.",
+    "Calm, practical notes from Savana Blu on when to visit Zanzibar, how to choose experiences, and how to travel gently around the islands.",
 
 };
 
@@ -146,9 +146,9 @@ export default async function BlogPage() {
 
                 <p className="max-w-3xl text-[0.95rem] leading-relaxed text-sb-shell/95">
 
-                  Short pieces to help you plan calm days on the islands – when
+                  Short pieces to help you plan calm days on the islands — when
 
-                  to visit, how to choose tours, and how to travel gently around
+                  to visit, how to choose experiences, and how to travel gently around
 
                   reefs, sandbanks and Stone Town.
 

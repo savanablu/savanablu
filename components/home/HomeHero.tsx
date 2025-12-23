@@ -38,7 +38,7 @@ export default function HomeHero() {
 
   return (
     <section
-      className="relative w-full min-h-[80vh] overflow-hidden"
+      className="relative w-full min-h-[90vh] sm:min-h-[80vh] overflow-hidden"
       aria-label={currentAlt}
     >
       {/* Background slides */}
@@ -58,7 +58,7 @@ export default function HomeHero() {
       </div>
 
       {/* Hero content */}
-      <div className="relative flex min-h-[80vh] items-center px-6 sm:px-8 lg:px-12">
+      <div className="relative flex min-h-[90vh] sm:min-h-[80vh] items-center px-6 sm:px-8 lg:px-12">
         <div className="max-w-3xl space-y-5 text-sb-shell">
           <div className="h-1 w-20 rounded-full bg-gradient-to-r from-sb-shell/90 to-sb-ocean/90" />
 

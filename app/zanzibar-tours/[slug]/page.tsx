@@ -294,6 +294,21 @@ export default function TourDetailPage({
       <Section className="pb-20 pt-16">
         <div className="mx-auto max-w-5xl space-y-10">
 
+        {/* BREADCRUMB NAVIGATION */}
+        <nav className="flex items-center gap-2 text-[0.85rem] text-sb-ink/70" aria-label="Breadcrumb">
+          <Link href="/" className="hover:text-sb-ocean transition-colors">
+            Home
+          </Link>
+          <span className="text-sb-ink/40">/</span>
+          <Link href="/zanzibar-tours" className="hover:text-sb-ocean transition-colors">
+            Zanzibar Tours
+          </Link>
+          <span className="text-sb-ink/40">/</span>
+          <span className="text-sb-ink/90 font-medium" aria-current="page">
+            {tour.title}
+          </span>
+        </nav>
+
         {/* HERO BANNER */}
 
         <header className="overflow-hidden rounded-3xl bg-gradient-to-br from-sb-night via-sb-deep to-sb-ocean px-6 py-7 text-sb-shell shadow-md sm:px-8 sm:py-9">

@@ -327,7 +327,7 @@ export default async function BlogPostPage({ params }: BlogPageProps) {
       </div>
 
     </Section>
-
+    </>
   );
 
 }

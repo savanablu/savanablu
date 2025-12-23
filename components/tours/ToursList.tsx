@@ -79,7 +79,7 @@ export default function ToursList({ tours }: ToursListProps) {
                 : "bg-sb-mist/40 text-sb-ink/80 hover:bg-sb-mist/60"
             }`}
           >
-            All tours
+            All experiences
           </button>
           {categories.map((category) => (
             <button
@@ -116,7 +116,7 @@ export default function ToursList({ tours }: ToursListProps) {
 
       {/* Results count */}
       <p className="text-[0.8rem] text-sb-ink/60">
-        {filteredAndSortedTours.length} {filteredAndSortedTours.length === 1 ? "tour" : "tours"} found
+        {filteredAndSortedTours.length} {filteredAndSortedTours.length === 1 ? "experience" : "experiences"} found
       </p>
 
       {/* Tours grid */}
@@ -259,12 +259,12 @@ export default function ToursList({ tours }: ToursListProps) {
         </div>
       ) : (
         <div className="text-center py-12">
-          <p className="text-sb-ink/70 mb-4">No tours found in this category.</p>
+          <p className="text-sb-ink/70 mb-4">No experiences found in this category.</p>
           <button
             onClick={() => setSelectedCategory("All")}
             className="text-sb-ocean font-semibold hover:underline"
           >
-            View all tours
+            View all experiences
           </button>
         </div>
       )}

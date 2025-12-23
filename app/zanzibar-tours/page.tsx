@@ -67,11 +67,11 @@ export default function ToursPage() {
                 Zanzibar day tours
               </p>
               <h1 className="font-display text-2xl text-sb-shell sm:text-3xl">
-                Zanzibar day tours & ocean experiences
+                Zanzibar day experiences & ocean escapes
               </h1>
               <p className="text-[0.95rem] leading-relaxed text-sb-shell/90">
                 Dhow days, Stone Town heritage walks, spice farms, Jozani
-                Forest and quiet reef time – curated gently for small groups and
+                Forest and quiet reef time — curated gently for small groups and
                 private stays.
               </p>
             </div>
@@ -92,7 +92,7 @@ export default function ToursPage() {
         {/* Gentle nudge to contact */}
         <div className="mt-8 p-6 rounded-2xl bg-sb-cream/30 border border-sb-mist/40">
           <p className="text-[0.9rem] text-sb-ink/80">
-            <span>Not sure which tour fits your stay? </span>
+            <span>Not sure which experience fits your stay? </span>
             <Link
               href="/contact"
               className="font-semibold text-sb-ocean underline underline-offset-2 hover:text-sb-night transition-colors"

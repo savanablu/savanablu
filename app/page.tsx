@@ -11,10 +11,44 @@ import TripAdvisorRated from "@/components/ui/TripAdvisorRated";
 
 
 export default function HomePage() {
+  // Build LocalBusiness structured data for SEO
+  const localBusinessStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "TouristInformationCenter",
+    "name": "Savana Blu Luxury Expeditions",
+    "description": "Boutique, small-group and private tours in Zanzibar – from Safari Blue and Mnemba reef to Stone Town, spice farms and sunset dhow cruises.",
+    "url": "https://savanablu.com",
+    "logo": "https://savanablu.com/images/logo-footer.png",
+    "image": "https://savanablu.com/images/og-image.jpg",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Sogea",
+      "addressRegion": "Zanzibar",
+      "addressCountry": "TZ",
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+255-678-439-529",
+      "contactType": "Customer Service",
+      "email": "hello@savanablu.com",
+      "availableLanguage": "English",
+    },
+    "sameAs": [
+      "https://www.tripadvisor.com/Attraction_Review-g8055401-d7187090-Reviews-Savana_Blu_Luxury_Expeditions-Zanzibar_City_Zanzibar_Island_Zanzibar_Archipelago.html",
+    ],
+    "priceRange": "$$",
+    "areaServed": {
+      "@type": "Place",
+      "name": "Zanzibar, Tanzania",
+    },
+  };
 
   return (
-
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessStructuredData) }}
+      />
 
       <HomeHero />
 

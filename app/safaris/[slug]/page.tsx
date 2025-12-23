@@ -254,12 +254,42 @@ export default function PackageDetailPage({
     }),
   };
 
+  // Build breadcrumb structured data for SEO
+  const breadcrumbStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://savanablu.com",
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Safaris",
+        "item": "https://savanablu.com/safaris",
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": pkg.title,
+        "item": `https://savanablu.com/safaris/${pkg.slug}`,
+      },
+    ],
+  };
+
   return (
     <>
       <PageVisitTracker slug={pkg.slug} type="safari" />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }}
       />
       <Section className="pb-20 pt-16">
         <div className="mx-auto max-w-5xl space-y-10">

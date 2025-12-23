@@ -254,12 +254,42 @@ export default function TourDetailPage({
     }),
   };
 
+  // Build breadcrumb structured data for SEO
+  const breadcrumbStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://savanablu.com",
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Zanzibar Tours",
+        "item": "https://savanablu.com/zanzibar-tours",
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": tour.title,
+        "item": `https://savanablu.com/zanzibar-tours/${tour.slug}`,
+      },
+    ],
+  };
+
   return (
     <>
       <PageVisitTracker slug={tour.slug} type="tour" />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }}
       />
       <Section className="pb-20 pt-16">
         <div className="mx-auto max-w-5xl space-y-10">

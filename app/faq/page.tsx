@@ -1,5 +1,6 @@
 // app/faq/page.tsx
 
+import React from "react";
 import Section from "@/components/ui/Section";
 import Link from "next/link";
 
@@ -233,11 +234,43 @@ const faqs: FaqItem[] = [
 
 
 
+// Helper function to extract plain text from React nodes for structured data
+function extractTextFromReactNode(node: React.ReactNode): string {
+  if (typeof node === "string") return node;
+  if (typeof node === "number") return String(node);
+  if (Array.isArray(node)) {
+    return node.map(extractTextFromReactNode).join(" ").trim();
+  }
+  if (node && typeof node === "object" && "props" in node) {
+    if (node.props?.children) {
+      return extractTextFromReactNode(node.props.children);
+    }
+  }
+  return "";
+}
+
 export default function FaqPage() {
+  // Build FAQPage structured data for SEO
+  const faqStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map((item) => ({
+      "@type": "Question",
+      "name": item.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": extractTextFromReactNode(item.answer).replace(/\s+/g, " ").trim(),
+      },
+    })),
+  };
 
   return (
-
-    <Section className="pb-20 pt-16">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }}
+      />
+      <Section className="pb-20 pt-16">
 
       {/* Wider container to match Contact */}
       <div className="mx-auto max-w-6xl space-y-8">
@@ -487,7 +520,7 @@ export default function FaqPage() {
       </div>
 
     </Section>
-
+    </>
   );
 
 }

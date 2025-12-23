@@ -117,9 +117,42 @@ export default async function BlogPostPage({ params }: BlogPageProps) {
 
 
 
-  return (
+  // Build Article structured data for SEO
+  const articleStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": titleText,
+    "description": descriptionText,
+    "image": "https://savanablu.com/images/og-image.jpg",
+    "datePublished": date ? new Date(date).toISOString() : undefined,
+    "dateModified": date ? new Date(date).toISOString() : undefined,
+    "author": {
+      "@type": "Organization",
+      "name": "Savana Blu Luxury Expeditions",
+      "url": "https://savanablu.com",
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Savana Blu Luxury Expeditions",
+      "url": "https://savanablu.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://savanablu.com/images/logo-footer.png",
+      },
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://savanablu.com/blog/${slug}`,
+    },
+  };
 
-    <Section className="pb-20 pt-16">
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleStructuredData) }}
+      />
+      <Section className="pb-20 pt-16">
 
       <div className="mx-auto max-w-5xl space-y-8">
 

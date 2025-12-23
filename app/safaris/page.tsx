@@ -64,15 +64,13 @@ export default function PackagesPage() {
           <div className="relative mx-auto flex h-full max-w-6xl items-end px-6 pb-8 pt-16 sm:px-8 sm:pb-10 sm:pt-0">
             <div className="max-w-xl space-y-3 text-sb-shell">
               <p className="text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-sb-shell/80">
-                Zanzibar stays & combinations
+                Flying safaris from Zanzibar
               </p>
               <h1 className="font-display text-2xl text-sb-shell sm:text-3xl">
-                Boutique Zanzibar packages & short escapes
+                Short safaris from Zanzibar to Tanzania&apos;s national parks
               </h1>
               <p className="text-[0.95rem] leading-relaxed text-sb-shell/90">
-                Gentle combinations of beaches, culture and time on the
-                water, arranged as 3–7 night outlines that we can adjust to fit
-                your flights and pace.
+                Flying safaris from Zanzibar to Tanzania&apos;s national parks — Selous, Mikumi, Tarangire, Ngorongoro, Serengeti and Lake Manyara — arranged as 1–3 day outlines that we can adjust to fit your flights and pace.
               </p>
             </div>
           </div>
@@ -83,8 +81,7 @@ export default function PackagesPage() {
       <div className="mx-auto mt-8 max-w-6xl px-4 sm:px-8 space-y-6">
         {/* Calm reassurance line */}
         <p className="text-[0.8rem] text-sb-ink/70">
-          Each outline can be adjusted for your dates, hotel preferences and
-          pace. Payment is normally made in Zanzibar, with an optional secure online advance link sent after booking if you&apos;d like to lock in your dates.
+          Each safari outline can be adjusted for your dates, flight preferences and pace. Payment is normally made in Zanzibar, with an optional secure online advance link sent after booking if you&apos;d like to lock in your dates.
         </p>
 
         {/* Safaris List with Filters */}
@@ -98,8 +95,8 @@ export default function PackagesPage() {
               href="/contact"
               className="font-semibold text-sb-ocean underline underline-offset-2 hover:text-sb-night transition-colors"
             >
-              Tell us your dates, hotel ideas and who you&apos;re travelling
-              with, and we&apos;ll sketch a simple outline.
+              Tell us your dates, flight preferences and who you&apos;re travelling
+              with, and our team will sketch a simple outline.
             </Link>
           </p>
         </div>

@@ -36,18 +36,14 @@ export default function TripAdvisorRated({ showText = true }: TripAdvisorRatedPr
       <div id="TA_rated919" className="TA_rated">
         <ul id="1BBeeVgb" className="TA_links vVc36h7sF">
           <li id="XJfbccDW2b" className="W25qkZJZG1Gi">
-            <a
-              target="_blank"
-              href="https://www.tripadvisor.com/Attraction_Review-g8055401-d7187090-Reviews-Savana_Blu_Luxury_Expeditions-Zanzibar_City_Zanzibar_Island_Zanzibar_Archipelago.html"
-              rel="noopener noreferrer"
-            >
+            <span style={{ cursor: "default", pointerEvents: "none" }}>
               <img
                 src="https://www.tripadvisor.com/img/cdsi/img2/badges/ollie-11424-2.gif"
                 alt="TripAdvisor"
                 className="h-auto"
                 style={{ maxWidth: "150px", height: "auto" }}
               />
-            </a>
+            </span>
           </li>
         </ul>
       </div>

@@ -13,7 +13,7 @@ export function HomeSafariHighlight() {
             Why travellers choose Savana Blu
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-sb-ink/80 sm:text-[0.95rem]">
-            We&apos;re based on the islands, and we stay close to real tides, light and flight timings.
+            We&apos;re based on the islands and work closely with local hosts, staying close to real tides, light and flight timings.
             That means we can be honest about what fits into a day – and how to link ocean time with
             wildlife days inland without exhausting everyone.
           </p>

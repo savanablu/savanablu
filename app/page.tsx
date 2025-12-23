@@ -76,7 +76,7 @@ export default function HomePage() {
 
               <p className="text-[0.9rem] leading-relaxed text-sb-ink/90">
 
-                One point of contact throughout – from your first WhatsApp to meeting your guide.
+                One point of contact throughout — from your first WhatsApp to meeting one of our local guides.
 
               </p>
 
@@ -94,9 +94,9 @@ export default function HomePage() {
 
               <p className="text-[0.9rem] leading-relaxed text-sb-ink/90">
 
-                Couples, families, honeymooners and friends who prefer calm
+                Couples, families, honeymooners and friends who prefer calm,
 
-                hosting over loud entertainment – people who like good notes,
+                local hosting over loud entertainment – people who like good notes,
 
                 honest timings and days that feel quietly special rather than
 
@@ -126,9 +126,15 @@ export default function HomePage() {
 
               </Link>
 
-              <div className="mt-5 flex justify-center border-t border-sb-mist/50 pt-4">
+              <div className="mt-5 space-y-2 border-t border-sb-mist/50 pt-4">
 
                 <TripAdvisorRated />
+
+                <p className="text-center text-[0.75rem] leading-relaxed text-sb-ink/70">
+
+                  Many guests discover us through personal recommendations, Airbnb experiences, and TripAdvisor reviews.
+
+                </p>
 
               </div>
 
@@ -166,11 +172,11 @@ export default function HomePage() {
 
               <p className="text-[0.95rem] leading-relaxed text-sb-ink/90">
 
-                You can browse our Zanzibar day tours to get a feel for what
+                You can browse our Zanzibar day experiences to get a feel for what
 
-                resonates – Stone Town walks, spice and forest, ocean days and
+                resonates — Stone Town walks, spice and forest visits, ocean days and
 
-                sandbanks – or you can look at multi–day combinations that link
+                sandbanks — or you can look at multi–day combinations that link
 
                 the islands with time on safari.
 
@@ -215,6 +221,12 @@ export default function HomePage() {
                 </Link>
 
               </div>
+
+              <p className="text-[0.9rem] leading-relaxed text-sb-ink/90">
+
+                Many of our day experiences can also be booked independently.
+
+              </p>
 
             </div>
 
@@ -266,7 +278,7 @@ export default function HomePage() {
 
                   Or tap the WhatsApp button on your screen to reach us directly
 
-                  (UTC+3 – Zanzibar time).
+                  (UTC+3 – Zanzibar time). We reply personally, not with automated messages.
 
                 </p>
 

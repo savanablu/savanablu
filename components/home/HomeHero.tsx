@@ -67,15 +67,15 @@ export default function HomeHero() {
           </p>
 
           <h1 className="font-display text-3xl leading-tight sm:text-4xl">
-            Zanzibar tours & safaris, shaped around how you actually travel.
+            Zanzibar experiences & safaris, shaped around how you actually travel.
           </h1>
 
           <p className="max-w-2xl text-[0.98rem] leading-relaxed text-sb-shell/95">
-            We are a Zanzibar-based team connecting island days with mainland safaris – from sandbanks and dhows to Selous, Mikumi, Tarangire, Ngorongoro and the Serengeti – with one calm, human conversation.
+            We are a Zanzibar-based team of local hosts and guides, connecting island days with mainland safaris — from sandbanks and dhow trips to Selous, Mikumi, Tarangire, Ngorongoro and the Serengeti — through one calm, human conversation.
           </p>
 
           <div className="flex flex-wrap gap-3 pt-1">
-            <ButtonLink href="/zanzibar-tours">Explore Zanzibar tours</ButtonLink>
+            <ButtonLink href="/zanzibar-tours">Explore Zanzibar experiences</ButtonLink>
             <ButtonLink
               href="/safaris"
               variant="ghost"
@@ -91,7 +91,7 @@ export default function HomeHero() {
 
           <div className="mt-4 grid gap-3 text-[0.82rem] text-sb-shell/90 sm:grid-cols-2">
             <div className="rounded-full bg-sb-shell/15 px-3 py-1.5">
-              Boutique · owner-run · locally connected
+              Boutique · team-led · locally connected
             </div>
             <div className="rounded-full bg-sb-shell/15 px-3 py-1.5">
               Small groups & private departures

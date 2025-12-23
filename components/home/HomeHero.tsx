@@ -86,10 +86,10 @@ export default function HomeHero() {
           </div>
 
           <p className="max-w-2xl text-[0.9rem] leading-relaxed text-sb-shell/90">
-            Start with a simple message – your dates, where you're staying and who is travelling. We'll suggest a mix of sea days, town time and safari that fits.
+            Start with a simple message – your dates, where you're staying and who is travelling.
           </p>
 
-          <div className="mt-4 grid gap-3 text-[0.82rem] text-sb-shell/90 sm:grid-cols-2">
+          <div className="mt-6 grid gap-3 text-[0.82rem] text-sb-shell/90 sm:grid-cols-2">
             <div className="rounded-full bg-sb-shell/15 px-3 py-1.5">
               Boutique · team-led · locally connected
             </div>

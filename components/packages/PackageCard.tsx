@@ -54,15 +54,15 @@ export default function PackageCard({ pkg }: Props) {
             href={`/packages/${pkg.slug}`}
             className="text-xs font-medium text-sb-lagoon hover:text-sb-ocean"
           >
-            View itinerary
+            View Experience
           </Link>
           <ButtonLink
             href={`/packages/${pkg.slug}`}
             variant="primary"
             size="sm"
-            aria-label={`View details for ${pkg.title}`}
+            aria-label={`View Experience: ${pkg.title}`}
           >
-            View details
+            View Experience
           </ButtonLink>
         </div>
       </div>

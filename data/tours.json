@@ -1,8 +1,8 @@
 [
     {
         "slug": "jozani-forest-red-colobus-encounter",
-        "title": "Jozani Forest & Red Colobus Encounter",
-        "shortDescription": "Half-day visit to Jozani Forest to see Zanzibar red colobus monkeys and walk the forest and mangrove boardwalk.",
+        "title": "Jozani Forest, Red Colobus & Mangroves",
+        "shortDescription": "A quiet morning or afternoon in Zanzibar's natural forest, walking shaded paths to see red colobus monkeys and coastal mangroves.",
         "description": "This gentle half-day trip takes you to Jozani\u2013Chwaka Bay National Park to see one of Zanzibar's last pockets of natural forest.\n\nA local guide leads you along simple forest paths to look for Zanzibar red colobus monkeys and other small wildlife. Afterwards you walk a short mangrove boardwalk to see how the coastal forest meets the tides. The outing fits easily into a morning or afternoon and can be combined with a spice farm or village visit if you would like a fuller day.",
         "location": "Jozani\u2013Chwaka Bay National Park",
         "durationHours": 4,
@@ -46,8 +46,8 @@
     },
     {
         "slug": "kizimkazi-dolphins-salama-cave-aquarium",
-        "title": "Kizimkazi Dolphins & Salaam Cave Aquarium",
-        "shortDescription": "Early-morning Kizimkazi dolphin-spotting by boat, followed by a visit to Salaam Cave Aquarium with the option to swim with turtles.",
+        "title": "Kizimkazi Dolphins & Turtle Sanctuary",
+        "shortDescription": "An early morning on the south coast, watching dolphins from a respectful distance, then time with rescued turtles in clear water.",
         "description": "This south-coast morning starts early so you can enjoy softer light and quieter seas around Kizimkazi.\n\nYou board a small boat and head out to look for local dolphin pods using a respectful, low-impact approach that avoids chasing or crowding them. When conditions and behaviour allow, you may be able to enter the water nearby for a short, carefully managed swim and snorkel.\n\nAfter the boat returns to shore you visit Salaam Cave Aquarium, where a clear natural pool is home to rescued sea turtles. You can watch from the edge or choose to swim with them for a short time before a simple tea stop and your drive back to the hotel.",
         "location": "Kizimkazi & Salaam Cave",
         "durationHours": 5,
@@ -93,8 +93,8 @@
     },
     {
         "slug": "mnemba-island-reef-snorkelling-dolphins",
-        "title": "Mnemba Island Reef Snorkelling & Dolphins",
-        "shortDescription": "Early-morning snorkelling near Mnemba Island's reefs, with a chance to see dolphins on the way.",
+        "title": "Mnemba Reefs & Open Water",
+        "shortDescription": "Early morning snorkelling in clear water near Mnemba, with time to relax on the boat and watch for dolphins.",
         "description": "This half-day sea trip leaves from the north or north-east coast in the early morning for calmer conditions and softer light.\n\nYour captain chooses snorkelling spots near the protected reefs around Mnemba, aiming for clear water and easy currents. There is a chance to see dolphins along the way, always with a gentle, non-intrusive approach.\n\nBetween swims you can relax on the boat with light snacks and soft drinks, watching the colours of the lagoon and open sea before returning to shore and then to your hotel.",
         "location": "Mnemba Atoll Marine Area",
         "durationHours": 5,
@@ -140,8 +140,8 @@
     },
     {
         "slug": "prison-island-nakupenda-sandbank",
-        "title": "Prison Island & Nakupenda Sandbank",
-        "shortDescription": "A relaxed day combining Prison Island's giant tortoises with swimming and sand time on Nakupenda sandbank.",
+        "title": "Prison Island Tortoises & Nakupenda Sand",
+        "shortDescription": "A calm day on the water, visiting giant tortoises on Prison Island, then time to swim and rest on a quiet sandbank.",
         "description": "This day gives you a mix of simple history and open sea. You start with a short boat ride from Stone Town to Prison Island (Changuu), where you visit the Aldabra giant tortoises and walk a little around the old buildings.\n\nAfterwards the boat continues to Nakupenda, a long sandbank that appears with the tide. Here there is time to swim in shallow water, walk on the sand and sit under simple shade. A light lunch is usually served on or near the sandbank, with soft drinks and water.\n\nIn the afternoon you return by boat to Stone Town and then on to your hotel, normally by late afternoon.",
         "location": "Stone Town, Changuu Island & Nakupenda",
         "durationHours": 6,
@@ -186,8 +186,8 @@
     },
     {
         "slug": "spice-farm-senses-of-zanzibar",
-        "title": "Spice Farm \u2013 Senses of Zanzibar",
-        "shortDescription": "A short visit to a local spice farm to see, smell and taste cloves, cinnamon, vanilla and fresh fruits.",
+        "title": "Spice Farm, Senses & Simple Life",
+        "shortDescription": "A gentle inland visit to see, smell and taste spices growing in the countryside, with time to understand how they're used.",
         "description": "This is a gentle inland trip for guests who enjoy food and simple local life. You travel to a small spice farm where a guide shows you different trees and plants such as cloves, cinnamon, cardamom and vanilla.\n\nYou are encouraged to touch, smell and taste along the way, with clear explanations of how each spice grows and how it is used at home. The visit usually ends with a small fruit tasting and the option to buy a few packets to take home.\n\nThis outing can stand alone as a half-day or be combined with Stone Town or Jozani for a fuller day.",
         "location": "Central Zanzibar countryside",
         "durationHours": 3,
@@ -230,10 +230,11 @@
     },
     {
         "slug": "safari-blu-dhow-sandbank-escape",
-        "title": "Safari Blu Dhow & Sandbank Escape",
-        "shortDescription": "A full Indian Ocean day on a traditional dhow, with snorkelling, a sandbank stop and a simple seafood lunch.",
-        "description": "This is a classic sea day from the Fumba side of the island. You board a wooden dhow and sail into Menai Bay, with your crew choosing snorkelling spots based on the day's conditions.\n\nThere is time to snorkel over shallow reefs, rest on a sandbank and enjoy the colours of the lagoon. A simple seafood-style lunch (with vegetarian options) is served on or near a small island, with soft drinks and water included.\n\nThe day runs at an easy pace, with small groups and no loud party feel. In the afternoon you sail back to Fumba and return to your hotel by late afternoon.",
-        "location": "Fumba Peninsula & Menai Bay",
+        "title": "Safari Blue, Done the Unrushed Way",
+        "shortDescription": "A calm day on the Indian Ocean, sailing by traditional dhow, shaped around the tides, the light, and the natural rhythm of the sea.",
+        "description": "You arrive at Fumba in the morning and step onto a traditional wooden dhow, joining a small group hosted by the Savana Blu team. The crew sets sail into Menai Bay, choosing where to anchor based on the day's conditions—the clarity of the water, the movement of the tide, the feel of the wind.\n\nThere is time to snorkel in shallow water, to rest on a sandbank when the tide allows, and to simply be on the boat watching the colours of the lagoon. A simple seafood lunch is served on or near a small island, with space to sit and pause rather than rush between stops.\n\nIn the afternoon you sail back towards Fumba at a gentle pace. The atmosphere stays quiet and unhurried—no loud music, no crowded boats nearby. You return to your hotel by late afternoon, with the sense of having spent a day on the water rather than ticking off a list of activities.",
+        "location": "Fumba Peninsula · Menai Bay",
+        "durationLabel": "Full day",
         "durationHours": 8,
         "basePrice": 169,
         "images": [
@@ -243,18 +244,18 @@
         ],
         "highlights": [
             "Sail by traditional Swahili dhow with an experienced local crew",
-            "Snorkel above shallow coral gardens in Menai Bay",
-            "Time to unwind on a remote sandbank with shade available",
-            "Seafood lunch with vegetarian options on a small island",
-            "Small-group atmosphere, avoiding loud party crowds"
+            "Snorkel over shallow coral gardens in the calm waters of Menai Bay",
+            "Time to pause and unwind on a quiet sandbank, with shade available",
+            "A relaxed seafood lunch on a small island, with vegetarian options",
+            "Small-group setting with no loud or party atmosphere"
         ],
         "included": [
-            "Return hotel transfers from most main Zanzibar beach areas (exact coverage confirmed in your voucher)",
-            "Dhow charter with licensed captain and crew",
+            "Return hotel transfers from Zanzibar beach areas (exact coverage confirmed in your voucher)",
+            "Dhow charter with captain and crew",
             "Snorkelling equipment (mask, snorkel and fins)",
             "Seafood lunch on the island and soft drinks",
             "Marine park or conservation fees where applicable",
-            "Local English-speaking guide hosting the day"
+            "Experienced, English-speaking host for the day"
         ],
         "notIncluded": [
             "Alcoholic beverages",
@@ -262,7 +263,7 @@
             "Professional photography services, if offered",
             "Personal travel insurance",
             "Personal expenses and souvenirs",
-            "Optional tips for crew and guide"
+            "Tips for crew and guide"
         ],
         "whatToBring": [
             "Light swimwear and a change of clothes",
@@ -277,9 +278,9 @@
     },
     {
         "slug": "prison-island-stone-town-sunset-promenade",
-        "title": "Prison Island & Stone Town Sunset Promenade",
-        "shortDescription": "An afternoon on Prison Island followed by an easy Stone Town walk and sunset by the seafront.",
-        "description": "This is a calm half-day for guests who like slower city time. You begin with a short boat ride to Prison Island, where you visit the giant tortoises and enjoy views back towards Stone Town.\n\nOn return to the mainland you meet your guide and walk through selected parts of Stone Town. You pass narrow alleys, carved doors and small markets at an easy pace, with time for a short drink stop if you wish.\n\nAs the light softens, you reach the waterfront and Forodhani Gardens, where local families and vendors gather. You can try simple snacks or a fresh juice, watch the sunset and then return to your hotel.",
+        "title": "Prison Island, Stone Town & Sunset",
+        "shortDescription": "An unhurried afternoon visiting giant tortoises on Prison Island, then a gentle walk through Stone Town as the light softens.",
+        "description": "This is a calm half-day for guests who like slower city time. You begin with a short boat ride to Prison Island, where you visit the giant tortoises and enjoy views back towards Stone Town.\n\nOn return to the mainland you meet your host and walk through selected parts of Stone Town. You pass narrow alleys, carved doors and small markets at an easy pace, with time for a short drink stop if you wish.\n\nAs the light softens, you reach the waterfront and Forodhani Gardens, where local families and vendors gather. You can try simple snacks or a fresh juice, watch the sunset and then return to your hotel.",
         "location": "Changuu Island & Stone Town",
         "durationHours": 5,
         "basePrice": 94,
@@ -322,9 +323,9 @@
     },
     {
         "slug": "stone-town-heritage-walking-tour",
-        "title": "Stone Town Heritage Walking Tour",
-        "shortDescription": "A relaxed walking tour through Stone Town's alleys, markets and main historical sites with a local guide.",
-        "description": "This half-day walk is designed to give you a clear first picture of Stone Town. Your guide meets you in town and leads you through key streets and squares, pointing out old doors, houses and everyday life.\n\nYou visit or pass important places such as the former slave market site, the Old Fort and the seafront, and you step through a local market with time for simple tastings if you wish.\n\nThe pace and route can be adjusted to your interests and how much walking you are comfortable with, making it suitable for most guests and families.",
+        "title": "Stone Town Alleys, Doors & Markets",
+        "shortDescription": "A calm walk through Stone Town's narrow streets, past carved doors and small markets, at a pace that lets you take it in.",
+        "description": "This half-day walk is designed to give you a clear first picture of Stone Town. Your host meets you in town and leads you through key streets and squares, pointing out old doors, houses and everyday life.\n\nYou visit or pass important places such as the former slave market site, the Old Fort and the seafront, and you step through a local market with time for simple tastings if you wish.\n\nThe pace and route can be adjusted to your interests and how much walking you are comfortable with, making it suitable for most guests and families.",
         "location": "Stone Town, Zanzibar City",
         "durationHours": 3,
         "basePrice": 44,
@@ -365,8 +366,8 @@
     },
     {
         "slug": "stone-town-spice-jozani-trio",
-        "title": "Stone Town, Spice & Jozani Trio",
-        "shortDescription": "A full day that links Stone Town, a spice farm and Jozani Forest in one organised itinerary.",
+        "title": "Stone Town, Spice & Jozani Forest",
+        "shortDescription": "A well-paced day connecting town, countryside and forest, with time to walk, taste and observe without feeling rushed.",
         "description": "This day is for guests who want to see the main sides of Zanzibar in a single, well-planned route. You start the morning in Stone Town with a simple heritage walk through key streets, markets and seafront points.\n\nLater you drive inland to a spice farm, where you see and taste different spices and fruits and learn how they are used in daily cooking. After a light lunch stop, the journey continues to Jozani Forest.\n\nAt Jozani a park guide helps you look for Zanzibar red colobus monkeys and leads you on a short forest and mangrove boardwalk walk. Transfers and timings are arranged in the background so the day feels full but not rushed.",
         "location": "Stone Town, Central Zanzibar & Jozani",
         "durationHours": 10,
@@ -412,8 +413,8 @@
     },
     {
         "slug": "the-rock-east-coast-sunset",
-        "title": "The Rock & East Coast Sunset",
-        "shortDescription": "A tide-aware visit to The Rock restaurant combined with beach time and an easy sunset stop on the east coast.",
+        "title": "The Rock & East Coast Light",
+        "shortDescription": "A tide-aware visit to The Rock restaurant, with time for a beach walk and a quiet moment watching the light change.",
         "description": "This outing is built around a reserved visit to The Rock restaurant on Zanzibar's east coast. We arrange your transfer and timing based on the tide and your confirmed sitting.\n\nYou travel across the island to the Michamvi area, with time to enjoy sea views. Before or after your meal at The Rock, there is time for a simple beach walk or a swim when the tide allows.\n\nTowards the end of the afternoon you pause at a quiet viewpoint to watch the light change over the lagoon, then drive back to your hotel with your driver.",
         "location": "Michamvi Peninsula & East Coast",
         "durationHours": 5,
@@ -457,9 +458,9 @@
     },
     {
         "slug": "village-tour-nungwi-beach-relax",
-        "title": "Village Tour & Nungwi Beach Relax",
-        "shortDescription": "A day that combines a hosted village visit with unhurried afternoon beach time in Nungwi.",
-        "description": "This day is for guests who want to see everyday life and still enjoy time by the sea. In the morning you visit a village area with a local host, walking short distances to see small shops, homes and community spaces.\n\nYou can sit for tea, ask questions and, if you wish, buy simple, useful gifts such as notebooks or pencils to give through your guide in a respectful way. Later you continue north to Nungwi.\n\nThe afternoon is open and relaxed. You can swim, walk the beach, sit at a café or simply watch local boats along the shore before returning to your hotel.",
+        "title": "Village Life & Nungwi Beach",
+        "shortDescription": "A balanced day visiting a local village in the morning, then unhurried time to swim and relax on Nungwi's northern beaches.",
+        "description": "This day is for guests who want to see everyday life and still enjoy time by the sea. In the morning you visit a village area with a local host, walking short distances to see small shops, homes and community spaces.\n\nYou can sit for tea, ask questions and, if you wish, buy simple, useful gifts such as notebooks or pencils to give through your host in a respectful way. Later you continue north to Nungwi.\n\nThe afternoon is open and relaxed. You can swim, walk the beach, sit at a café or simply watch local boats along the shore before returning to your hotel.",
         "location": "Kinyasini Village & Nungwi Beach",
         "durationHours": 8,
         "basePrice": 79,
@@ -470,7 +471,7 @@
         ],
         "highlights": [
             "Hosted visit to Kinyasini village with an emphasis on everyday life and respectful interaction",
-            "Opportunities to purchase small, useful gifts for children (such as books or pencils) through your guide",
+            "Opportunities to purchase small, useful gifts for children (such as books or pencils) through your host",
             "Scenic coastal drive to Nungwi on the northern tip of the island",
             "Free time to swim, stroll the beach or relax at a caf\u00e9 in Nungwi",
             "A balanced day that feels both local and leisurely"
@@ -504,8 +505,8 @@
     },
     {
         "slug": "zanzibar-one-day-taster-stone-town-prison-island-spice",
-        "title": "Zanzibar in a Day \u2013 Stone Town, Prison Island & Spice",
-        "shortDescription": "A single full day that combines Stone Town, Prison Island and a spice farm for guests with limited time.",
+        "title": "Zanzibar in a Day: Town, Island & Spice",
+        "shortDescription": "A single day connecting Stone Town's streets, Prison Island's tortoises and a spice farm, paced to feel calm rather than rushed.",
         "description": "This itinerary is designed for guests who only have one full day to explore. You start in Stone Town with a simple walking tour through the old streets, markets and main historical sites.\n\nFrom the seafront you take a short boat ride to Prison Island to visit the Aldabra giant tortoises and hear a little about the island's past. After returning to the mainland you travel inland to a family-run spice farm.\n\nAt the farm you walk among trees and plants, tasting spices and seasonal fruits and learning how they are used in local cooking. By late afternoon or early evening you are driven back to your hotel, with the main highlights covered without rushing.",
         "location": "Stone Town, Changuu Island & Central Zanzibar",
         "durationHours": 10,
@@ -551,8 +552,8 @@
     },
     {
         "slug": "zanzibar-2-day-stone-town-prison-spice-jozani",
-        "title": "2 Days in Zanzibar \u2013 Stone Town, Prison Island, Spice & Jozani",
-        "shortDescription": "Two calm days that cover Stone Town, Prison Island, a spice farm and Jozani Forest.",
+        "title": "Two Days: Town, Island, Spice & Forest",
+        "shortDescription": "Two unhurried days connecting Stone Town's heritage, Prison Island's tortoises, a spice farm and Jozani's forest, with space to breathe between stops.",
         "description": "This 2-day plan is for guests who want to see the main sides of Zanzibar in a short time without feeling rushed.\n\nDay 1 – Stone Town and Prison Island. You begin with a guided walk through Stone Town, passing the main sights, markets and waterfront at an easy pace. Later you take a short boat ride to Changuu (Prison Island) to see the Aldabra tortoises and enjoy sea views before returning to the mainland and your hotel.\n\nDay 2 – Spice farm and Jozani Forest. The second day heads inland to a family-run spice farm, where you see and taste different spices and fruits. In the afternoon you continue to Jozani Forest to look for Zanzibar red colobus monkeys with a park guide and walk a short mangrove boardwalk. Transfers are arranged quietly in the background, with time for breaks built in.",
         "location": "Stone Town, Changuu Island, Central Zanzibar & Jozani",
         "durationHours": 16,
@@ -598,9 +599,9 @@
     },
     {
         "slug": "zanzibar-2-day-stone-town-night-market-spice-cooking",
-        "title": "2 Days in Zanzibar \u2013 Stone Town Nights & Spice Cooking",
-        "shortDescription": "Two days for guests who enjoy food and city life, with Stone Town by day and night plus a spice-and-cooking visit.",
-        "description": "This 2-day plan is ideal if you enjoy both the feel of Stone Town and simple local food.\n\nDay 1 – Stone Town by day and night. You start with a relaxed heritage walk through Stone Town, seeing carved doors, small streets and the seafront, with time for a café or market stop. In the evening you return to the old town for a hosted visit to the night market and waterfront, where your guide helps you choose snacks and move easily through the crowds.\n\nDay 2 – Spice farm and cooking. The second day takes you to a nearby spice farm. You see how cloves, cinnamon and other spices grow, taste a few along the way and then join a simple, home-style cooking session that shows how these flavours are used in everyday Swahili dishes. The day ends with a relaxed drive back to your hotel.",
+        "title": "Two Days: Stone Town, Nights & Spice",
+        "shortDescription": "Two days for guests who enjoy food and city life, with Stone Town walks, evening markets and a spice farm cooking session.",
+        "description": "This 2-day plan is ideal if you enjoy both the feel of Stone Town and simple local food.\n\nDay 1 – Stone Town by day and night. You start with a relaxed heritage walk through Stone Town, seeing carved doors, small streets and the seafront, with time for a café or market stop. In the evening you return to the old town for a hosted visit to the night market and waterfront, where your host helps you choose snacks and move easily through the crowds.\n\nDay 2 – Spice farm and cooking. The second day takes you to a nearby spice farm. You see how cloves, cinnamon and other spices grow, taste a few along the way and then join a simple, home-style cooking session that shows how these flavours are used in everyday Swahili dishes. The day ends with a relaxed drive back to your hotel.",
         "location": "Stone Town & Central Zanzibar countryside",
         "durationHours": 16,
         "basePrice": 259,
@@ -643,8 +644,8 @@
     },
     {
         "slug": "zanzibar-2-day-lagoon-stone-town-jozani",
-        "title": "2 Days in Zanzibar \u2013 Lagoon, Starfish, Stone Town & Jozani",
-        "shortDescription": "Two easy days that combine a calm lagoon and starfish outing with Stone Town and Jozani Forest.",
+        "title": "Two Days: Lagoon, Town & Forest",
+        "shortDescription": "Two balanced days connecting a calm lagoon with starfish, Stone Town's streets and Jozani's forest, with time to pause between each.",
         "description": "This 2-day plan gives you a balance of sea, town and forest without rushing.\n\nDay 1 – Lagoon and starfish. After pick-up from your hotel you travel to a sheltered lagoon on the east coast. Here you take a small boat or walk out at low tide to see starfish in clear, shallow water. There is time to swim, float and take photos before you return to your hotel.\n\nDay 2 – Stone Town and Jozani. In the morning you join a simple heritage walk in Stone Town, passing key buildings, markets and the seafront, with time for a coffee or juice stop. Later you drive to Jozani Forest, where a park guide helps you look for Zanzibar red colobus monkeys and other forest life. A short walk along the mangrove boardwalk shows how the forest meets the sea before you head back to your hotel.",
         "location": "East Coast lagoon, Stone Town & Jozani",
         "durationHours": 16,
@@ -689,8 +690,8 @@
     },
     {
         "slug": "zanzibar-3-day-stone-town-turtles-village-lagoon",
-        "title": "3 Days in Zanzibar \u2013 Stone Town, Turtles, Village & Lagoon",
-        "shortDescription": "Three varied days with Stone Town, a turtle swim, a village visit and a relaxed lagoon and starfish outing.",
+        "title": "Three Days: Town, Turtles, Village & Lagoon",
+        "shortDescription": "Three varied days connecting Stone Town's heritage, swimming with turtles, a respectful village visit and a calm lagoon with starfish.",
         "description": "This 3-day plan is for guests who like a mix of town, sea and local life.\n\nDay 1 – Stone Town. You start with a heritage walk through Stone Town, seeing key buildings, markets and cafés at an easy pace. There is time to stop for a drink or small shopping before you return to your hotel.\n\nDay 2 – Turtles and village. The second day heads north to a natural-style turtle aquarium, where you can watch or enter the water with rescued turtles. Later you visit a nearby village with a local guide to see everyday life, small shops and homes, with time for simple conversation.\n\nDay 3 – Lagoon and starfish. The final day is spent at a sheltered lagoon on the east coast. You take a small boat or walk out at low tide to see starfish in clear, shallow water and have unhurried time to swim, relax and take photos before heading back.",
         "location": "Stone Town, North Coast & East Coast lagoon",
         "durationHours": 24,
@@ -737,8 +738,8 @@
     },
     {
         "slug": "zanzibar-3-day-mnemba-turtles-sunset-village",
-        "title": "3 Days in Zanzibar \u2013 Mnemba, Turtles, Sunset Dhow & Village",
-        "shortDescription": "Three north-coast days with Mnemba snorkelling, a turtle swim, a sunset dhow cruise and a village visit.",
+        "title": "Three Days: Mnemba, Turtles, Sunset & Village",
+        "shortDescription": "Three north-coast days with early morning Mnemba snorkelling, swimming with turtles, a gentle sunset dhow cruise and a village visit.",
         "description": "This 3-day plan works well if you would like to base yourself in the north and focus on the sea with a touch of village life.\n\nDay 1 – Mnemba snorkelling. You leave early by boat towards the reefs near Mnemba. There is time to snorkel in clear water and, when nature allows, to watch dolphins from a respectful distance. Between swims you rest on the boat with simple snacks and drinks before returning to your hotel.\n\nDay 2 – Turtles and sunset dhow. The second day includes a visit to a natural-style turtle aquarium, where you can watch or join the turtles in the water in a controlled setting. Later you board a traditional dhow for an easy sunset cruise along the north coast, with soft light, a sea breeze and light refreshments.\n\nDay 3 – Village visit. On the final day you visit a nearby village with a local host. You walk short distances, see how people live and work away from the beach and have time to ask questions before heading back to your hotel.",
         "location": "Mnemba Atoll & North Coast villages",
         "durationHours": 24,
@@ -785,8 +786,8 @@
     },
     {
         "slug": "zanzibar-4-day-lagoon-stone-town-spice-turtles-safari-blu",
-        "title": "4 Days in Zanzibar \u2013 Lagoon, Stone Town, Turtles & Safari Blu",
-        "shortDescription": "Four days that link a lagoon outing, Stone Town and spice, turtles and village life, and a full Safari Blu dhow day.",
+        "title": "Four Days: Lagoon, Town, Spice, Turtles & Safari Blu",
+        "shortDescription": "Four varied days connecting a calm lagoon, Stone Town's streets, a spice farm, turtles and village life, and a full Safari Blu dhow day.",
         "description": "This 4-day plan offers a gentle but varied first look at Zanzibar, with sea, town and village time.\n\nDay 1 – Lagoon and starfish. You begin with a visit to a calm lagoon on the east coast, where you can see starfish in shallow water and enjoy swimming and beach time.\n\nDay 2 – Stone Town and spice. The second day takes you into Stone Town for a relaxed heritage walk, followed by a spice farm visit with a simple cooking element. You see how key spices grow and how they are used in everyday dishes.\n\nDay 3 – Turtles and village. On day three you visit a natural-style turtle aquarium and a nearby village with a local host, learning about daily life beyond the shoreline.\n\nDay 4 – Safari Blu dhow day. The final day is a full Safari Blu trip in Menai Bay with snorkelling, sandbank time and a simple seafood-style lunch on or near the islands before your return to the hotel.",
         "location": "East Coast lagoon, Stone Town, North Coast & Menai Bay",
         "durationHours": 32,
@@ -833,9 +834,9 @@
     },
     {
         "slug": "zanzibar-4-day-stone-town-turtles-sandbanks-mnemba",
-        "title": "4 Days in Zanzibar \u2013 Stone Town, Turtles, Sandbanks & Mnemba",
-        "shortDescription": "Four highlight days with Stone Town, turtles and sunset dhow, Prison Island and a sandbank, plus Mnemba snorkelling.",
-        "description": "This 4-day plan is designed for guests who want the main highlights in a short stay.\n\nDay 1 – Stone Town and night market. You start with a heritage walk through Stone Town, then return in the evening for a hosted visit to the waterfront and night market, with your guide helping you choose snacks and move through the stalls.\n\nDay 2 – Turtles and sunset dhow. The second day focuses on the north coast with a visit to a turtle aquarium and a relaxed sunset dhow cruise along the shoreline.\n\nDay 3 – Prison Island and Nakupenda sandbank. On day three you take a boat from Stone Town to Prison Island to see the Aldabra tortoises, then continue to Nakupenda sandbank for swimming and time on the sand with a simple lunch.\n\nDay 4 – Mnemba snorkelling. The final day heads out towards Mnemba for reef snorkelling in clear water, with a chance of seeing dolphins along the way if conditions and behaviour allow.",
+        "title": "Four Days: Town, Turtles, Sandbanks & Mnemba",
+        "shortDescription": "Four well-paced days connecting Stone Town's heritage, swimming with turtles, a sunset dhow, Prison Island and sandbanks, and Mnemba snorkelling.",
+        "description": "This 4-day plan is designed for guests who want the main highlights in a short stay.\n\nDay 1 – Stone Town and night market. You start with a heritage walk through Stone Town, then return in the evening for a hosted visit to the waterfront and night market, with your host helping you choose snacks and move through the stalls.\n\nDay 2 – Turtles and sunset dhow. The second day focuses on the north coast with a visit to a turtle aquarium and a relaxed sunset dhow cruise along the shoreline.\n\nDay 3 – Prison Island and Nakupenda sandbank. On day three you take a boat from Stone Town to Prison Island to see the Aldabra tortoises, then continue to Nakupenda sandbank for swimming and time on the sand with a simple lunch.\n\nDay 4 – Mnemba snorkelling. The final day heads out towards Mnemba for reef snorkelling in clear water, with a chance of seeing dolphins along the way if conditions and behaviour allow.",
         "location": "Stone Town, North Coast, Menai Bay & Mnemba Atoll",
         "durationHours": 32,
         "basePrice": 459,

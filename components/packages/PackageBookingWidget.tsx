@@ -195,7 +195,7 @@ export default function PackageBookingWidget({
     <aside className="space-y-3 rounded-2xl border border-sb-mist/80 bg-white/95 p-4 text-xs text-sb-ink shadow-sm">
       <div className="flex items-center justify-between gap-2">
         <h3 className="font-display text-sm text-sb-night">
-          Request this safari
+          Request this experience
         </h3>
       </div>
 

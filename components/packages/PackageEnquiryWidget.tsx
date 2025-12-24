@@ -101,7 +101,7 @@ export default function PackageEnquiryWidget({
       className="space-y-3 rounded-2xl border border-sb-mist/80 bg-white/90 p-4 text-xs text-sb-ink shadow-sm"
     >
       <h3 className="font-display text-sm text-sb-night">
-        Request to book this itinerary
+        Request this experience
       </h3>
       <p className="text-[0.78rem] text-sb-ink/75">
         Share who&apos;s travelling and your rough dates. This sends a booking

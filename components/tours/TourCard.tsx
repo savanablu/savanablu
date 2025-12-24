@@ -68,15 +68,15 @@ export default function TourCard({ tour }: Props) {
             href={`/tours/${tour.slug}`}
             className="text-xs font-medium text-sb-lagoon hover:text-sb-ocean"
           >
-            Learn more about this tour
+            Learn more about this experience
           </Link>
           <ButtonLink
             href={`/tours/${tour.slug}`}
             variant="primary"
             size="sm"
-            aria-label={`View details for ${tour.title}`}
+            aria-label={`View Experience: ${tour.title}`}
           >
-            View details
+            View Experience
           </ButtonLink>
         </div>
       </div>

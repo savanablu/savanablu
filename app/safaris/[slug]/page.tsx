@@ -387,13 +387,13 @@ export default function PackageDetailPage({
 
                 <p className="font-medium text-sb-shell">
 
-                  Multi-day Zanzibar stay
+                  Flexible safari outline
 
                   <span className="text-sb-shell/70">
 
                     {" "}
 
-                    · easy to adjust
+                    · shaped around your pace
 
                   </span>
 
@@ -445,15 +445,7 @@ export default function PackageDetailPage({
 
                   <p className="font-medium text-sb-shell">
 
-                    {nights} nights{" "}
-
-                    <span className="text-sb-shell/70">
-
-                      {" "}
-
-                      in Zanzibar
-
-                    </span>
+                    Approx. {nights}-night safari
 
                   </p>
 
@@ -676,7 +668,7 @@ export default function PackageDetailPage({
 
                   We&apos;re still finalising the day-by-day outline for this
 
-                  package. In the meantime,{" "}
+                  experience. In the meantime,{" "}
 
                   <Link
 
@@ -748,7 +740,7 @@ export default function PackageDetailPage({
 
               const title: string =
 
-                anyDay.title || anyDay.name || `Day ${dayNumber} in Zanzibar`;
+                anyDay.title || anyDay.name || `Day ${dayNumber}`;
 
               const description: string =
 
@@ -990,17 +982,17 @@ export default function PackageDetailPage({
 
               <h2 className="font-display text-2xl text-sb-night mb-2">
 
-                Ready to book this package?
+                Ready to plan this experience?
 
               </h2>
 
               <p className="text-[0.9rem] text-sb-ink/80 max-w-2xl mx-auto">
 
-                You can secure this outline with a simple online booking. We
+                You can request this outline online. Every enquiry is reviewed
 
-                review every request personally and confirm the details of your
+                personally, and we confirm accommodation, transfers, and the
 
-                stay, transfers and day-by-day plan.
+                day-by-day plan clearly before anything is final.
 
               </p>
 
@@ -1102,7 +1094,7 @@ export default function PackageDetailPage({
 
                 </svg>
 
-                Back to all packages
+                Back to all experiences
 
               </Link>
 

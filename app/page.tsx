@@ -78,11 +78,11 @@ export default function HomePage() {
 
               <p className="text-[0.96rem] leading-relaxed text-sb-ink/90">
 
-                We keep days unhurried, with time for the sea, stories and a
+                We are a Zanzibar-based team shaping experiences around how you actually travel, not fixed itineraries.
 
-                quiet drink at the end – not rushing from one crowded stop to
+                Island time and mainland safaris, handled quietly and well.
 
-                the next.
+                Thoughtful pacing, local knowledge, and the space to move at your own rhythm.
 
               </p>
 
@@ -200,33 +200,37 @@ export default function HomePage() {
 
               <h2 className="font-display text-xl text-sb-night sm:text-2xl">
 
-                Start with a day, or sketch the whole journey
+                Experiences, Shaped Around How You Travel
 
               </h2>
 
-              <p className="text-[0.95rem] leading-relaxed text-sb-ink/90">
+              <div className="space-y-4 text-[0.95rem] leading-relaxed text-sb-ink/90">
 
-                You can browse our Zanzibar day experiences to get a feel for what
+                <div>
 
-                resonates — Stone Town walks, spice and forest visits, ocean days and
+                  <p className="font-semibold text-sb-night mb-1">Zanzibar Experiences</p>
 
-                sandbanks — or you can look at multi–day combinations that link
+                  <p>
 
-                the islands with time on safari.
+                    Unrushed days on the island, blending coast, culture, and quiet moments at an easy pace.
 
-              </p>
+                  </p>
 
-              <p className="text-[0.95rem] leading-relaxed text-sb-ink/90">
+                </div>
 
-                If you&apos;re not sure where to begin, it&apos;s perfectly
+                <div>
 
-                fine to just tell us your dates, who you&apos;re travelling with
+                  <p className="font-semibold text-sb-night mb-1">Safari Experiences</p>
 
-                and any must–do dreams. We&apos;ll reply with a calm outline,
+                  <p>
 
-                not pressure.
+                    Carefully planned safaris that balance wildlife encounters with comfort, timing, and space.
 
-              </p>
+                  </p>
+
+                </div>
+
+              </div>
 
               <div className="flex flex-wrap gap-3 pt-1 text-[0.9rem]">
 
@@ -238,7 +242,7 @@ export default function HomePage() {
 
                 >
 
-                  Browse Zanzibar tours
+                  Explore Zanzibar Experiences
 
                 </Link>
 
@@ -250,7 +254,7 @@ export default function HomePage() {
 
                 >
 
-                  See safaris & stays
+                  Explore Safari Experiences
 
                 </Link>
 
@@ -258,7 +262,7 @@ export default function HomePage() {
 
               <p className="text-[0.9rem] leading-relaxed text-sb-ink/90">
 
-                Many of our day experiences can also be booked independently.
+                Many of our experiences can also be enjoyed independently, or combined into a longer journey.
 
               </p>
 

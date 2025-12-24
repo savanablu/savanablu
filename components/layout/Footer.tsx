@@ -3,7 +3,7 @@ import Image from "next/image";
 import TripAdvisorRated from "@/components/ui/TripAdvisorRated";
 
 const navItems = [
-  { href: "/zanzibar-tours", label: "Zanzibar Tours" },
+  { href: "/zanzibar-tours", label: "Zanzibar Experiences" },
   { href: "/safaris", label: "Safaris" },
   { href: "/blog", label: "Blog" },
   { href: "/about", label: "About" },
@@ -29,7 +29,7 @@ export default function Footer() {
               />
             </Link>
             <p className="text-[0.9rem] leading-relaxed text-sb-ink/75">
-              Boutique, small-group and private tours thoughtfully crafted on
+              Boutique, small-group and private experiences thoughtfully crafted on
               the islands and coast of Zanzibar.
             </p>
           </div>

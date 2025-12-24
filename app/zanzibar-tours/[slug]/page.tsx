@@ -62,8 +62,8 @@ export async function generateMetadata({
 
   if (!tour) {
     return {
-      title: "Tour Not Found",
-      description: "The requested Zanzibar tour could not be found.",
+      title: "Experience Not Found",
+      description: "The requested Zanzibar experience could not be found.",
     };
   }
 
@@ -72,8 +72,8 @@ export async function generateMetadata({
   
   // Build SEO-friendly description
   const description = tour.shortDescription 
-    ? `${tour.shortDescription} ${duration} ${tour.location ? `in ${tour.location}` : "in Zanzibar"}. Book with Savana Blu for small-group and private tours. From $${basePrice} per person.`
-    : `Book ${tour.title} with Savana Blu. ${duration} ${tour.location ? `in ${tour.location}` : "Zanzibar tour"}. Small-group and private options available.`;
+    ? `${tour.shortDescription} ${duration} ${tour.location ? `in ${tour.location}` : "in Zanzibar"}. Book with Savana Blu for small-group and private experiences. From $${basePrice} per person.`
+    : `Book ${tour.title} with Savana Blu. ${duration} ${tour.location ? `in ${tour.location}` : "Zanzibar experience"}. Small-group and private options available.`;
 
   const imageUrl = tour.images && tour.images.length > 0
     ? `https://savanablu.com${tour.images[0]}`
@@ -82,13 +82,13 @@ export async function generateMetadata({
   // Extract category keywords
   const categoryKeywords = tour.category 
     ? tour.category.toLowerCase()
-    : "zanzibar tour";
+    : "zanzibar experience";
 
   return {
     title: `${tour.title} | Savana Blu Luxury Expeditions`,
     description,
     keywords: [
-      "Zanzibar tour",
+      "Zanzibar experience",
       categoryKeywords,
       tour.location || "Zanzibar",
       "Safari Blue",
@@ -97,8 +97,8 @@ export async function generateMetadata({
       "spice farm",
       "Jozani Forest",
       "Zanzibar day trip",
-      "small group tour Zanzibar",
-      "boutique tour Zanzibar",
+      "small group experience Zanzibar",
+      "boutique experience Zanzibar",
     ].join(", "),
     openGraph: {
       title: `${tour.title} | Savana Blu`,
@@ -151,13 +151,13 @@ export default function TourDetailPage({
 
         <h1 className="mb-2 font-display text-2xl text-sb-night">
 
-          Tour not found
+          Experience not found
 
         </h1>
 
         <p className="text-[0.95rem] text-sb-ink/80">
 
-          We couldn&apos;t find that tour. Please return to the{" "}
+          We couldn&apos;t find that experience. Please return to the{" "}
 
           <Link
 
@@ -167,7 +167,7 @@ export default function TourDetailPage({
 
           >
 
-            tours page
+            experiences page
 
           </Link>{" "}
 
@@ -268,7 +268,7 @@ export default function TourDetailPage({
       {
         "@type": "ListItem",
         "position": 2,
-        "name": "Zanzibar Tours",
+        "name": "Zanzibar Experiences",
         "item": "https://savanablu.com/zanzibar-tours",
       },
       {
@@ -301,7 +301,7 @@ export default function TourDetailPage({
           </Link>
           <span className="text-sb-ink/40">/</span>
           <Link href="/zanzibar-tours" className="hover:text-sb-ocean transition-colors">
-            Zanzibar Tours
+            Zanzibar Experiences
           </Link>
           <span className="text-sb-ink/40">/</span>
           <span className="text-sb-ink/90 font-medium" aria-current="page">
@@ -935,17 +935,15 @@ export default function TourDetailPage({
 
               <h2 className="font-display text-2xl text-sb-night mb-2">
 
-                Ready to book this tour?
+                Ready to plan this experience?
 
               </h2>
 
               <p className="text-[0.9rem] text-sb-ink/80 max-w-2xl mx-auto">
 
-                Book safely online with Savana Blu. We&apos;ll review your
+                We&apos;ll review your details and confirm timings, pick-up
 
-                details and send a personal confirmation with timings, pick-up
-
-                information and what to bring.
+                information, and availability clearly before anything is final.
 
               </p>
 
@@ -1047,7 +1045,7 @@ export default function TourDetailPage({
 
                 </svg>
 
-                Back to all tours
+                Back to all experiences
 
               </Link>
 

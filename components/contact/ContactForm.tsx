@@ -257,7 +257,7 @@ export default function ContactForm() {
         </div>
         <div>
           <label className="block text-[0.8rem] font-semibold uppercase tracking-[0.14em] text-sb-ink/70">
-            Preferred tour or package
+            Preferred experience or safari
           </label>
           <input
             name="preferredTour"

@@ -8,7 +8,7 @@ import { CurrencySelector } from "@/components/fx/CurrencySelector";
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/zanzibar-tours", label: "Zanzibar Tours" },
+  { href: "/zanzibar-tours", label: "Zanzibar Experiences" },
   { href: "/safaris", label: "Safaris" },
   { href: "/about", label: "About" },
   { href: "/blog", label: "Blog" },

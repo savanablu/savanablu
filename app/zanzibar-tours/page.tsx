@@ -64,15 +64,13 @@ export default function ToursPage() {
           <div className="relative mx-auto flex h-full max-w-6xl items-end px-6 pb-8 pt-16 sm:px-8 sm:pb-10 sm:pt-0">
             <div className="max-w-xl space-y-3 text-sb-shell">
               <p className="text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-sb-shell/80">
-                Zanzibar day tours
+                Zanzibar day experiences
               </p>
               <h1 className="font-display text-2xl text-sb-shell sm:text-3xl">
-                Zanzibar day experiences & ocean escapes
+                Zanzibar Day Experiences, Shaped Gently
               </h1>
               <p className="text-[0.95rem] leading-relaxed text-sb-shell/90">
-                Dhow days, Stone Town heritage walks, spice farms, Jozani
-                Forest and quiet reef time — curated gently for small groups and
-                private stays.
+                Unrushed days across coast, culture, forest, and sea — thoughtfully curated for small groups and private travel.
               </p>
             </div>
           </div>

@@ -209,10 +209,10 @@ export default function BookingWidget({
     <div className="space-y-3 text-xs text-sb-ink">
       <div>
         <h3 className="font-display text-sm text-sb-night">
-          Request this tour
+          Request this experience
         </h3>
         <p className="mt-1 text-[0.78rem] text-sb-ink/70">
-          We&apos;ll confirm your booking by email or WhatsApp. Payment is normally made in Zanzibar, with an optional secure online advance link sent afterwards if you&apos;d like to lock in your date.
+          Confirmation is shared by email or WhatsApp. Payment is typically arranged in Zanzibar, with an optional secure advance link available if you&apos;d like to hold your date.
         </p>
       </div>
 

@@ -91,10 +91,10 @@ export default function HomeHero() {
 
           <div className="mt-4 flex flex-wrap gap-3 text-[0.82rem] text-sb-shell/90">
             <div className="rounded-full bg-sb-shell/15 px-3 py-1.5">
-              Boutique · team-led
+              Zanzibar-based · team-led
             </div>
             <div className="rounded-full bg-sb-shell/15 px-3 py-1.5">
-              Small groups & private
+              Small-group & private experiences
             </div>
           </div>
         </div>

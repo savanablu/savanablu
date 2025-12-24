@@ -211,7 +211,7 @@ export function enquiryOperatorEmail(payload: EnquiryPayload): string {
     <p><strong>Name:</strong> ${escapeHtml(name)}<br/>
        <strong>Email:</strong> ${escapeHtml(email)}<br/>
        <strong>Phone:</strong> ${escapeHtml(phone || "-")}<br/>
-       <strong>Preferred tour:</strong> ${escapeHtml(preferredTour || "-")}<br/>
+       <strong>Preferred experience:</strong> ${escapeHtml(preferredTour || "-")}<br/>
        <strong>Travel dates:</strong> ${escapeHtml(dates || "-")}<br/>
        <strong>Accommodation:</strong> ${escapeHtml(accommodation || "-")}</p>
     <p><strong>Message:</strong></p>
@@ -225,7 +225,7 @@ export function enquiryOperatorEmail(payload: EnquiryPayload): string {
 
 export function bookingDepositCustomerEmail(summary: BookingSummary): string {
   const kindLabel =
-    summary.kind === "package" ? "multi-day itinerary" : "day tour";
+    summary.kind === "package" ? "multi-day itinerary" : "day experience";
 
   return `
   <div style="font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:14px;color:#0f172a;line-height:1.6;">
@@ -262,7 +262,7 @@ export function bookingDepositCustomerEmail(summary: BookingSummary): string {
 
 export function bookingDepositOperatorEmail(summary: BookingSummary): string {
   const kindLabel =
-    summary.kind === "package" ? "PACKAGE" : "TOUR";
+    summary.kind === "package" ? "PACKAGE" : "EXPERIENCE";
 
   return `
   <div style="font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:14px;color:#0f172a;line-height:1.6;">
@@ -305,7 +305,7 @@ export type ReminderPayload = {
 
 export function tourReminderCustomerEmail(payload: ReminderPayload): string {
   const kindLabel =
-    payload.kind === "package" ? "itinerary" : "day tour";
+    payload.kind === "package" ? "itinerary" : "day experience";
 
   return `
   <div style="font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:14px;color:#0f172a;line-height:1.6;">
@@ -328,7 +328,7 @@ export function reviewRequestCustomerEmail(
   payload: ReminderPayload
 ): string {
   const kindLabel =
-    payload.kind === "package" ? "trip" : "day tour";
+    payload.kind === "package" ? "trip" : "day experience";
 
   return `
   <div style="font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:14px;color:#0f172a;line-height:1.6;">
@@ -389,7 +389,7 @@ export async function sendBookingOnHoldToGuest(
   const typeLabel =
     booking.type === "safari"
       ? "safari from Zanzibar"
-      : "Zanzibar tour or coastal experience";
+      : "Zanzibar experience";
 
   const subject = `Your Savana Blu booking is on hold – ${safe(
     booking.experienceTitle
@@ -697,7 +697,7 @@ export async function sendBookingConfirmedToGuest(
   const typeLabel =
     booking.type === "safari"
       ? "safari from Zanzibar"
-      : "Zanzibar tour or coastal experience";
+      : "Zanzibar experience";
 
   const subject = `Your Savana Blu booking is confirmed – ${safe(
     booking.experienceTitle

@@ -199,7 +199,7 @@ export default function SafarisList({ safaris }: SafarisListProps) {
                             d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                           />
                         </svg>
-                        <span>Approx. {nights} {nights === 1 ? "night" : "nights"} in Zanzibar</span>
+                        <span>Approx. {nights}-night safari</span>
                       </div>
                     )}
                   </div>
@@ -219,11 +219,11 @@ export default function SafarisList({ safaris }: SafarisListProps) {
                       href={`/safaris/${safari.slug}`}
                       className="block w-full text-center rounded-full bg-sb-night px-4 py-2.5 text-[0.85rem] font-semibold text-sb-shell hover:bg-sb-ocean transition-colors"
                     >
-                      View itinerary
+                      View Experience
                     </Link>
 
                     <p className="text-[0.75rem] text-sb-ink/65 text-center">
-                      Boutique outlines · easy to adjust for your flights and hotel choices
+                      Boutique · Small-group & private experiences
                     </p>
                   </div>
                 </div>

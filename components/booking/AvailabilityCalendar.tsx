@@ -38,7 +38,7 @@ export function AvailabilityCalendar({
   return (
     <div className="space-y-1">
       <label className="block text-[0.78rem] font-medium text-sb-ink/80">
-        Preferred tour date*
+        Preferred experience date*
       </label>
       <input
         type="date"

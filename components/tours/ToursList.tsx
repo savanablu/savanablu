@@ -12,6 +12,7 @@ type Tour = {
   shortDescription?: string;
   location?: string;
   durationHours?: number;
+  durationLabel?: string;
   basePrice?: number;
   category?: string;
   images?: string[];
@@ -213,7 +214,7 @@ export default function ToursList({ tours }: ToursListProps) {
                               d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                             />
                           </svg>
-                          <span>{tour.durationHours} hours</span>
+                          <span>{tour.durationLabel || `${tour.durationHours} hours`}</span>
                         </span>
                       )}
                     </div>
@@ -245,11 +246,11 @@ export default function ToursList({ tours }: ToursListProps) {
                       href={`/zanzibar-tours/${tour.slug}`}
                       className="block w-full text-center rounded-full bg-sb-night px-4 py-2.5 text-[0.85rem] font-semibold text-sb-shell hover:bg-sb-ocean transition-colors"
                     >
-                      View details
+                      View Experience
                     </Link>
 
                     <p className="text-[0.75rem] text-sb-ink/65 text-center">
-                      Boutique experiences · small groups · private options available
+                      Boutique · Small-group & private experiences
                     </p>
                   </div>
                 </div>

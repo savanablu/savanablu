@@ -85,10 +85,10 @@ export default async function BookingSuccessPage({
         {/* Header */}
         <div className="mb-8">
           <p className="text-xs uppercase tracking-[0.25em] text-sb-cream/60">
-            Savana Blu · Booking received
+            Savana Blu · Request received
           </p>
           <h1 className="mt-3 text-3xl font-semibold tracking-wide sm:text-4xl">
-            Your booking is on hold
+            Your request is on hold
           </h1>
         </div>
 
@@ -112,12 +112,11 @@ export default async function BookingSuccessPage({
             </div>
             <div className="flex-1">
               <h2 className="text-lg font-semibold text-sb-cream">
-                Booking received
+                Request received
               </h2>
               <p className="mt-2 text-sm leading-relaxed text-sb-cream/90">
-                Thank you – we&apos;ve received your request and created a provisional
-                booking. Right now your place is{" "}
-                <span className="font-semibold text-emerald-400">on hold</span>.
+                Thank you — we&apos;ve received your request and created a provisional
+                reservation. Your date is currently on hold while we finalise the details.
               </p>
             </div>
           </div>
@@ -144,19 +143,17 @@ export default async function BookingSuccessPage({
                 To fully confirm the date, we usually take a{" "}
                 <span className="font-semibold">20% advance</span>. We&apos;ve emailed
                 you your details, including a secure payment link where you can pay this
-                advance online. The remaining balance is paid in Zanzibar on the day of
-                your tour or safari.
+                advance online. The remaining balance is paid in Zanzibar on the day your experience begins.
               </p>
               <p className="mt-3 text-xs leading-relaxed text-sb-cream/70">
-                If you can&apos;t find the email or something doesn&apos;t look right,
-                just reply to{" "}
+                If you can&apos;t find the email, or if anything looks unclear, reply to{" "}
                 <a
                   href="mailto:hello@savanablu.com"
                   className="font-mono text-[12px] text-sb-lagoon hover:underline"
                 >
                   hello@savanablu.com
                 </a>{" "}
-                or message us on WhatsApp and we&apos;ll help.
+                or message us on WhatsApp — we&apos;re happy to help.
               </p>
             </div>
           </div>
@@ -283,7 +280,7 @@ export default async function BookingSuccessPage({
               To move your booking from <span className="font-semibold">&quot;on hold&quot;</span> to{" "}
               <span className="font-semibold text-emerald-400">fully confirmed</span>, please pay
               a 20% advance using our secure UAE payment partner, Ziina. The
-              balance is paid in Zanzibar on the day of your {typeLabel}.
+              balance is paid in Zanzibar on the day your experience begins.
             </p>
 
             {paymentLinkUrl ? (
@@ -341,8 +338,7 @@ export default async function BookingSuccessPage({
             <div className="mt-4 rounded-lg border border-sb-cream/10 bg-sb-deep/60 p-3">
               <p className="text-xs leading-relaxed text-sb-cream/70">
                 <span className="font-semibold">Note:</span> If you need to adjust your date or pick-up time, let us know as
-                early as possible. However, if you cancel your trip, the 20% advance payment is non-refundable as we&apos;ve already committed
-                guides, boats and vehicles in advance.
+                early as possible. However, if you cancel your trip, the 20% advance payment is non-refundable as arrangements are secured in advance to hold your dates.
               </p>
             </div>
           </section>

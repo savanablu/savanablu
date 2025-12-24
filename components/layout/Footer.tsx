@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import TripAdvisorRated from "@/components/ui/TripAdvisorRated";
 
 const navItems = [
   { href: "/zanzibar-tours", label: "Zanzibar Experiences" },
@@ -91,9 +90,6 @@ export default function Footer() {
               Intimate group sizes, genuine local hosts and unhurried itineraries
               that honour the rhythm of the Swahili coast.
             </p>
-            <div className="mt-4 flex justify-center">
-              <TripAdvisorRated showText={false} />
-            </div>
           </div>
         </div>
 

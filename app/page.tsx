@@ -6,7 +6,6 @@ import Section from "@/components/ui/Section";
 
 import HomeHero from "@/components/home/HomeHero";
 import { HomeSafariHighlight } from "@/components/home/HomeSafariHighlight";
-import TripAdvisorRated from "@/components/ui/TripAdvisorRated";
 
 
 
@@ -33,9 +32,7 @@ export default function HomePage() {
       "email": "hello@savanablu.com",
       "availableLanguage": "English",
     },
-    "sameAs": [
-      "https://www.tripadvisor.com/Attraction_Review-g8055401-d7187090-Reviews-Savana_Blu_Luxury_Expeditions-Zanzibar_City_Zanzibar_Island_Zanzibar_Archipelago.html",
-    ],
+    "sameAs": [],
     "priceRange": "$$",
     "areaServed": {
       "@type": "Place",
@@ -162,11 +159,9 @@ export default function HomePage() {
 
               <div className="mt-5 space-y-2 border-t border-sb-mist/50 pt-4">
 
-                <TripAdvisorRated />
-
                 <p className="text-center text-[0.75rem] leading-relaxed text-sb-ink/70">
 
-                  Many guests discover us through personal recommendations, Airbnb experiences, and TripAdvisor reviews.
+                  Many guests discover us through personal recommendations and Airbnb experiences.
 
                 </p>
 

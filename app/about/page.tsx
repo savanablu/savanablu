@@ -1,7 +1,6 @@
 // app/about/page.tsx
 
 import Section from "@/components/ui/Section";
-import TripAdvisorCertificate from "@/components/ui/TripAdvisorCertificate";
 
 
 
@@ -225,13 +224,6 @@ export default function AboutPage() {
           </div>
 
         </section>
-
-
-
-        {/* TripAdvisor Certificate */}
-        <div className="rounded-3xl bg-gradient-to-br from-sb-shell/60 to-sb-mist/40 p-6 sm:p-8">
-          <TripAdvisorCertificate />
-        </div>
 
 
 

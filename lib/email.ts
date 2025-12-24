@@ -391,7 +391,7 @@ export async function sendBookingOnHoldToGuest(
       ? "safari from Zanzibar"
       : "Zanzibar experience";
 
-  const subject = `Your Savana Blu booking is on hold – ${safe(
+  const subject = `Your Savana Blu request is on hold – ${safe(
     booking.experienceTitle
   )}`;
 
@@ -408,9 +408,9 @@ export async function sendBookingOnHoldToGuest(
         <img src="${logoUrl}" alt="Savana Blu Luxury Expeditions" style="max-width:150px;height:auto;display:inline-block;" />
       </div>` : ''}
 
-      <p style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#64748b;margin:0 0 12px;">Savana Blu · Booking received</p>
+      <p style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#64748b;margin:0 0 12px;">Savana Blu · Request received</p>
 
-      <h1 style="font-size:20px;margin:0 0 12px;">Your booking is on hold</h1>
+      <h1 style="font-size:20px;margin:0 0 12px;">Your request is on hold</h1>
 
       <p style="font-size:14px;line-height:1.6;margin:0 0 12px;">
 
@@ -442,7 +442,7 @@ export async function sendBookingOnHoldToGuest(
 
       <p style="font-size:14px;line-height:1.6;margin:12px 0 8px;">
 
-        Your ${typeLabel} is currently <strong>on hold</strong> and will be fully confirmed once we receive a 20% advance payment.
+        Your request is currently <strong>on hold</strong> and will be fully confirmed once we receive a 20% advance payment.
 
       </p>
 
@@ -501,8 +501,8 @@ export async function sendBookingOnHoldToGuest(
       <p style="font-size:13px;line-height:1.6;margin:12px 0 8px;color:#475569;">
 
         ${booking.paymentLinkUrl 
-          ? "The remaining balance is paid in Zanzibar on the day of your experience."
-          : "You can use the secure payment link provided on the website (or any follow-up message from us) to pay the 20% online. The remaining balance is paid in Zanzibar on the day of your experience."
+          ? "The remaining balance is paid in Zanzibar on the day your experience begins."
+          : "You can use the secure payment link provided on the website (or any follow-up message from us) to pay the 20% online. The remaining balance is paid in Zanzibar on the day your experience begins."
         }
 
       </p>
@@ -515,21 +515,15 @@ export async function sendBookingOnHoldToGuest(
 
       <p style="font-size:12px;line-height:1.6;margin:0 0 8px;color:#64748b;">
 
-        If you need to adjust your date, pick-up time or hotel details, simply reply to this email or contact us on WhatsApp. We'll do our best to accommodate changes around tides, flights and availability. However, if you cancel your trip, the 20% advance payment is non-refundable as we've already committed guides, boats and vehicles in advance.
+        If you need to adjust your date, pick-up time or hotel details, simply reply to this email or contact us on WhatsApp. We'll do our best to accommodate changes around tides, flights and availability. However, if you cancel your trip, the 20% advance payment is non-refundable as arrangements are secured in advance to hold your dates.
 
       </p>
 
 
-
-      <p style="font-size:12px;line-height:1.6;margin:0 0 4px;color:#64748b;">
-
-        With warm regards from Zanzibar,
-
-      </p>
 
       <p style="font-size:12px;line-height:1.6;margin:0;color:#64748b;">
 
-        Savana Blu Luxury Expeditions
+        With warm regards from Zanzibar,<br/>The Savana Blu Luxury Expeditions Team
 
       </p>
 

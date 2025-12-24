@@ -67,26 +67,26 @@ export default function HomeHero() {
           </p>
 
           <h1 className="font-display text-3xl leading-tight sm:text-4xl">
-            Zanzibar experiences & safaris, shaped around how you actually travel.
+            Thoughtfully Curated Zanzibar & Safari Experiences
           </h1>
 
           <p className="max-w-2xl text-[0.98rem] leading-relaxed text-sb-shell/95">
-            We are a Zanzibar-based team of local hosts and guides, connecting island days with mainland safaris — from sandbanks and dhow trips to Selous, Mikumi, Tarangire, Ngorongoro and the Serengeti — through one calm, human conversation.
+            Unrushed island days and mainland safaris, designed for travellers who value time, comfort, and calm.
           </p>
 
           <div className="flex flex-wrap gap-3 pt-1">
-            <ButtonLink href="/zanzibar-tours">Explore Zanzibar experiences</ButtonLink>
+            <ButtonLink href="/contact">Enquire</ButtonLink>
             <ButtonLink
-              href="/safaris"
+              href="/zanzibar-tours"
               variant="ghost"
               className="border border-sb-shell/40 bg-sb-shell/10 text-sb-shell hover:bg-sb-shell/20 hover:border-sb-shell/60"
             >
-              Safaris & stays
+              Explore Experiences
             </ButtonLink>
           </div>
 
           <p className="max-w-2xl text-[0.9rem] leading-relaxed text-sb-shell/90">
-            Start with a simple message – tell us your dates, where you are staying and who is travelling. We will suggest a mix of sea days, town time and safari that actually fits.
+            Planned locally. Hosted with care. Always shaped around how you actually travel.
           </p>
 
           <div className="mt-4 flex flex-wrap gap-3 text-[0.82rem] text-sb-shell/90">

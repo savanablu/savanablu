@@ -161,7 +161,7 @@ export default function HomePage() {
 
                 <p className="text-center text-[0.75rem] leading-relaxed text-sb-ink/70">
 
-                  Many guests discover us through personal recommendations and Airbnb experiences.
+                  Many guests discover us through personal recommendations and trusted travel platforms.
 
                 </p>
 

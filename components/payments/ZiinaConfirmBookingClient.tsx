@@ -68,7 +68,7 @@ export function ZiinaConfirmBookingClient({
       {status === "done" &&
         "Your confirmation email is on its way. You don't need to do anything else."}
       {status === "error" &&
-        "Your payment went through, but we couldn't update the booking automatically. If you don't see a confirmation email soon, please contact us with your payment details."}
+        "Your payment has gone through successfully. If you don't see a confirmation email shortly, please contact us and we'll take care of it."}
     </p>
   );
 }

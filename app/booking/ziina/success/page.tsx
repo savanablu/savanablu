@@ -28,20 +28,19 @@ export default function ZiinaSuccessPage({
         </p>
 
         <h1 className="mt-3 text-3xl font-semibold tracking-wide sm:text-4xl">
-          Your booking is now confirmed
+          Your experience is now confirmed
         </h1>
 
         <div className="mt-6 rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-4">
           <p className="text-base leading-relaxed text-sb-cream/90">
-            Thank you – your 20% advance has been received through Ziina and your
-            booking is now <span className="font-semibold text-emerald-400">fully confirmed</span>.
+            Thank you — your 20% advance has been received securely through Ziina, and your
+            experience is now <span className="font-semibold text-emerald-400">fully confirmed</span>.
           </p>
         </div>
 
         <p className="mt-6 text-base leading-relaxed text-sb-cream/80">
-          You&apos;ll pay the remaining balance in Zanzibar on the day of your tour
-          or safari. We&apos;ll be in touch by email and, where helpful, WhatsApp, if
-          there&apos;s anything to adjust around tides, traffic or flights.
+          You&apos;ll pay the remaining balance in Zanzibar on the day your experience begins. We&apos;ll be in touch by email and, where helpful, WhatsApp if
+          there&apos;s anything to fine-tune around timings, tides, or flights.
         </p>
 
         {/* 🔹 This line handles updating bookings.json + sending emails */}
@@ -69,7 +68,7 @@ export default function ZiinaSuccessPage({
                 d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
               />
             </svg>
-            <span className="relative">Explore more Zanzibar tours</span>
+            <span className="relative">Explore more Zanzibar experiences</span>
             <svg
               className="relative ml-1 h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1"
               fill="none"
@@ -103,7 +102,7 @@ export default function ZiinaSuccessPage({
                 d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
               />
             </svg>
-            <span className="relative">View safari ideas from Zanzibar</span>
+            <span className="relative">View safari experiences from Zanzibar</span>
             <svg
               className="relative ml-1 h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1"
               fill="none"
